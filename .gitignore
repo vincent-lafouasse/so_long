@@ -6,3 +6,4 @@ local*
 *.a
 **/exec*
 so_long
+Makefile.gen
