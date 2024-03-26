@@ -19,16 +19,21 @@ typedef struct {
 typedef struct {
     int x;
     int y;
-} t_pixel_position;
+} t_px_position;
 
-int offset(int x, int y, t_data* data)
+t_px_position px_position(int x, int y)
 {
-    return y * data->line_length + x * (data->bpp / 8);
+    return (t_px_position){x, y};
 }
 
-void my_mlx_pixel_put(t_data* data, int x, int y,  int color)
+int offset(t_px_position px_pos, t_data* data)
 {
-    char* dst = data->addr + offset(x, y, data);
+    return px_pos.y * data->line_length + px_pos.x * (data->bpp / 8);
+}
+
+void my_mlx_pixel_put(t_data* data, t_px_position px_pos,  int color)
+{
+    char* dst = data->addr + offset(px_pos, data);
     *(uint32_t*)dst = color;
 }
 
@@ -40,7 +45,7 @@ int main(void)
     t_data img;
     img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
     img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_length, &img.endian);
-    my_mlx_pixel_put(&img, 5, 5, CORNFLOWER_BLUE);
+    my_mlx_pixel_put(&img, px_position(5, 5), CORNFLOWER_BLUE);
 
     mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
     mlx_loop(mlx);
