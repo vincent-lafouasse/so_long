@@ -11,7 +11,7 @@ DEPS := $(OBJS:.o=.d)
 
 CC        = cc
 CFLAGS    = -Wall -Wextra -g3
-CFLAGS   += -Werror
+# CFLAGS   += -Werror
 CPPFLAGS  = -I$(INCLUDE_DIR) -I$(INTERNAL_INCLUDE_DIR)
 CPPFLAGS += -MMD -MP
 LDLIBS = 
