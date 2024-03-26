@@ -69,8 +69,7 @@ fclean: clean
 
 # LSP stuff, don't worry about it
 .PHONY: update
-update:
-	make clean
+update: fclean
 	mkdir -p $(BUILD_DIR)
 	bear $(VERBOSITY) --output $(BUILD_DIR)/compile_commands.json -- make build
 
