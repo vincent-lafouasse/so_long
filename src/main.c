@@ -4,6 +4,8 @@
 
 #define WIDTH 600
 #define HEIGHT 480
+#define WINDOW_NAME ("idk, a name ig")
+#define RED (0x00FF0000)
 
 typedef struct {
     void* img;
@@ -27,8 +29,13 @@ void my_mlx_pixel_put(t_data* data, int x, int y,  int color)
 int main(void)
 {
     void* mlx = mlx_init();
+    void* mlx_window = mlx_new_window(mlx, WIDTH, HEIGHT, WINDOW_NAME);
 
     t_data img;
     img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
     img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_length, &img.endian);
+    my_mlx_pixel_put(&img, 5, 5, RED);
+
+    mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
+    mlx_loop(mlx);
 }
