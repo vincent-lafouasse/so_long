@@ -49,12 +49,12 @@ void my_mlx_pixel_put(t_data* data, t_px_position px_pos,  int color)
     *(t_u32*)dst = color;
 }
 
-void put_rectangle(t_data* data, t_rectangle rec, t_u32 color)
+void put_rectangle(t_data* data, t_rectangle rect, t_u32 color)
 {
-    for (int col = 0; col < rec.size.w; col++)
+    for (int col = 0; col < rect.size.w; col++)
     {
-        for (int row = 0; row < rec.size.h; row++)
-            my_mlx_pixel_put(data, px_position(rec.start.x + col, rec.start.y + row),color);
+        for (int row = 0; row < rect.size.h; row++)
+            my_mlx_pixel_put(data, px_position(rect.start.x + col, rect.start.y + row),color);
     }
 }
 
