@@ -21,7 +21,7 @@ LDFLAGS =
 # LIBFT = $(LIBFT_PATH)/libft.a
 # CPPFLAGS += -I$(LIBFT_PATH)/include
 
-MLX_PATH = ./lib/minilibx-linux/
+MLX_PATH = ./lib/minilibx-linux
 MLX = $(MLX_PATH)/libmlx.a
 MLX_INCLUDE_PATH = $(MLX_PATH)
 MLX_LIB_PATH = $(MLX_PATH)
@@ -49,6 +49,7 @@ $(LIBFT):
 	make -C $(LIBFT_PATH)
 
 $(MLX):
+	-./$(MLX_PATH)/configure
 	make -C $(MLX_PATH)
 
 .PHONY: re
