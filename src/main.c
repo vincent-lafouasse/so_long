@@ -22,6 +22,17 @@ typedef struct {
     int y;
 } t_px_position;
 
+
+typedef struct {
+    int w;
+    int h;
+} t_px_dimension;
+
+typedef struct {
+    t_px_position start;
+    t_px_dimension size;
+} t_rectangle;
+
 t_px_position px_position(int x, int y)
 {
     return (t_px_position){x, y};
