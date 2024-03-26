@@ -28,7 +28,7 @@ MLX_LIB_PATH = $(MLX_PATH)
 
 CPPFLAGS += -I$(MLX_INCLUDE_PATH)
 LDFLAGS += -L$(MLX_LIB_PATH)
-LDLIBS += -lmlx
+LDLIBS += -lmlx -lXext -lX11
 
 .PHONY: all
 all: build
