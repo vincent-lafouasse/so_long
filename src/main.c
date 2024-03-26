@@ -64,8 +64,11 @@ typedef struct {
     void* window;
 } t_vars;
 
-int close(t_keycode keycode, t_vars* vaars)
+int close(t_keycode keycode, t_vars* vars)
 {
+    (void)keycode;
+    mlx_destroy_window(vars->mlx, vars->window);
+    return 0;
 }
 
 int main(void)
