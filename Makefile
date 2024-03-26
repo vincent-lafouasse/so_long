@@ -50,6 +50,7 @@ re: fclean build
 clean:
 	$(RM) -r $(BUILD_DIR)
 	$(RM) -r $(LIBFT_PATH)/$(BUILD_DIR)
+	$(RM) Makefile.gen
 
 .PHONY: fclean
 fclean: clean
