@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "mlx.h"
+#include "cool_ints.h"
 
 #define WIDTH 600
 #define HEIGHT 480
@@ -34,7 +35,7 @@ int offset(t_px_position px_pos, t_data* data)
 void my_mlx_pixel_put(t_data* data, t_px_position px_pos,  int color)
 {
     char* dst = data->addr + offset(px_pos, data);
-    *(uint32_t*)dst = color;
+    *(t_u32*)dst = color;
 }
 
 int main(void)
