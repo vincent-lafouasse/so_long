@@ -63,6 +63,7 @@ fclean: clean
 	$(RM) $(LIBFT)
 
 VERBOSITY = 
+# VERBOSITY += --verbose
 
 # LSP stuff, don't worry about it
 .PHONY: update
