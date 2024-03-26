@@ -15,13 +15,18 @@ CFLAGS   += -Werror
 CPPFLAGS  = -I$(INCLUDE_DIR) -I$(INTERNAL_INCLUDE_DIR)
 CPPFLAGS += -MMD -MP
 
-LIBFT_PATH = ./lib/libft
-LIBFT = $(LIBFT_PATH)/libft.a
-CPPFLAGS += -I$(LIBFT_PATH)/include
+# LIBFT_PATH = ./lib/libft
+# LIBFT = $(LIBFT_PATH)/libft.a
+# CPPFLAGS += -I$(LIBFT_PATH)/include
 
-MLX_PATH =
-MLX = 
-# CPPFLAGS += -I$(MLX_PATH)/include
+MLX_PATH = ./lib/minilibx-linux/
+MLX = $(MLX_PATH)
+MLX_INCLUDE_PATH = $(MLX_PATH)
+MLX_LIB_PATH = $(MLX_PATH)
+
+CPPFLAGS += -I$(MLX_INCLUDE_PATH)
+LDFLAGS += -L$(MLX_LIB_PATH)
+LDLIBS += -lmlx
 
 LDFLAGS = 
 
