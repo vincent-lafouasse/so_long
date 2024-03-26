@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include "mlx.h"
 #include "cool_ints.h"
+#include "t_keycode.h"
 
 #define WIDTH 600
 #define HEIGHT 480
@@ -58,18 +59,28 @@ void put_rectangle(t_data* data, t_rectangle rect, t_u32 color)
     }
 }
 
+typedef struct {
+    void* mlx;
+    void* window;
+} t_vars;
+
+int close(t_keycode keycode, t_vars* vaars)
+{
+}
+
 int main(void)
 {
-    void* mlx = mlx_init();
-    void* mlx_window = mlx_new_window(mlx, WIDTH, HEIGHT, WINDOW_NAME);
+    t_vars vars;
+    vars.mlx = mlx_init();
+    vars.window = mlx_new_window(vars.mlx, WIDTH, HEIGHT, WINDOW_NAME);
 
     t_data img;
-    img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
+    img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
     img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_length, &img.endian);
     
     t_rectangle rect = {{5, 5}, {200, 69}};
     put_rectangle(&img, rect, CORNFLOWER_BLUE);
 
-    mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
-    mlx_loop(mlx);
+    mlx_put_image_to_window(vars.mlx, vars.window, img.img, 0, 0);
+    mlx_loop(vars.mlx);
 }
