@@ -62,8 +62,7 @@ fclean: clean
 	$(RM) $(NAME)
 	$(RM) $(LIBFT)
 
-VERBOSITY = 
-# VERBOSITY += --verbose
+# VERBOSITY = --verbose
 
 # LSP stuff, don't worry about it
 .PHONY: update
