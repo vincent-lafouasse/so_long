@@ -14,21 +14,21 @@ CFLAGS    = -Wall -Wextra -g3
 CFLAGS   += -Werror
 CPPFLAGS  = -I$(INCLUDE_DIR) -I$(INTERNAL_INCLUDE_DIR)
 CPPFLAGS += -MMD -MP
+LDLIBS = 
+LDFLAGS =
 
 # LIBFT_PATH = ./lib/libft
 # LIBFT = $(LIBFT_PATH)/libft.a
 # CPPFLAGS += -I$(LIBFT_PATH)/include
 
 MLX_PATH = ./lib/minilibx-linux/
-MLX = $(MLX_PATH)
+MLX = $(MLX_PATH)/libmlx.a
 MLX_INCLUDE_PATH = $(MLX_PATH)
 MLX_LIB_PATH = $(MLX_PATH)
 
 CPPFLAGS += -I$(MLX_INCLUDE_PATH)
 LDFLAGS += -L$(MLX_LIB_PATH)
 LDLIBS += -lmlx
-
-LDFLAGS = 
 
 .PHONY: all
 all: build
@@ -37,8 +37,8 @@ all: build
 build: $(NAME)
 
 # Linking
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) $(LDFLAGS) -o $@
+$(NAME): $(OBJS) $(MLX)
+	$(CC) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@
 
 # Compilation
 $(BUILD_DIR)/%.c.o: %.c
@@ -48,19 +48,22 @@ $(BUILD_DIR)/%.c.o: %.c
 $(LIBFT):
 	make -C $(LIBFT_PATH)
 
+$(MLX):
+	make -C $(MLX_PATH)
+
 .PHONY: re
 re: fclean build
 
 .PHONY: clean
 clean:
 	$(RM) -r $(BUILD_DIR)
-	$(RM) -r $(LIBFT_PATH)/$(BUILD_DIR)
+	make clean -C $(MLX_PATH)
 	$(RM) Makefile.gen
 
 .PHONY: fclean
 fclean: clean
 	$(RM) $(NAME)
-	$(RM) $(LIBFT)
+	$(RM) $(MLX)
 
 # VERBOSITY = --verbose
 
