@@ -57,14 +57,14 @@ int main(void)
     mlx_objects.mlx = mlx_init();
     mlx_objects.window = mlx_new_window(mlx_objects.mlx, WIDTH, HEIGHT, WINDOW_NAME);
 
-    t_surface surface;
-    surface.img = mlx_new_image(mlx_objects.mlx, WIDTH, HEIGHT);
-    surface.addr = mlx_get_data_addr(surface.img, &surface.bpp, &surface.line_length, &surface.endian);
+    t_surface render_surface;
+    render_surface.img = mlx_new_image(mlx_objects.mlx, WIDTH, HEIGHT);
+    render_surface.addr = mlx_get_data_addr(render_surface.img, &render_surface.bpp, &render_surface.line_length, &render_surface.endian);
 
     t_rectangle rect = rectangle(position(5, 5), dimension(420, 69));
-    put_rectangle(&surface, rect, CORNFLOWER_BLUE);
+    put_rectangle(&render_surface, rect, CORNFLOWER_BLUE);
 
-    mlx_put_image_to_window(mlx_objects.mlx, mlx_objects.window, surface.img, 0, 0);
+    mlx_put_image_to_window(mlx_objects.mlx, mlx_objects.window, render_surface.img, 0, 0);
 
     mlx_key_hook(mlx_objects.window, handle_key_events, &mlx_objects);
     mlx_loop(mlx_objects.mlx);
