@@ -20,7 +20,7 @@ typedef struct {
     int endian;
 } t_data;
 
-void my_mlx_pixel_put(t_data* data, t_position px_pos,  int color)
+void my_mlx_pixel_put(t_data* data, t_position px_pos,  t_u32 color)
 {
     char* dst = data->addr + flatten_2d_position(px_pos, data->line_length, data->bpp);
     *(t_u32*)dst = color;
