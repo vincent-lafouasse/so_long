@@ -10,6 +10,8 @@
 #define HEIGHT 480
 #define WINDOW_NAME ("idk, a name ig")
 
+#define IRRELEVANT_RETURN_VALUE 0
+
 typedef int t_keycode;
 
 typedef struct {
@@ -46,7 +48,7 @@ int handle_key_events(t_keycode keycode, t_vars* vars)
         mlx_destroy_window(vars->mlx, vars->window);
     if (keycode == XK_p)
         mlx_string_put(vars->mlx, vars->window, 69, 420, RED, "hello");
-    return 0;
+    return IRRELEVANT_RETURN_VALUE;
 }
 
 int main(void)
