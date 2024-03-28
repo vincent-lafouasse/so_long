@@ -61,7 +61,7 @@ int main(void)
     surface.img = mlx_new_image(mlx_objects.mlx, WIDTH, HEIGHT);
     surface.addr = mlx_get_data_addr(surface.img, &surface.bpp, &surface.line_length, &surface.endian);
 
-    t_rectangle rect = {{5, 5}, {200, 69}};
+    t_rectangle rect = rectangle(position(5, 5), dimension(420, 69));
     put_rectangle(&surface, rect, CORNFLOWER_BLUE);
 
     mlx_put_image_to_window(mlx_objects.mlx, mlx_objects.window, surface.img, 0, 0);
