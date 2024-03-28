@@ -28,12 +28,12 @@ void my_mlx_pixel_put(t_surface* surface, t_position px_pos,  t_u32 color)
     *(t_u32*)dst = color;
 }
 
-void put_rectangle(t_surface* surface, t_rectangle rect, t_u32 color)
+void put_rectangle(t_surface* surface, t_rectangle* rect, t_u32 color)
 {
-    for (int col = 0; col < rect.size.w; col++)
+    for (int col = 0; col < rect->size.w; col++)
     {
-        for (int row = 0; row < rect.size.h; row++)
-            my_mlx_pixel_put(surface, position(rect.start.x + col, rect.start.y + row),color);
+        for (int row = 0; row < rect->size.h; row++)
+            my_mlx_pixel_put(surface, position(rect->start.x + col, rect->start.y + row),color);
     }
 }
 
@@ -62,7 +62,7 @@ int main(void)
     render_surface.addr = mlx_get_data_addr(render_surface.img, &render_surface.bpp, &render_surface.line_length, &render_surface.endian);
 
     t_rectangle rect = rectangle(position(5, 5), dimension(420, 69));
-    put_rectangle(&render_surface, rect, CORNFLOWER_BLUE);
+    put_rectangle(&render_surface, &rect, CORNFLOWER_BLUE);
 
     mlx_put_image_to_window(mlx_objects.mlx, mlx_objects.window, render_surface.img, 0, 0);
 
