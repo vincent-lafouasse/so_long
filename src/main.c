@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <X11/keysym.h>
 #include "mlx.h"
 #include "cool_ints.h"
-#include "t_keycode.h"
 
 #define WIDTH 600
 #define HEIGHT 480
