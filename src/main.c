@@ -4,12 +4,11 @@
 #include "mlx.h"
 #include "geometry.h"
 #include "cool_ints.h"
+#include "t_color.h"
 
 #define WIDTH 600
 #define HEIGHT 480
 #define WINDOW_NAME ("idk, a name ig")
-#define RED (0x00FF0000)
-#define CORNFLOWER_BLUE (0x006495ED)
 
 typedef int t_keycode;
 
