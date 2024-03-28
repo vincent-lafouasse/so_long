@@ -23,30 +23,30 @@ typedef struct {
 typedef struct {
     int x;
     int y;
-} t_px_position;
+} t_position;
 
 
 typedef struct {
     int w;
     int h;
-} t_px_dimension;
+} t_dimension;
 
 typedef struct {
-    t_px_position start;
-    t_px_dimension size;
+    t_position start;
+    t_dimension size;
 } t_rectangle;
 
-t_px_position px_position(int x, int y)
+t_position position(int x, int y)
 {
-    return (t_px_position){x, y};
+    return (t_position){x, y};
 }
 
-int offset(t_px_position px_pos, t_data* data)
+int offset(t_position px_pos, t_data* data)
 {
     return px_pos.y * data->line_length + px_pos.x * (data->bpp / 8);
 }
 
-void my_mlx_pixel_put(t_data* data, t_px_position px_pos,  int color)
+void my_mlx_pixel_put(t_data* data, t_position px_pos,  int color)
 {
     char* dst = data->addr + offset(px_pos, data);
     *(t_u32*)dst = color;
@@ -57,7 +57,7 @@ void put_rectangle(t_data* data, t_rectangle rect, t_u32 color)
     for (int col = 0; col < rect.size.w; col++)
     {
         for (int row = 0; row < rect.size.h; row++)
-            my_mlx_pixel_put(data, px_position(rect.start.x + col, rect.start.y + row),color);
+            my_mlx_pixel_put(data, position(rect.start.x + col, rect.start.y + row),color);
     }
 }
 
