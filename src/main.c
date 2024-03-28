@@ -66,11 +66,12 @@ typedef struct {
     void* window;
 } t_vars;
 
-int close_on_esc(t_keycode keycode, t_vars* vars)
+int handle_key_events(t_keycode keycode, t_vars* vars)
 {
-    if (keycode != XK_Escape)
-        return 0;
-    mlx_destroy_window(vars->mlx, vars->window);
+    if (keycode == XK_Escape)
+        mlx_destroy_window(vars->mlx, vars->window);
+    if (keycode == XK_p)
+        mlx_string_put(vars->mlx, vars->window, 69, 420, RED, "hello");
     return 0;
 }
 
@@ -89,6 +90,6 @@ int main(void)
 
     mlx_put_image_to_window(vars.mlx, vars.window, img.img, 0, 0);
 
-    mlx_key_hook(vars.window, close_on_esc, &vars);
+    mlx_key_hook(vars.window, handle_key_events, &vars);
     mlx_loop(vars.mlx);
 }
