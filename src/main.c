@@ -40,32 +40,32 @@ void put_rectangle(t_surface* surface, t_rectangle rect, t_u32 color)
 typedef struct {
     void* mlx;
     void* window;
-} t_vars;
+} t_mlx_objects;
 
-int handle_key_events(t_keycode keycode, t_vars* vars)
+int handle_key_events(t_keycode keycode, t_mlx_objects* mlx_objects)
 {
     if (keycode == XK_Escape)
-        mlx_destroy_window(vars->mlx, vars->window);
+        mlx_destroy_window(mlx_objects->mlx, mlx_objects->window);
     if (keycode == XK_p)
-        mlx_string_put(vars->mlx, vars->window, 69, 420, RED, "hello");
+        mlx_string_put(mlx_objects->mlx, mlx_objects->window, 69, 420, RED, "hello");
     return IRRELEVANT_RETURN_VALUE;
 }
 
 int main(void)
 {
-    t_vars vars;
-    vars.mlx = mlx_init();
-    vars.window = mlx_new_window(vars.mlx, WIDTH, HEIGHT, WINDOW_NAME);
+    t_mlx_objects mlx_objects;
+    mlx_objects.mlx = mlx_init();
+    mlx_objects.window = mlx_new_window(mlx_objects.mlx, WIDTH, HEIGHT, WINDOW_NAME);
 
     t_surface surface;
-    surface.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
+    surface.img = mlx_new_image(mlx_objects.mlx, WIDTH, HEIGHT);
     surface.addr = mlx_get_data_addr(surface.img, &surface.bpp, &surface.line_length, &surface.endian);
 
     t_rectangle rect = {{5, 5}, {200, 69}};
     put_rectangle(&surface, rect, CORNFLOWER_BLUE);
 
-    mlx_put_image_to_window(vars.mlx, vars.window, surface.img, 0, 0);
+    mlx_put_image_to_window(mlx_objects.mlx, mlx_objects.window, surface.img, 0, 0);
 
-    mlx_key_hook(vars.window, handle_key_events, &vars);
-    mlx_loop(vars.mlx);
+    mlx_key_hook(mlx_objects.window, handle_key_events, &mlx_objects);
+    mlx_loop(mlx_objects.mlx);
 }
