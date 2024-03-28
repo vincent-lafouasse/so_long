@@ -10,6 +10,8 @@
 #define RED (0x00FF0000)
 #define CORNFLOWER_BLUE (0x006495ED)
 
+typedef int t_keycode;
+
 typedef struct {
     void* img;
     char* addr;
@@ -64,10 +66,12 @@ typedef struct {
     void* window;
 } t_vars;
 
-int close(t_keycode keycode, t_vars* vars)
+int very_cool_hook(t_keycode keycode, t_vars* vars)
 {
     (void)keycode;
-    mlx_destroy_window(vars->mlx, vars->window);
+    (void)vars;
+    //mlx_destroy_window(vars->mlx, vars->window);
+    printf("keypress detected\n");
     return 0;
 }
 
@@ -85,5 +89,7 @@ int main(void)
     put_rectangle(&img, rect, CORNFLOWER_BLUE);
 
     mlx_put_image_to_window(vars.mlx, vars.window, img.img, 0, 0);
+
+    mlx_key_hook(vars.window, very_cool_hook, &vars);
     mlx_loop(vars.mlx);
 }
