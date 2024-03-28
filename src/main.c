@@ -80,7 +80,7 @@ int main(void)
     t_data img;
     img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
     img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_length, &img.endian);
-    
+
     t_rectangle rect = {{5, 5}, {200, 69}};
     put_rectangle(&img, rect, CORNFLOWER_BLUE);
 
