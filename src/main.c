@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <X11/keysym.h>
 #include "mlx.h"
+#include "geometry.h"
 #include "cool_ints.h"
 
 #define WIDTH 600
@@ -20,35 +21,9 @@ typedef struct {
     int endian;
 } t_data;
 
-typedef struct {
-    int x;
-    int y;
-} t_position;
-
-
-typedef struct {
-    int w;
-    int h;
-} t_dimension;
-
-typedef struct {
-    t_position start;
-    t_dimension size;
-} t_rectangle;
-
-t_position position(int x, int y)
-{
-    return (t_position){x, y};
-}
-
-int offset(t_position px_pos, t_data* data)
-{
-    return px_pos.y * data->line_length + px_pos.x * (data->bpp / 8);
-}
-
 void my_mlx_pixel_put(t_data* data, t_position px_pos,  int color)
 {
-    char* dst = data->addr + offset(px_pos, data);
+    char* dst = data->addr + flatten_2d_position(px_pos, data->line_length, data->bpp);
     *(t_u32*)dst = color;
 }
 
