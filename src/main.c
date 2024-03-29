@@ -1,6 +1,9 @@
 #include <stdio.h>
-#include <stdint.h>
+#include <time.h>
+#include <sys/time.h>
+
 #include <X11/keysym.h>
+
 #include "mlx.h"
 #include "geometry.h"
 #include "cool_ints.h"
@@ -11,6 +14,20 @@
 #define WINDOW_NAME ("idk, a name ig")
 
 #define IRRELEVANT_RETURN_VALUE 0
+
+void log_time(void)
+{
+    struct timeval curTime;
+    gettimeofday(&curTime, NULL);
+    int milli = curTime.tv_usec / 1000;
+
+    char buffer [80];
+    strftime(buffer, 80, "%Y-%m-%d %H:%M:%S", localtime(&curTime.tv_sec));
+
+    char currentTime[84] = "";
+    sprintf(currentTime, "%s:%03d", buffer, milli);
+    printf("%s", currentTime);
+}
 
 typedef int t_keycode;
 
@@ -44,7 +61,8 @@ typedef struct {
 
 int handle_key_events(t_keycode keycode, t_mlx_objects* mlx_objects)
 {
-    printf("Key Event: received key event with keycode %x\n", keycode);
+    log_time();
+    printf("\tKey Event:\t %x\n", keycode);
     if (keycode == XK_Escape)
         mlx_destroy_window(mlx_objects->mlx, mlx_objects->window);
     if (keycode == XK_p)
