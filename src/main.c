@@ -44,6 +44,7 @@ typedef struct {
 
 int handle_key_events(t_keycode keycode, t_mlx_objects* mlx_objects)
 {
+    printf("Key Event: received key event with keycode %x\n", keycode);
     if (keycode == XK_Escape)
         mlx_destroy_window(mlx_objects->mlx, mlx_objects->window);
     if (keycode == XK_p)
