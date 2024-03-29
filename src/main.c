@@ -87,7 +87,7 @@ typedef struct {
 int render(t_render_input* params)
 {
     log_time();
-    printf("\tExpose Event\n");
+    printf("\tLoop Event\n");
     put_rectangle(params->render_surface, &params->game->important_rectangle, CORNFLOWER_BLUE);
     mlx_put_image_to_window(params->mlx_objects->mlx, params->mlx_objects->window, params->render_surface->img, 0, 0);
     return IRRELEVANT_RETURN_VALUE;
@@ -110,6 +110,7 @@ int main(void)
     t_render_input render_input = (t_render_input){&mlx_objects, &render_surface, &game};
 
     mlx_key_hook(mlx_objects.window, handle_key_events, &mlx_objects);
-    mlx_expose_hook(mlx_objects.window, render, &render_input);
+    //mlx_expose_hook(mlx_objects.window, render, &render_input);
+    mlx_loop_hook(mlx_objects.mlx, render, &render_input);
     mlx_loop(mlx_objects.mlx);
 }
