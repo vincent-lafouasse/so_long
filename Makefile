@@ -33,6 +33,10 @@ LDLIBS += -lmlx -lXext -lX11
 .PHONY: all
 all: build
 
+.PHONY: run
+run: $(NAME)
+	./$^
+
 .PHONY: build
 build: $(NAME)
 
