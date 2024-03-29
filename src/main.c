@@ -15,16 +15,18 @@
 
 #define IRRELEVANT_RETURN_VALUE 0
 
+#define LOG_BUFFER_SIZE 128
+
 void log_time(void)
 {
     struct timeval curTime;
     gettimeofday(&curTime, NULL);
     int milli = curTime.tv_usec / 1000;
 
-    char buffer [80];
-    strftime(buffer, 80, "%Y-%m-%d %H:%M:%S", localtime(&curTime.tv_sec));
+    char buffer [LOG_BUFFER_SIZE];
+    strftime(buffer, LOG_BUFFER_SIZE, "%H:%M:%S", localtime(&curTime.tv_sec));
 
-    char currentTime[84] = "";
+    char currentTime[LOG_BUFFER_SIZE + 4] = "";
     sprintf(currentTime, "%s:%03d", buffer, milli);
     printf("%s", currentTime);
 }
