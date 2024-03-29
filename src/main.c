@@ -52,6 +52,26 @@ int handle_key_events(t_keycode keycode, t_mlx_objects* mlx_objects)
     return IRRELEVANT_RETURN_VALUE;
 }
 
+typedef struct {
+    char** board;
+    t_dimension size;
+    t_rectangle important_rectangle;
+} t_game;
+
+typedef struct {
+    t_mlx_objects *mlx_objects;
+    t_surface *render_surface;
+    t_game* game;
+} t_render_input;
+
+int render(t_render_input* params)
+{
+    printf("Loop Event\n");
+    put_rectangle(params->render_surface, &params->game->important_rectangle, CORNFLOWER_BLUE);
+    mlx_put_image_to_window(params->mlx_objects->mlx, params->mlx_objects->window, params->render_surface->img, 0, 0);
+    return IRRELEVANT_RETURN_VALUE;
+}
+
 int main(void)
 {
     t_mlx_objects mlx_objects;
@@ -63,10 +83,12 @@ int main(void)
     render_surface.addr = mlx_get_data_addr(render_surface.img, &render_surface.bpp, &render_surface.line_length, &render_surface.endian);
 
     t_rectangle rect = rectangle(position(5, 5), dimension(420, 69));
-    put_rectangle(&render_surface, &rect, CORNFLOWER_BLUE);
+    
+    t_game game = (t_game){NULL, dimension(0, 0), rect};
 
-    mlx_put_image_to_window(mlx_objects.mlx, mlx_objects.window, render_surface.img, 0, 0);
+    t_render_input render_input = (t_render_input){&mlx_objects, &render_surface, &game};
 
     mlx_key_hook(mlx_objects.window, handle_key_events, &mlx_objects);
+    mlx_expose_hook(mlx_objects.window, render, &render_input);
     mlx_loop(mlx_objects.mlx);
 }
