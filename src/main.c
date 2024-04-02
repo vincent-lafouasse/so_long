@@ -13,8 +13,6 @@
 
 #define IRRELEVANT_RETURN_VALUE 0
 
-void log_time(void);
-
 typedef int t_keycode;
 
 typedef struct {
@@ -25,36 +23,17 @@ typedef struct {
     int endian;
 } t_surface;
 
-void my_mlx_pixel_put(t_surface* surface, t_position px_pos,  t_u32 color)
-{
-    char* dst = surface->addr + flatten_2d_position(px_pos, surface->line_length, surface->bpp);
-    *(t_u32*)dst = color;
-}
-
-void put_rectangle(t_surface* surface, t_rectangle* rect, t_u32 color)
-{
-    for (int col = 0; col < rect->size.w; col++)
-    {
-        for (int row = 0; row < rect->size.h; row++)
-            my_mlx_pixel_put(surface, position(rect->start.x + col, rect->start.y + row),color);
-    }
-}
-
 typedef struct {
     void* mlx;
     void* window;
 } t_mlx_objects;
 
-int handle_key_events(t_keycode keycode, t_mlx_objects* mlx_objects)
-{
-    log_time();
-    printf("\tKey Event:\t %x\n", keycode);
-    if (keycode == XK_Escape)
-        mlx_destroy_window(mlx_objects->mlx, mlx_objects->window);
-    if (keycode == XK_p)
-        mlx_string_put(mlx_objects->mlx, mlx_objects->window, 69, 420, RED, "hello");
-    return IRRELEVANT_RETURN_VALUE;
-}
+void log_time(void);
+void log_key_event(t_keycode);
+void log_loop_event(void);
+
+void my_mlx_pixel_put(t_surface* surface, t_position px_pos,  t_u32 color);
+void put_rectangle(t_surface* surface, t_rectangle* rect, t_u32 color);
 
 typedef struct {
     char** board;
@@ -68,10 +47,19 @@ typedef struct {
     t_game* game;
 } t_render_input;
 
+int handle_key_events(t_keycode keycode, t_mlx_objects* mlx_objects)
+{
+    log_key_event(keycode);
+    if (keycode == XK_Escape)
+        mlx_destroy_window(mlx_objects->mlx, mlx_objects->window);
+    if (keycode == XK_p)
+        mlx_string_put(mlx_objects->mlx, mlx_objects->window, 69, 420, RED, "hello");
+    return IRRELEVANT_RETURN_VALUE;
+}
+
 int render(t_render_input* params)
 {
-    log_time();
-    printf("\tLoop Event\n");
+    log_loop_event();
     put_rectangle(params->render_surface, &params->game->important_rectangle, CORNFLOWER_BLUE);
     mlx_put_image_to_window(params->mlx_objects->mlx, params->mlx_objects->window, params->render_surface->img, 0, 0);
     return IRRELEVANT_RETURN_VALUE;
@@ -97,4 +85,31 @@ int main(void)
     //mlx_expose_hook(mlx_objects.window, render, &render_input);
     mlx_loop_hook(mlx_objects.mlx, render, &render_input);
     mlx_loop(mlx_objects.mlx);
+}
+
+
+void my_mlx_pixel_put(t_surface* surface, t_position px_pos,  t_u32 color)
+{
+    char* dst = surface->addr + flatten_2d_position(px_pos, surface->line_length, surface->bpp);
+    *(t_u32*)dst = color;
+}
+
+void put_rectangle(t_surface* surface, t_rectangle* rect, t_u32 color)
+{
+    for (int col = 0; col < rect->size.w; col++)
+    {
+        for (int row = 0; row < rect->size.h; row++)
+            my_mlx_pixel_put(surface, position(rect->start.x + col, rect->start.y + row),color);
+    }
+}
+
+void log_key_event(t_keycode keycode)
+{
+    log_time();
+    printf("\tKey Event:\t %x\n", keycode);
+}
+void log_loop_event(void)
+{
+    log_time();
+    printf("\tLoop Event\n");
 }
