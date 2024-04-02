@@ -59,7 +59,7 @@ int handle_key_events(t_keycode keycode, t_mlx_objects* mlx_objects)
 
 int render(t_render_input* params)
 {
-    log_loop_event();
+    // log_loop_event();
     put_rectangle(params->render_surface, &params->game->important_rectangle, CORNFLOWER_BLUE);
     mlx_put_image_to_window(params->mlx_objects->mlx, params->mlx_objects->window, params->render_surface->img, 0, 0);
     return IRRELEVANT_RETURN_VALUE;
@@ -106,7 +106,31 @@ void put_rectangle(t_surface* surface, t_rectangle* rect, t_u32 color)
 void log_key_event(t_keycode keycode)
 {
     log_time();
-    printf("\tKey Event:\t %x\n", keycode);
+    printf("\tKey Event:\t");
+    switch (keycode)
+    {
+        case XK_Escape:
+            printf("Esc");
+            break;
+        case XK_p:
+            printf("P");
+            break;
+        case XK_w:
+            printf("W");
+            break;
+        case XK_a:
+            printf("A");
+            break;
+        case XK_s:
+            printf("S");
+            break;
+        case XK_d:
+            printf("D");
+            break;
+        default:
+            printf("%d", keycode);
+    }
+    printf("\n");
 }
 void log_loop_event(void)
 {
