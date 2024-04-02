@@ -31,7 +31,7 @@ typedef struct
 {
     void* mlx;
     void* window;
-} t_mlx_objects;
+} t_mlx;
 
 void log_time(void);
 void log_key_event(t_keycode);
@@ -49,19 +49,19 @@ typedef struct
 
 typedef struct
 {
-    t_mlx_objects* mlx_objects;
+    t_mlx* mlx;
     t_image* render_surface;
     t_image* player_sprite;
     t_game* game;
 } t_render_input;
 
-int handle_key_events(t_keycode keycode, t_mlx_objects* mlx_objects)
+int handle_key_events(t_keycode keycode, t_mlx* mlx)
 {
     log_key_event(keycode);
     if (keycode == XK_Escape)
-        mlx_destroy_window(mlx_objects->mlx, mlx_objects->window);
+        mlx_destroy_window(mlx->mlx, mlx->window);
     if (keycode == XK_p)
-        mlx_string_put(mlx_objects->mlx, mlx_objects->window, 69, 420, RED,
+        mlx_string_put(mlx->mlx, mlx->window, 69, 420, RED,
                        "hello");
     return IRRELEVANT_RETURN_VALUE;
 }
@@ -71,13 +71,15 @@ int render(t_render_input* params)
     // log_loop_event();
     put_rectangle(params->render_surface, &params->game->important_rectangle,
                   CORNFLOWER_BLUE);
-    mlx_put_image_to_window(params->mlx_objects->mlx,
-                            params->mlx_objects->window,
+    mlx_put_image_to_window(params->mlx->mlx,
+                            params->mlx->window,
                             params->render_surface->img, 0, 0);
     return IRRELEVANT_RETURN_VALUE;
 }
 
-t_image init_empty_image(t_dimension size, t_mlx_objects* mlx)
+t_mlx init_window(t_dimension window_size, const char* window_name);
+
+t_image init_empty_image(t_dimension size, t_mlx* mlx)
 {
     t_image out;
 
@@ -86,7 +88,7 @@ t_image init_empty_image(t_dimension size, t_mlx_objects* mlx)
     return out;
 }
 
-t_image load_image_xpm(const char* path, t_mlx_objects* mlx)
+t_image load_image_xpm(const char* path, t_mlx* mlx)
 {
     t_image out;
     out.img =
@@ -97,26 +99,26 @@ t_image load_image_xpm(const char* path, t_mlx_objects* mlx)
 
 int main(void)
 {
-    t_mlx_objects mlx_objects;
-    mlx_objects.mlx = mlx_init();
-    mlx_objects.window =
-        mlx_new_window(mlx_objects.mlx, WIDTH, HEIGHT, WINDOW_NAME);
+    t_mlx mlx;
+    mlx.mlx = mlx_init();
+    mlx.window =
+        mlx_new_window(mlx.mlx, WIDTH, HEIGHT, WINDOW_NAME);
 
-    t_image player_sprite = load_image_xpm(PLAYER_SPRITE_PATH, &mlx_objects);
+    t_image player_sprite = load_image_xpm(PLAYER_SPRITE_PATH, &mlx);
 
-    t_image render_surface = init_empty_image(dimension(WIDTH, HEIGHT), &mlx_objects);
+    t_image render_surface = init_empty_image(dimension(WIDTH, HEIGHT), &mlx);
 
     t_rectangle rect = rectangle(position(5, 5), dimension(420, 69));
 
     t_game game = (t_game){NULL, dimension(0, 0), rect};
 
     t_render_input render_input =
-        (t_render_input){&mlx_objects, &render_surface, &player_sprite, &game};
+        (t_render_input){&mlx, &render_surface, &player_sprite, &game};
 
-    mlx_key_hook(mlx_objects.window, handle_key_events, &mlx_objects);
-    // mlx_expose_hook(mlx_objects.window, render, &render_input);
-    mlx_loop_hook(mlx_objects.mlx, render, &render_input);
-    mlx_loop(mlx_objects.mlx);
+    mlx_key_hook(mlx.window, handle_key_events, &mlx);
+    // mlx_expose_hook(mlx.window, render, &render_input);
+    mlx_loop_hook(mlx.mlx, render, &render_input);
+    mlx_loop(mlx.mlx);
 }
 
 void my_mlx_pixel_put(t_image* surface, t_position px_pos, t_u32 color)
