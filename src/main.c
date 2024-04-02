@@ -86,6 +86,15 @@ t_image init_empty_image(t_dimension size, t_mlx_objects* mlx)
     return out;
 }
 
+t_image load_image_xpm(const char* path, t_mlx_objects* mlx)
+{
+    t_image out;
+    out.img =
+        mlx_xpm_file_to_image(mlx->mlx, (char*)path, &out.size.w, &out.size.h);
+    out.addr = mlx_get_data_addr(out.img, &out.bpp, &out.line_length, &out.endian);
+    return out;
+}
+
 int main(void)
 {
     t_mlx_objects mlx_objects;
@@ -93,12 +102,9 @@ int main(void)
     mlx_objects.window =
         mlx_new_window(mlx_objects.mlx, WIDTH, HEIGHT, WINDOW_NAME);
 
-    t_image render_surface = init_empty_image(dimension(WIDTH, HEIGHT), &mlx_objects);
+    t_image player_sprite = load_image_xpm(PLAYER_SPRITE_PATH, &mlx_objects);
 
-    t_image player_sprite;
-    player_sprite.img =
-        mlx_xpm_file_to_image(mlx_objects.mlx, PLAYER_SPRITE_PATH,
-                              &player_sprite.size.w, &player_sprite.size.h);
+    t_image render_surface = init_empty_image(dimension(WIDTH, HEIGHT), &mlx_objects);
 
     t_rectangle rect = rectangle(position(5, 5), dimension(420, 69));
 
