@@ -93,11 +93,7 @@ int main(void)
     mlx_objects.window =
         mlx_new_window(mlx_objects.mlx, WIDTH, HEIGHT, WINDOW_NAME);
 
-    t_image render_surface;
-    render_surface.img = mlx_new_image(mlx_objects.mlx, WIDTH, HEIGHT);
-    render_surface.addr =
-        mlx_get_data_addr(render_surface.img, &render_surface.bpp,
-                          &render_surface.line_length, &render_surface.endian);
+    t_image render_surface = init_empty_image(dimension(WIDTH, HEIGHT), &mlx_objects);
 
     t_image player_sprite;
     player_sprite.img =
