@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <time.h>
-#include <sys/time.h>
 #include <stdio.h>
+#include <sys/time.h>
+#include <time.h>
 
 #define LOG_BUFFER_SIZE 128
 
@@ -22,7 +22,7 @@ void log_time(void)
     gettimeofday(&curTime, NULL);
     int milli = curTime.tv_usec / 1000;
 
-    char buffer [LOG_BUFFER_SIZE];
+    char buffer[LOG_BUFFER_SIZE];
     strftime(buffer, LOG_BUFFER_SIZE, "%H:%M:%S", localtime(&curTime.tv_sec));
 
     char currentTime[LOG_BUFFER_SIZE + 4] = "";
