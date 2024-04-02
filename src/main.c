@@ -11,6 +11,8 @@
 #define HEIGHT 480
 #define WINDOW_NAME ("idk, a name ig")
 
+#define PLAYER_SPRITE_PATH "./assets/player.xpm"
+
 #define IRRELEVANT_RETURN_VALUE 0
 
 typedef int t_keycode;
@@ -22,6 +24,7 @@ typedef struct
     int bpp;
     int line_length;
     int endian;
+    t_dimension size;
 } t_image;
 
 typedef struct
@@ -48,6 +51,7 @@ typedef struct
 {
     t_mlx_objects* mlx_objects;
     t_image* render_surface;
+    t_image* player_sprite;
     t_game* game;
 } t_render_input;
 
@@ -73,6 +77,15 @@ int render(t_render_input* params)
     return IRRELEVANT_RETURN_VALUE;
 }
 
+t_image init_empty_image(t_dimension size, t_mlx_objects* mlx)
+{
+    t_image out;
+
+    out.img = mlx_new_image(mlx->mlx, size.w, size.h);
+    out.addr = mlx_get_data_addr(out.img, &out.bpp, &out.line_length, &out.endian);
+    return out;
+}
+
 int main(void)
 {
     t_mlx_objects mlx_objects;
@@ -86,12 +99,17 @@ int main(void)
         mlx_get_data_addr(render_surface.img, &render_surface.bpp,
                           &render_surface.line_length, &render_surface.endian);
 
+    t_image player_sprite;
+    player_sprite.img =
+        mlx_xpm_file_to_image(mlx_objects.mlx, PLAYER_SPRITE_PATH,
+                              &player_sprite.size.w, &player_sprite.size.h);
+
     t_rectangle rect = rectangle(position(5, 5), dimension(420, 69));
 
     t_game game = (t_game){NULL, dimension(0, 0), rect};
 
     t_render_input render_input =
-        (t_render_input){&mlx_objects, &render_surface, &game};
+        (t_render_input){&mlx_objects, &render_surface, &player_sprite, &game};
 
     mlx_key_hook(mlx_objects.window, handle_key_events, &mlx_objects);
     // mlx_expose_hook(mlx_objects.window, render, &render_input);
