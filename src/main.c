@@ -21,7 +21,7 @@ typedef struct {
     int bpp;
     int line_length;
     int endian;
-} t_surface;
+} t_image;
 
 typedef struct {
     void* mlx;
@@ -32,8 +32,8 @@ void log_time(void);
 void log_key_event(t_keycode);
 void log_loop_event(void);
 
-void my_mlx_pixel_put(t_surface* surface, t_position px_pos,  t_u32 color);
-void put_rectangle(t_surface* surface, t_rectangle* rect, t_u32 color);
+void my_mlx_pixel_put(t_image* surface, t_position px_pos,  t_u32 color);
+void put_rectangle(t_image* surface, t_rectangle* rect, t_u32 color);
 
 typedef struct {
     char** board;
@@ -43,7 +43,7 @@ typedef struct {
 
 typedef struct {
     t_mlx_objects *mlx_objects;
-    t_surface *render_surface;
+    t_image *render_surface;
     t_game* game;
 } t_render_input;
 
@@ -71,7 +71,7 @@ int main(void)
     mlx_objects.mlx = mlx_init();
     mlx_objects.window = mlx_new_window(mlx_objects.mlx, WIDTH, HEIGHT, WINDOW_NAME);
 
-    t_surface render_surface;
+    t_image render_surface;
     render_surface.img = mlx_new_image(mlx_objects.mlx, WIDTH, HEIGHT);
     render_surface.addr = mlx_get_data_addr(render_surface.img, &render_surface.bpp, &render_surface.line_length, &render_surface.endian);
 
@@ -88,13 +88,13 @@ int main(void)
 }
 
 
-void my_mlx_pixel_put(t_surface* surface, t_position px_pos,  t_u32 color)
+void my_mlx_pixel_put(t_image* surface, t_position px_pos,  t_u32 color)
 {
     char* dst = surface->addr + flatten_2d_position(px_pos, surface->line_length, surface->bpp);
     *(t_u32*)dst = color;
 }
 
-void put_rectangle(t_surface* surface, t_rectangle* rect, t_u32 color)
+void put_rectangle(t_image* surface, t_rectangle* rect, t_u32 color)
 {
     for (int col = 0; col < rect->size.w; col++)
     {
