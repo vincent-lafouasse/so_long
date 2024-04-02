@@ -77,7 +77,14 @@ int render(t_render_input* params)
     return IRRELEVANT_RETURN_VALUE;
 }
 
-t_mlx init_window(t_dimension window_size, const char* window_name);
+t_mlx init_mlx(t_dimension window_size, const char* window_name)
+{
+    t_mlx mlx;
+    mlx.mlx = mlx_init();
+    mlx.window =
+        mlx_new_window(mlx.mlx, window_size.w, window_size.h, (char*)window_name);
+    return mlx;
+}
 
 t_image init_empty_image(t_dimension size, t_mlx* mlx)
 {
@@ -99,11 +106,7 @@ t_image load_image_xpm(const char* path, t_mlx* mlx)
 
 int main(void)
 {
-    t_mlx mlx;
-    mlx.mlx = mlx_init();
-    mlx.window =
-        mlx_new_window(mlx.mlx, WIDTH, HEIGHT, WINDOW_NAME);
-
+    t_mlx mlx = init_mlx(dimension(WIDTH, HEIGHT), WINDOW_NAME);
     t_image player_sprite = load_image_xpm(PLAYER_SPRITE_PATH, &mlx);
 
     t_image render_surface = init_empty_image(dimension(WIDTH, HEIGHT), &mlx);
