@@ -38,7 +38,7 @@ void log_key_event(t_keycode);
 void log_loop_event(void);
 
 void my_mlx_pixel_put(t_image* surface, t_position px_pos, t_u32 color);
-void put_rectangle(t_image* surface, t_rectangle* rect, t_u32 color);
+void put_rectangle(t_image* surface, t_rectangle rect, t_u32 color);
 
 typedef struct
 {
@@ -69,7 +69,7 @@ int handle_key_events(t_keycode keycode, t_mlx* mlx)
 int render(t_render_input* params)
 {
     // log_loop_event();
-    put_rectangle(params->render_surface, &params->game->important_rectangle,
+    put_rectangle(params->render_surface, params->game->important_rectangle,
                   CORNFLOWER_BLUE);
     mlx_put_image_to_window(params->mlx->mlx,
                             params->mlx->window,
@@ -109,14 +109,15 @@ int main(void)
     t_mlx mlx = init_mlx(dimension(WIDTH, HEIGHT), WINDOW_NAME);
     t_image player_sprite = load_image_xpm(PLAYER_SPRITE_PATH, &mlx);
 
-    t_image render_surface = init_empty_image(dimension(WIDTH, HEIGHT), &mlx);
+    t_image background = init_empty_image(dimension(WIDTH, HEIGHT), &mlx);
+    put_rectangle(&background, rectangle(position(0, 0), dimension(WIDTH, HEIGHT)), CORNFLOWER_BLUE);
 
     t_rectangle rect = rectangle(position(5, 5), dimension(420, 69));
 
     t_game game = (t_game){NULL, dimension(0, 0), rect};
 
     t_render_input render_input =
-        (t_render_input){&mlx, &render_surface, &player_sprite, &game};
+        (t_render_input){&mlx, &background, &player_sprite, &game};
 
     mlx_key_hook(mlx.window, handle_key_events, &mlx);
     // mlx_expose_hook(mlx.window, render, &render_input);
@@ -131,13 +132,13 @@ void my_mlx_pixel_put(t_image* surface, t_position px_pos, t_u32 color)
     *(t_u32*)dst = color;
 }
 
-void put_rectangle(t_image* surface, t_rectangle* rect, t_u32 color)
+void put_rectangle(t_image* surface, t_rectangle rect, t_u32 color)
 {
-    for (int col = 0; col < rect->size.w; col++)
+    for (int col = 0; col < rect.size.w; col++)
     {
-        for (int row = 0; row < rect->size.h; row++)
+        for (int row = 0; row < rect.size.h; row++)
             my_mlx_pixel_put(surface,
-                             position(rect->start.x + col, rect->start.y + row),
+                             position(rect.start.x + col, rect.start.y + row),
                              color);
     }
 }
