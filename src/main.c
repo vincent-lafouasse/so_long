@@ -6,7 +6,9 @@
 #include "cool_ints.h"
 #include "geometry.h"
 #include "mlx.h"
+#include "t_mlx.h"
 #include "t_color.h"
+#include "image.h"
 
 #define WIDTH 600
 #define HEIGHT 480
@@ -18,28 +20,10 @@
 
 typedef int t_keycode;
 
-typedef struct
-{
-    void* img;
-    char* addr;
-    int bpp;
-    int line_length;
-    int endian;
-    t_dimension size;
-} t_image;
-
-typedef struct
-{
-    void* mlx;
-    void* window;
-} t_mlx;
-
 void log_time(void);
 void log_key_event(t_keycode);
 void log_loop_event(void);
 
-void my_mlx_pixel_put(t_image* surface, t_position px_pos, t_u32 color);
-void put_rectangle(t_image* surface, t_rectangle rect, t_u32 color);
 
 typedef struct
 {
@@ -97,8 +81,6 @@ int render(t_render_input* params)
 }
 
 t_mlx init_mlx(t_dimension window_size, const char* window_name);
-t_image init_empty_image(t_dimension size, t_mlx* mlx);
-t_image load_image_xpm(const char* path, t_mlx* mlx);
 
 int main(void)
 {
