@@ -62,22 +62,24 @@ int handle_key_events(t_keycode keycode, t_mlx* mlx)
     if (keycode == XK_Escape)
         mlx_destroy_window(mlx->mlx, mlx->window);
     if (keycode == XK_p)
-        mlx_string_put(mlx->mlx, mlx->window, 69, 420, RED,
-                       "hello");
+        mlx_string_put(mlx->mlx, mlx->window, 69, 420, RED, "hello");
     return IRRELEVANT_RETURN_VALUE;
+}
+
+void render_image(t_mlx* mlx, t_image* image, t_position position)
+{
+    mlx_put_image_to_window(mlx->mlx, mlx->window, image->img, position.x,
+                            position.y);
 }
 
 int render(t_render_input* params)
 {
     // log_loop_event();
     put_rectangle(params->render_surface, params->game->important_rectangle,
-                  CORNFLOWER_BLUE);
-    mlx_put_image_to_window(params->mlx->mlx,
-                            params->mlx->window,
-                            params->render_surface->img, 0, 0);
-    mlx_put_image_to_window(params->mlx->mlx,
-                            params->mlx->window,
-                            params->player_sprite->img, params->game->player_position.x, params->game->player_position.y);
+                  RED);
+    render_image(params->mlx, params->render_surface, position(0, 0));
+    render_image(params->mlx, params->player_sprite,
+                 params->game->player_position);
     return IRRELEVANT_RETURN_VALUE;
 }
 
@@ -92,7 +94,8 @@ int main(void)
     t_image player_sprite = load_image_xpm(PLAYER_SPRITE_PATH, &mlx);
 
     t_image background = init_empty_image(window_size, &mlx);
-    put_rectangle(&background, rectangle(position(0, 0), window_size), CORNFLOWER_BLUE);
+    put_rectangle(&background, rectangle(position(0, 0), window_size),
+                  CORNFLOWER_BLUE);
 
     t_rectangle rect = rectangle(position(5, 5), dimension(420, 69));
 
@@ -163,8 +166,8 @@ t_mlx init_mlx(t_dimension window_size, const char* window_name)
 {
     t_mlx mlx;
     mlx.mlx = mlx_init();
-    mlx.window =
-        mlx_new_window(mlx.mlx, window_size.w, window_size.h, (char*)window_name);
+    mlx.window = mlx_new_window(mlx.mlx, window_size.w, window_size.h,
+                                (char*)window_name);
     return mlx;
 }
 
@@ -173,7 +176,8 @@ t_image init_empty_image(t_dimension size, t_mlx* mlx)
     t_image out;
 
     out.img = mlx_new_image(mlx->mlx, size.w, size.h);
-    out.addr = mlx_get_data_addr(out.img, &out.bpp, &out.line_length, &out.endian);
+    out.addr =
+        mlx_get_data_addr(out.img, &out.bpp, &out.line_length, &out.endian);
     return out;
 }
 
@@ -182,6 +186,7 @@ t_image load_image_xpm(const char* path, t_mlx* mlx)
     t_image out;
     out.img =
         mlx_xpm_file_to_image(mlx->mlx, (char*)path, &out.size.w, &out.size.h);
-    out.addr = mlx_get_data_addr(out.img, &out.bpp, &out.line_length, &out.endian);
+    out.addr =
+        mlx_get_data_addr(out.img, &out.bpp, &out.line_length, &out.endian);
     return out;
 }
