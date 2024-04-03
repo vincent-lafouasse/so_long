@@ -1,5 +1,6 @@
 #pragma once
 
+#include "geometry.h"
 #include "mlx.h"
 
 typedef struct
@@ -9,3 +10,5 @@ typedef struct
 } t_mlx;
 
 typedef int t_keycode;
+
+t_mlx init_mlx(t_dimension window_size, const char* window_name);
