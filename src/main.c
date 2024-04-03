@@ -1,14 +1,14 @@
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 #include <X11/keysym.h>
 
 #include "cool_ints.h"
 #include "geometry.h"
-#include "mlx.h"
-#include "t_mlx.h"
-#include "t_color.h"
 #include "image.h"
+#include "mlx.h"
+#include "t_color.h"
+#include "t_mlx.h"
 
 #define WIDTH 600
 #define HEIGHT 480
@@ -23,7 +23,6 @@ typedef int t_keycode;
 void log_time(void);
 void log_key_event(t_keycode);
 void log_loop_event(void);
-
 
 typedef struct
 {
@@ -42,7 +41,8 @@ typedef struct
     t_game* game;
 } t_render_input;
 
-typedef struct {
+typedef struct
+{
     t_game* game;
     t_mlx* mlx;
 } t_update_input;
@@ -53,7 +53,8 @@ int update_game(t_keycode keycode, t_update_input* input)
     if (keycode == XK_Escape)
         mlx_destroy_window(input->mlx->mlx, input->mlx->window);
     if (keycode == XK_p)
-        mlx_string_put(input->mlx->mlx, input->mlx->window, 69, 420, RED, "hello");
+        mlx_string_put(input->mlx->mlx, input->mlx->window, 69, 420, RED,
+                       "hello");
     if (keycode == XK_s)
         input->game->player_position.y += 32;
     input->game->needs_render = true;

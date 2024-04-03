@@ -1,8 +1,8 @@
 #pragma once
 
-#include "t_mlx.h"
 #include "cool_ints.h"
 #include "geometry.h"
+#include "t_mlx.h"
 
 typedef struct
 {
