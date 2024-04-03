@@ -75,6 +75,9 @@ int render(t_render_input* params)
     mlx_put_image_to_window(params->mlx->mlx,
                             params->mlx->window,
                             params->render_surface->img, 0, 0);
+    mlx_put_image_to_window(params->mlx->mlx,
+                            params->mlx->window,
+                            params->player_sprite->img, params->game->player_position.x, params->game->player_position.y);
     return IRRELEVANT_RETURN_VALUE;
 }
 
