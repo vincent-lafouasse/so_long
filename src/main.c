@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 #include <X11/keysym.h>
 
@@ -46,6 +47,7 @@ typedef struct
     t_dimension size;
     t_rectangle important_rectangle;
     t_position player_position;
+    bool needs_render;
 } t_game;
 
 typedef struct
@@ -56,13 +58,21 @@ typedef struct
     t_game* game;
 } t_render_input;
 
-int handle_key_events(t_keycode keycode, t_mlx* mlx)
+typedef struct {
+    t_game* game;
+    t_mlx* mlx;
+} t_update_input;
+
+int update_game(t_keycode keycode, t_update_input* input)
 {
     log_key_event(keycode);
     if (keycode == XK_Escape)
-        mlx_destroy_window(mlx->mlx, mlx->window);
+        mlx_destroy_window(input->mlx->mlx, input->mlx->window);
     if (keycode == XK_p)
-        mlx_string_put(mlx->mlx, mlx->window, 69, 420, RED, "hello");
+        mlx_string_put(input->mlx->mlx, input->mlx->window, 69, 420, RED, "hello");
+    if (keycode == XK_s)
+        input->game->player_position.y += 32;
+    input->game->needs_render = true;
     return IRRELEVANT_RETURN_VALUE;
 }
 
@@ -75,11 +85,14 @@ void render_image(t_mlx* mlx, t_image* image, t_position position)
 int render(t_render_input* params)
 {
     // log_loop_event();
+    if (!params->game->needs_render)
+        return IRRELEVANT_RETURN_VALUE;
     put_rectangle(params->render_surface, params->game->important_rectangle,
                   RED);
     render_image(params->mlx, params->render_surface, position(0, 0));
     render_image(params->mlx, params->player_sprite,
                  params->game->player_position);
+    params->game->needs_render = false;
     return IRRELEVANT_RETURN_VALUE;
 }
 
@@ -99,12 +112,13 @@ int main(void)
 
     t_rectangle rect = rectangle(position(5, 5), dimension(420, 69));
 
-    t_game game = (t_game){NULL, dimension(0, 0), rect, position(69, 42)};
+    t_game game = (t_game){NULL, dimension(0, 0), rect, position(69, 42), true};
 
+    t_update_input update_input = (t_update_input){&game, &mlx};
     t_render_input render_input =
         (t_render_input){&mlx, &background, &player_sprite, &game};
 
-    mlx_key_hook(mlx.window, handle_key_events, &mlx);
+    mlx_key_hook(mlx.window, update_game, &update_input);
     // mlx_expose_hook(mlx.window, render, &render_input);
     mlx_loop_hook(mlx.mlx, render, &render_input);
     mlx_loop(mlx.mlx);
