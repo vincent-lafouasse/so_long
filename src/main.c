@@ -45,6 +45,7 @@ typedef struct
     char** board;
     t_dimension size;
     t_rectangle important_rectangle;
+    t_position player_position;
 } t_game;
 
 typedef struct
@@ -77,32 +78,9 @@ int render(t_render_input* params)
     return IRRELEVANT_RETURN_VALUE;
 }
 
-t_mlx init_mlx(t_dimension window_size, const char* window_name)
-{
-    t_mlx mlx;
-    mlx.mlx = mlx_init();
-    mlx.window =
-        mlx_new_window(mlx.mlx, window_size.w, window_size.h, (char*)window_name);
-    return mlx;
-}
-
-t_image init_empty_image(t_dimension size, t_mlx* mlx)
-{
-    t_image out;
-
-    out.img = mlx_new_image(mlx->mlx, size.w, size.h);
-    out.addr = mlx_get_data_addr(out.img, &out.bpp, &out.line_length, &out.endian);
-    return out;
-}
-
-t_image load_image_xpm(const char* path, t_mlx* mlx)
-{
-    t_image out;
-    out.img =
-        mlx_xpm_file_to_image(mlx->mlx, (char*)path, &out.size.w, &out.size.h);
-    out.addr = mlx_get_data_addr(out.img, &out.bpp, &out.line_length, &out.endian);
-    return out;
-}
+t_mlx init_mlx(t_dimension window_size, const char* window_name);
+t_image init_empty_image(t_dimension size, t_mlx* mlx);
+t_image load_image_xpm(const char* path, t_mlx* mlx);
 
 int main(void)
 {
@@ -115,7 +93,7 @@ int main(void)
 
     t_rectangle rect = rectangle(position(5, 5), dimension(420, 69));
 
-    t_game game = (t_game){NULL, dimension(0, 0), rect};
+    t_game game = (t_game){NULL, dimension(0, 0), rect, position(69, 42)};
 
     t_render_input render_input =
         (t_render_input){&mlx, &background, &player_sprite, &game};
@@ -177,4 +155,30 @@ void log_loop_event(void)
 {
     log_time();
     printf("\tLoop Event\n");
+}
+t_mlx init_mlx(t_dimension window_size, const char* window_name)
+{
+    t_mlx mlx;
+    mlx.mlx = mlx_init();
+    mlx.window =
+        mlx_new_window(mlx.mlx, window_size.w, window_size.h, (char*)window_name);
+    return mlx;
+}
+
+t_image init_empty_image(t_dimension size, t_mlx* mlx)
+{
+    t_image out;
+
+    out.img = mlx_new_image(mlx->mlx, size.w, size.h);
+    out.addr = mlx_get_data_addr(out.img, &out.bpp, &out.line_length, &out.endian);
+    return out;
+}
+
+t_image load_image_xpm(const char* path, t_mlx* mlx)
+{
+    t_image out;
+    out.img =
+        mlx_xpm_file_to_image(mlx->mlx, (char*)path, &out.size.w, &out.size.h);
+    out.addr = mlx_get_data_addr(out.img, &out.bpp, &out.line_length, &out.endian);
+    return out;
 }
