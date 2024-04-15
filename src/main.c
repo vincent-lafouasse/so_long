@@ -32,6 +32,18 @@ typedef struct
     t_mlx* mlx;
 } t_update_input;
 
+size_t ft_strlen(const char* s)
+{
+    size_t len = 0;
+
+    while (*s)
+    {
+        s++;
+        len++;
+    }
+    return len;
+}
+
 int update_game(t_keycode keycode, t_update_input* input)
 {
     log_key_event(keycode);
@@ -48,6 +60,17 @@ int update_game(t_keycode keycode, t_update_input* input)
 
 void cleanup(t_mlx mlx);
 
+void remove_trailing_newline(char* string)
+{
+    size_t len = ft_strlen(string);
+
+    if (len == 0)
+        return;
+
+    if (string[len - 1] == '\n')
+        string[len - 1] = '\0';
+}
+
 t_list* load_map_into_rev_list(const char* map_path)
 {
     int fd = open(map_path, O_RDONLY);
@@ -57,6 +80,7 @@ t_list* load_map_into_rev_list(const char* map_path)
 
     while (line)
     {
+        remove_trailing_newline(line);
         current_node = ft_lstnew(line);
         ft_lstadd_front(&lines, current_node);
         line = get_next_line(fd);
@@ -70,7 +94,7 @@ void log_str_lst(const t_list* strs)
 {
     while (strs)
     {
-        printf("%s", (const char*)strs->content);
+        printf("%s\n", (const char*)strs->content);
         strs = strs->next;
     }
 }
