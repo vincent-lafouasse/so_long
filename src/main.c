@@ -6,6 +6,7 @@
 
 #include "get_next_line/get_next_line.h"
 #include <fcntl.h>
+#include <unistd.h>
 
 #include "t_list/t_list.h"
 #include "image.h"
@@ -61,6 +62,7 @@ t_list* load_map(const char* map_path)
         line = get_next_line(fd);
     }
 
+    close(fd);
     return lines;
 }
 
