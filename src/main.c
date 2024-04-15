@@ -66,10 +66,19 @@ t_list* load_map(const char* map_path)
     return lines;
 }
 
+void log_str_lst(const t_list* strs)
+{
+    while (strs)
+    {
+        printf("%s", (const char*)strs->content);
+        strs = strs->next;
+    }
+}
+
 int main(void)
 {
     t_list* map = load_map(MAP_PATH);
-    printf("map has %d lines\n", ft_lstsize(map));
+    log_str_lst(map);
 
     const t_dimension window_size = dimension(WIDTH, HEIGHT);
     t_mlx mlx = init_mlx(window_size, WINDOW_NAME);
