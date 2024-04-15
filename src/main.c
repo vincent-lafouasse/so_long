@@ -26,20 +26,11 @@ typedef struct
     t_mlx* mlx;
 } t_update_input;
 
-void ft_quit(t_mlx* mlx)
-{
-    //mlx_destroy_window(mlx->mlx, mlx->window);
-    //mlx_loop_end(mlx->mlx);
-    exit(0);
-}
-
 int update_game(t_keycode keycode, t_update_input* input)
 {
     log_key_event(keycode);
     if (keycode == XK_Escape)
-    {
-        ft_quit(input->mlx);
-    }
+        mlx_loop_end(input->mlx->mlx);
     if (keycode == XK_p)
         mlx_string_put(input->mlx->mlx, input->mlx->window, 69, 420, RED,
                        "hello");
@@ -47,6 +38,12 @@ int update_game(t_keycode keycode, t_update_input* input)
         input->game->player_position.y += 32;
     input->game->needs_render = true;
     return IRRELEVANT_RETURN_VALUE;
+}
+
+void cleanup(t_mlx mlx)
+{
+    // will cleanup sprites too, later tho
+    mlx_destroy_window(mlx.mlx, mlx.window);
 }
 
 int main(void)
@@ -71,4 +68,5 @@ int main(void)
     // mlx_expose_hook(mlx.window, render, &render_input);
     mlx_loop_hook(mlx.mlx, &render, &render_input);
     mlx_loop(mlx.mlx);
+    cleanup(mlx);
 }
