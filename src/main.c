@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <X11/keysym.h>
 
@@ -25,11 +26,20 @@ typedef struct
     t_mlx* mlx;
 } t_update_input;
 
+void ft_quit(t_mlx* mlx)
+{
+    //mlx_destroy_window(mlx->mlx, mlx->window);
+    //mlx_loop_end(mlx->mlx);
+    exit(0);
+}
+
 int update_game(t_keycode keycode, t_update_input* input)
 {
     log_key_event(keycode);
     if (keycode == XK_Escape)
-        mlx_destroy_window(input->mlx->mlx, input->mlx->window);
+    {
+        ft_quit(input->mlx);
+    }
     if (keycode == XK_p)
         mlx_string_put(input->mlx->mlx, input->mlx->window, 69, 420, RED,
                        "hello");
@@ -57,7 +67,7 @@ int main(void)
     t_render_input render_input =
         (t_render_input){&mlx, &background, &player_sprite, &game};
 
-    mlx_key_hook(mlx.window, update_game, &update_input);
+    mlx_key_hook(mlx.window, &update_game, &update_input);
     // mlx_expose_hook(mlx.window, render, &render_input);
     mlx_loop_hook(mlx.mlx, &render, &render_input);
     mlx_loop(mlx.mlx);
