@@ -40,11 +40,7 @@ int update_game(t_keycode keycode, t_update_input* input)
     return IRRELEVANT_RETURN_VALUE;
 }
 
-void cleanup(t_mlx mlx)
-{
-    // will cleanup sprites too, later tho
-    mlx_destroy_window(mlx.mlx, mlx.window);
-}
+void cleanup(t_mlx mlx);
 
 int main(void)
 {
@@ -69,4 +65,10 @@ int main(void)
     mlx_loop_hook(mlx.mlx, &render, &render_input);
     mlx_loop(mlx.mlx);
     cleanup(mlx);
+}
+
+void cleanup(t_mlx mlx)
+{
+    // will cleanup sprites too, later tho
+    mlx_destroy_window(mlx.mlx, mlx.window);
 }
