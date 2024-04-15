@@ -79,7 +79,8 @@ update: fclean
 	bear $(VERBOSITY) --output $(BUILD_DIR)/compile_commands.json -- make build
 
 # aliases
-.PHONY: b c u
+.PHONY: b c u r
 b: build
 c: clean
 u: update
+r: run
