@@ -48,7 +48,7 @@ int update_game(t_keycode keycode, t_update_input* input)
 
 void cleanup(t_mlx mlx);
 
-t_list* load_map(const char* map_path)
+t_list* load_map_into_rev_list(const char* map_path)
 {
     int fd = open(map_path, O_RDONLY);
     t_list* lines = NULL;
@@ -84,7 +84,7 @@ char** map_list_to_array(const t_list* map_list)
 
 int main(void)
 {
-    t_list* map = load_map(MAP_PATH);
+    t_list* map = load_map_into_rev_list(MAP_PATH);
     log_str_lst(map);
 
     const t_dimension window_size = dimension(WIDTH, HEIGHT);
