@@ -7,6 +7,7 @@
 #include "get_next_line/get_next_line.h"
 #include <fcntl.h>
 
+#include "t_list/t_list.h"
 #include "image.h"
 #include "log.h"
 #include "mlx.h"
@@ -46,16 +47,27 @@ int update_game(t_keycode keycode, t_update_input* input)
 
 void cleanup(t_mlx mlx);
 
-int main(void)
+t_list* load_map(const char* map_path)
 {
-    int fd = open(MAP_PATH, O_RDONLY);
+    int fd = open(map_path, O_RDONLY);
+    t_list* lines = NULL;
+    t_list* current_node;
     char* line = get_next_line(fd);
+
     while (line)
     {
-        printf("%s", line);
-        free(line);
+        current_node = ft_lstnew(line);
+        ft_lstadd_front(&lines, current_node);
         line = get_next_line(fd);
     }
+
+    return lines;
+}
+
+int main(void)
+{
+    t_list* map = load_map(MAP_PATH);
+    printf("map has %d lines\n", ft_lstsize(map));
 
     const t_dimension window_size = dimension(WIDTH, HEIGHT);
     t_mlx mlx = init_mlx(window_size, WINDOW_NAME);
