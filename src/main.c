@@ -4,6 +4,9 @@
 
 #include <X11/keysym.h>
 
+#include "get_next_line/get_next_line.h"
+#include <fcntl.h>
+
 #include "image.h"
 #include "log.h"
 #include "mlx.h"
@@ -17,6 +20,7 @@
 #define WINDOW_NAME ("idk, a name ig")
 
 #define PLAYER_SPRITE_PATH "./assets/player.xpm"
+#define MAP_PATH "./assets/maps/simple_map.ber"
 
 #define IRRELEVANT_RETURN_VALUE 0
 
@@ -44,6 +48,15 @@ void cleanup(t_mlx mlx);
 
 int main(void)
 {
+    int fd = open(MAP_PATH, O_RDONLY);
+    char* line = get_next_line(fd);
+    while (line)
+    {
+        printf("%s", line);
+        free(line);
+        line = get_next_line(fd);
+    }
+
     const t_dimension window_size = dimension(WIDTH, HEIGHT);
     t_mlx mlx = init_mlx(window_size, WINDOW_NAME);
     t_image player_sprite = load_image_xpm(PLAYER_SPRITE_PATH, &mlx);
