@@ -99,17 +99,35 @@ void log_str_lst(const t_list* strs)
     }
 }
 
-char** map_list_to_array(const t_list* map_list)
+char** map_list_to_array(const t_list* map_list, t_dimension* return_dim)
 {
-    char** map = NULL;
-    (void)map_list;
+    size_t height = ft_lstsize((t_list*)map_list);
+    return_dim->h = height;
+    return_dim->w = ft_strlen(map_list->content);
+    char** map = malloc(height * sizeof(char*));
+
+    while (map_list)
+    {
+        map[height - 1] = map_list->content;
+        height--;
+        map_list = map_list->next;
+    }
+
     return map;
 }
 
 int main(void)
 {
-    t_list* map = load_map_into_rev_list(MAP_PATH);
-    log_str_lst(map);
+    t_list* map_list = load_map_into_rev_list(MAP_PATH);
+    //log_str_lst(map_list);
+
+    t_dimension map_dimension;
+    char** map = map_list_to_array(map_list, &map_dimension);
+
+    for (int row = 0; row < map_dimension.h; row++)
+    {
+        printf("%s\n", map[row]);
+    }
 
     const t_dimension window_size = dimension(WIDTH, HEIGHT);
     t_mlx mlx = init_mlx(window_size, WINDOW_NAME);
