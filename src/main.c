@@ -75,6 +75,13 @@ void log_str_lst(const t_list* strs)
     }
 }
 
+char** map_list_to_array(const t_list* map_list)
+{
+    char** map = NULL;
+    (void)map_list;
+    return map;
+}
+
 int main(void)
 {
     t_list* map = load_map(MAP_PATH);
