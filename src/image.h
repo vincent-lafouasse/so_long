@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cool_ints.h"
+#include "libft/types.h"
 #include "geometry/geometry.h"
 #include "t_mlx.h"
 
