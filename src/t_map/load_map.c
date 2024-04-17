@@ -2,17 +2,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "get_next_line/get_next_line.h"
+#include "log.h"
 #include "t_map.h"
-
-t_map load_map(const char* map_path)
-{
-    t_map map;
-    (void)map_path;
-
-    map.data = (char**)1;
-
-    return map;
-}
 
 void remove_trailing_newline(char* string);
 t_list* load_map_into_rev_list(const char* map_path)
@@ -79,4 +70,15 @@ size_t ft_strlen(const char* s)
         len++;
     }
     return len;
+}
+
+t_map load_map(const char* map_path)
+{
+    t_map map;
+    t_list* map_lst = load_map_into_rev_list(map_path);
+    log_str_lst(map_lst);
+
+    map.data = (char**)1;
+
+    return map;
 }
