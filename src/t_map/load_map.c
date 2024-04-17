@@ -4,6 +4,7 @@
 #include "get_next_line/get_next_line.h"
 #include "log.h"
 #include "t_map.h"
+#include "libft/string.h"
 
 void remove_trailing_newline(char* string);
 t_list* load_map_into_rev_list(const char* map_path)
@@ -25,7 +26,6 @@ t_list* load_map_into_rev_list(const char* map_path)
     return lines;
 }
 
-static size_t ft_strlen(const char* s);
 void remove_trailing_newline(char* string)
 {
     size_t len = ft_strlen(string);
@@ -66,18 +66,6 @@ t_map invalid_map(void)
 
     invalid.data = NULL;
     return invalid;
-}
-
-size_t ft_strlen(const char* s)
-{
-    size_t len = 0;
-
-    while (*s)
-    {
-        s++;
-        len++;
-    }
-    return len;
 }
 
 t_map load_map(const char* map_path)
