@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "get_next_line/get_next_line.h"
+#include "error/error.h"
 
 #include "image.h"
 #include "log.h"
@@ -118,6 +119,7 @@ char** map_list_to_array(const t_list* map_list, t_dimension* return_dim)
 
 int main(void)
 {
+    die("rip bozo\n");
     t_list* map_list = load_map_into_rev_list(MAP_PATH);
     // log_str_lst(map_list);
 
