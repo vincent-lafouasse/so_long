@@ -129,6 +129,7 @@ int main(void)
         printf("%s\n", map[row]);
     }
 
+    /*
     const t_dimension window_size = dimension(WIDTH, HEIGHT);
     t_mlx mlx = init_mlx(window_size, WINDOW_NAME);
     t_image player_sprite = load_image_xpm(PLAYER_SPRITE_PATH, &mlx);
@@ -149,6 +150,7 @@ int main(void)
     mlx_loop_hook(mlx.mlx, &render, &render_input);
     mlx_loop(mlx.mlx);
     cleanup(mlx);
+    */
 }
 
 void cleanup(t_mlx mlx)
