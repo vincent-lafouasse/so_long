@@ -10,12 +10,12 @@
 #include "t_map/t_map.h"
 
 #include "image.h"
+#include "libft_lite/t_list/t_list.h"
 #include "log.h"
 #include "mlx.h"
 #include "render.h"
 #include "t_color.h"
 #include "t_game.h"
-#include "libft_lite/t_list/t_list.h"
 #include "t_mlx.h"
 
 #define WIDTH 600
