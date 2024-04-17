@@ -3,7 +3,7 @@
 #include <stdbool.h>
 
 #include "geometry/geometry.h"
-#include "libft_lite/t_list/t_list.h"
+#include "libft/t_list.h"
 
 typedef struct
 {

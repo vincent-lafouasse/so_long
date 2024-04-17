@@ -10,7 +10,7 @@
 #include "t_map/t_map.h"
 
 #include "image.h"
-#include "libft_lite/t_list/t_list.h"
+#include "libft/t_list.h"
 #include "log.h"
 #include "mlx.h"
 #include "render.h"
