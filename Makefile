@@ -17,12 +17,19 @@ CPPFLAGS += -MMD -MP
 LDLIBS = 
 LDFLAGS =
 
-# LIBFT_PATH = ./lib/libft
-# LIBFT = $(LIBFT_PATH)/libft.a
-# CPPFLAGS += -I$(LIBFT_PATH)/include
+LIBFT_PATH = ./lib/libft
+LIBFT = $(LIBFT_PATH)/libft.a
+LIBFT_MAKE_PATH = $(LIBFT_PATH)
+LIBFT_INCLUDE_PATH = $(LIBFT_PATH)
+LIBFT_LIB_PATH = $(LIBFT_PATH)
+
+CPPFLAGS += -I$(LIBFT_PATH)/include
+LDFLAGS += -L$(LIBFT_LIB_PATH)
+LDLIBS += -lft
 
 MLX_PATH = ./lib/minilibx-linux
 MLX = $(MLX_PATH)/libmlx.a
+MLX_MAKE_PATH = $(MLX_PATH)
 MLX_INCLUDE_PATH = $(MLX_PATH)
 MLX_LIB_PATH = $(MLX_PATH)
 
@@ -50,11 +57,11 @@ $(BUILD_DIR)/%.c.o: %.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
-	make -C $(LIBFT_PATH)
+	make -C $(LIBFT_MAKE_PATH)
 
 $(MLX):
 	-./$(MLX_PATH)/configure
-	make -C $(MLX_PATH)
+	make -C $(MLX_MAKE_PATH)
 
 .PHONY: re
 re: fclean build
