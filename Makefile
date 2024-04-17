@@ -48,7 +48,7 @@ run: $(NAME)
 build: $(NAME)
 
 # Linking
-$(NAME): $(OBJS) $(MLX)
+$(NAME): $(OBJS) $(MLX) $(LIBFT)
 	$(CC) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@
 
 # Compilation
@@ -69,13 +69,15 @@ re: fclean build
 .PHONY: clean
 clean:
 	$(RM) -r $(BUILD_DIR)
-	make clean -C $(MLX_PATH)
+	make clean -C $(MLX_MAKE_PATH)
+	make clean -C $(LIBFT_MAKE_PATH)
 	$(RM) Makefile.gen
 
 .PHONY: fclean
 fclean: clean
 	$(RM) $(NAME)
 	$(RM) $(MLX)
+	make fclean -C $(LIBFT_MAKE_PATH)
 
 # VERBOSITY = --verbose
 
