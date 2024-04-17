@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 16:42:56 by poss              #+#    #+#             */
-/*   Updated: 2024/04/03 14:28:30 by poss             ###   ########.fr       */
+/*   Updated: 2024/04/17 16:11:49 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,13 @@ void log_loop_event(void)
 {
     log_time();
     printf("\tLoop Event\n");
+}
+
+void log_str_lst(const t_list* strs)
+{
+    while (strs)
+    {
+        printf("%s\n", (const char*)strs->content);
+        strs = strs->next;
+    }
 }

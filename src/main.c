@@ -49,15 +49,6 @@ int update_game(t_keycode keycode, t_update_input* input)
 
 void cleanup(t_mlx mlx);
 
-void log_str_lst(const t_list* strs)
-{
-    while (strs)
-    {
-        printf("%s\n", (const char*)strs->content);
-        strs = strs->next;
-    }
-}
-
 int main(void)
 {
     t_map map = load_map(MAP_PATH);
