@@ -1,6 +1,6 @@
 #pragma once
 
-#include "t_list/t_list.h"
+#include "libft_lite/t_list/t_list.h"
 #include "t_mlx.h"
 
 void log_time(void);

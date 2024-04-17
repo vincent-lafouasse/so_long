@@ -15,7 +15,7 @@
 #include "render.h"
 #include "t_color.h"
 #include "t_game.h"
-#include "t_list/t_list.h"
+#include "libft_lite/t_list/t_list.h"
 #include "t_mlx.h"
 
 #define WIDTH 600
