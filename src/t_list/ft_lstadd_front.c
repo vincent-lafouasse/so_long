@@ -12,18 +12,18 @@
 
 #include "t_list.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void ft_lstadd_front(t_list** lst, t_list* new)
 {
-	t_list	*mem;
+    t_list* mem;
 
-	if (!lst || !new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	mem = *lst;
-	*lst = new;
-	new->next = mem;
+    if (!lst || !new)
+        return;
+    if (!*lst)
+    {
+        *lst = new;
+        return;
+    }
+    mem = *lst;
+    *lst = new;
+    new->next = mem;
 }

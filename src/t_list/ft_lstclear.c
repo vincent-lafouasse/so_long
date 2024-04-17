@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_list.h"
 #include <stdlib.h>
+#include "t_list.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void ft_lstclear(t_list** lst, void (*del)(void*))
 {
-	t_list	*mem;
+    t_list* mem;
 
-	if (!lst || !*lst || !del)
-		return ;
-	while (*lst)
-	{
-		mem = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = mem;
-	}
+    if (!lst || !*lst || !del)
+        return;
+    while (*lst)
+    {
+        mem = (*lst)->next;
+        ft_lstdelone(*lst, del);
+        *lst = mem;
+    }
 }

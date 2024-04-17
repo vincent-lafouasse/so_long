@@ -10,24 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_list.h"
 #include <stdlib.h>
+#include "t_list.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list* ft_lstmap(t_list* lst, void* (*f)(void*), void (*del)(void*))
 {
-	t_list	*out;
-	t_list	*new;
+    t_list* out;
+    t_list* new;
 
-	if (!lst || !f || !del)
-		return (NULL);
-	out = NULL;
-	while (lst)
-	{
-		new = ft_lstnew((*f)(lst->content));
-		if (!new)
-			return (ft_lstclear(&out, del), NULL);
-		ft_lstadd_back(&out, new);
-		lst = lst->next;
-	}
-	return (out);
+    if (!lst || !f || !del)
+        return (NULL);
+    out = NULL;
+    while (lst)
+    {
+        new = ft_lstnew((*f)(lst->content));
+        if (!new)
+            return (ft_lstclear(&out, del), NULL);
+        ft_lstadd_back(&out, new);
+        lst = lst->next;
+    }
+    return (out);
 }
