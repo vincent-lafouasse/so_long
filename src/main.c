@@ -6,8 +6,10 @@
 
 #include <fcntl.h>
 #include <unistd.h>
-#include "get_next_line/get_next_line.h"
 #include "error/error.h"
+#include "get_next_line/get_next_line.h"
+
+#include "t_map/t_map.h"
 
 #include "image.h"
 #include "log.h"
@@ -119,16 +121,18 @@ char** map_list_to_array(const t_list* map_list, t_dimension* return_dim)
 
 int main(void)
 {
-    die("rip bozo\n");
+    t_map map = load_map(MAP_PATH);
+    if (!map_is_valid(map))
+        die("Invalid map, something went wrong\n");
     t_list* map_list = load_map_into_rev_list(MAP_PATH);
     // log_str_lst(map_list);
 
     t_dimension map_dimension;
-    char** map = map_list_to_array(map_list, &map_dimension);
+    char** map_array = map_list_to_array(map_list, &map_dimension);
 
     for (int row = 0; row < map_dimension.h; row++)
     {
-        printf("%s\n", map[row]);
+        printf("%s\n", map_array[row]);
     }
 
     /*
