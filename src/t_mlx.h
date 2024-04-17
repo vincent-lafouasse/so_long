@@ -1,6 +1,6 @@
 #pragma once
 
-#include "geometry.h"
+#include "geometry/geometry.h"
 #include "mlx.h"
 
 typedef struct

@@ -4,17 +4,17 @@
 
 #include <X11/keysym.h>
 
-#include "get_next_line/get_next_line.h"
 #include <fcntl.h>
 #include <unistd.h>
+#include "get_next_line/get_next_line.h"
 
-#include "t_list/t_list.h"
 #include "image.h"
 #include "log.h"
 #include "mlx.h"
 #include "render.h"
 #include "t_color.h"
 #include "t_game.h"
+#include "t_list/t_list.h"
 #include "t_mlx.h"
 
 #define WIDTH 600
@@ -119,7 +119,7 @@ char** map_list_to_array(const t_list* map_list, t_dimension* return_dim)
 int main(void)
 {
     t_list* map_list = load_map_into_rev_list(MAP_PATH);
-    //log_str_lst(map_list);
+    // log_str_lst(map_list);
 
     t_dimension map_dimension;
     char** map = map_list_to_array(map_list, &map_dimension);
@@ -134,8 +134,7 @@ int main(void)
     t_image player_sprite = load_image_xpm(PLAYER_SPRITE_PATH, &mlx);
 
     t_image background = init_empty_image(window_size, &mlx);
-    put_rectangle(&background, rectangle(position(0, 0), window_size),
-                  BLACK);
+    put_rectangle(&background, rectangle(position(0, 0), window_size), BLACK);
 
     t_rectangle rect = rectangle(position(5, 5), dimension(420, 69));
 

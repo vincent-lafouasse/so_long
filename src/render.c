@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#include "render.h"
 #include "image.h"
+#include "render.h"
 #include "t_color.h"
 #include "t_mlx.h"
 

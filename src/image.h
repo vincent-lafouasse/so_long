@@ -1,7 +1,7 @@
 #pragma once
 
 #include "cool_ints.h"
-#include "geometry.h"
+#include "geometry/geometry.h"
 #include "t_mlx.h"
 
 typedef struct
