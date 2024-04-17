@@ -6,11 +6,12 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 20:47:45 by poss              #+#    #+#             */
-/*   Updated: 2024/04/15 14:45:17 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:24:49 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_list.h"
+#include <stddef.h>
 
 t_list* ft_lstlast(t_list* lst)
 {

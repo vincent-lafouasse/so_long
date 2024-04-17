@@ -6,13 +6,13 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 20:45:05 by poss              #+#    #+#             */
-/*   Updated: 2024/04/15 14:45:30 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:25:03 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_list.h"
 
-int ft_lstsize(t_list* lst)
+int ft_lstsize(const t_list* lst)
 {
     int size;
 
