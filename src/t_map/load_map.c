@@ -60,6 +60,14 @@ bool map_is_valid(t_map map)
     return map.data != NULL;
 }
 
+t_map invalid_map(void)
+{
+    t_map invalid;
+
+    invalid.data = NULL;
+    return invalid;
+}
+
 size_t ft_strlen(const char* s)
 {
     size_t len = 0;
