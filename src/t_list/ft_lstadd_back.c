@@ -6,11 +6,13 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 20:54:25 by poss              #+#    #+#             */
-/*   Updated: 2024/04/15 14:44:45 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/04/17 15:28:33 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_list.h"
+
+#include <stddef.h>
 
 void ft_lstadd_back(t_list** lst, t_list* new)
 {

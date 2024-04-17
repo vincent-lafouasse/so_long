@@ -156,5 +156,6 @@ int main(void)
 void cleanup(t_mlx mlx)
 {
     // will cleanup sprites too, later tho
+    // free_sprites(sprites) or something
     mlx_destroy_window(mlx.mlx, mlx.window);
 }
