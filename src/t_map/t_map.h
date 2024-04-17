@@ -7,10 +7,10 @@
 
 typedef struct
 {
-	char** data;
-	t_dimension size;
-	t_position start;
-	t_list* collectibles;
+    char** data;
+    t_dimension size;
+    t_position start;
+    t_list* collectibles;
 } t_map;
 
 // returns a map with NULL data if something failed

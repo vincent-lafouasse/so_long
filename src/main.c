@@ -4,10 +4,8 @@
 
 #include <X11/keysym.h>
 
-#include <fcntl.h>
 #include <unistd.h>
 #include "error/error.h"
-#include "get_next_line/get_next_line.h"
 
 #include "t_map/t_map.h"
 
@@ -35,18 +33,6 @@ typedef struct
     t_mlx* mlx;
 } t_update_input;
 
-size_t ft_strlen(const char* s)
-{
-    size_t len = 0;
-
-    while (*s)
-    {
-        s++;
-        len++;
-    }
-    return len;
-}
-
 int update_game(t_keycode keycode, t_update_input* input)
 {
     log_key_event(keycode);
@@ -63,36 +49,6 @@ int update_game(t_keycode keycode, t_update_input* input)
 
 void cleanup(t_mlx mlx);
 
-void remove_trailing_newline(char* string)
-{
-    size_t len = ft_strlen(string);
-
-    if (len == 0)
-        return;
-
-    if (string[len - 1] == '\n')
-        string[len - 1] = '\0';
-}
-
-t_list* load_map_into_rev_list(const char* map_path)
-{
-    int fd = open(map_path, O_RDONLY);
-    t_list* lines = NULL;
-    t_list* current_node;
-    char* line = get_next_line(fd);
-
-    while (line)
-    {
-        remove_trailing_newline(line);
-        current_node = ft_lstnew(line);
-        ft_lstadd_front(&lines, current_node);
-        line = get_next_line(fd);
-    }
-
-    close(fd);
-    return lines;
-}
-
 void log_str_lst(const t_list* strs)
 {
     while (strs)
@@ -102,38 +58,11 @@ void log_str_lst(const t_list* strs)
     }
 }
 
-char** map_list_to_array(const t_list* map_list, t_dimension* return_dim)
-{
-    size_t height = ft_lstsize((t_list*)map_list);
-    return_dim->h = height;
-    return_dim->w = ft_strlen(map_list->content);
-    char** map = malloc(height * sizeof(char*));
-
-    while (map_list)
-    {
-        map[height - 1] = map_list->content;
-        height--;
-        map_list = map_list->next;
-    }
-
-    return map;
-}
-
 int main(void)
 {
     t_map map = load_map(MAP_PATH);
     if (!map_is_valid(map))
         die("Invalid map, something went wrong\n");
-    t_list* map_list = load_map_into_rev_list(MAP_PATH);
-    // log_str_lst(map_list);
-
-    t_dimension map_dimension;
-    char** map_array = map_list_to_array(map_list, &map_dimension);
-
-    for (int row = 0; row < map_dimension.h; row++)
-    {
-        printf("%s\n", map_array[row]);
-    }
 
     /*
     const t_dimension window_size = dimension(WIDTH, HEIGHT);
