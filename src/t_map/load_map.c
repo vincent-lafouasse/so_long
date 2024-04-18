@@ -24,6 +24,7 @@ t_list* load_lines_in_lst(const char* map_path)
     }
 
     close(fd);
+    log_str_lst(lines);
     return lines;
 }
 
@@ -111,7 +112,6 @@ t_map move_str_list_to_map(t_list** str_lst_ref)
 t_map load_raw_map_or_exit(const char* path)
 {
     t_list* lines = load_lines_in_lst(path);
-    log_str_lst(lines);
     if (lines == NULL)
         die("Failed to read lines from configuration file");
     t_map map = move_str_list_to_map(&lines);
