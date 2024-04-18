@@ -39,6 +39,23 @@ void remove_trailing_newline(char* string)
         string[len - 1] = '\0';
 }
 
+bool str_ends_with(const char* s, const char* pattern)
+{
+    size_t offset;
+
+    if (!s || !pattern)
+        return die("found nulls"), false;
+    if (ft_strlen(s) < ft_strlen(pattern))
+        return die("string too small") ,false;
+    offset = ft_strlen(s) - ft_strlen(pattern);
+    printf("name\n%s\n", s);
+    printf("pattern\n%s\n", pattern);
+    printf("offset\n%zu\n", offset);
+    printf("name++\n%s\n", s + offset);
+    printf("strncmp\n%i\n", ft_strncmp(pattern, s + offset, ft_strlen(pattern)));
+    return 0 == ft_strncmp(pattern, s + offset, ft_strlen(pattern));
+}
+
 char** map_list_to_array(const t_list* map_list, t_dimension* return_dim)
 {
     size_t height = ft_lstsize((t_list*)map_list);
@@ -95,6 +112,8 @@ char** move_map_to_matrix(t_list** map_lst_ref, t_dimension size);
 t_map load_map(const char* map_path)
 {
     t_map map;
+    if (!str_ends_with(map_path, ".ber"))
+        die("invalid map name");
     t_list* map_lst = load_map_into_rev_list(map_path);
     log_str_lst(map_lst);
     map.size = get_map_size(map_lst);
