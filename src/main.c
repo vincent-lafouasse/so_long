@@ -49,11 +49,14 @@ int update_game(t_keycode keycode, t_update_input* input)
 
 void cleanup(t_mlx mlx);
 
-int main(void)
+int main(int ac, char** av)
 {
-    t_map map = load_map_or_exit(MAP_PATH);
+    if (ac != 2)
+        die("Usage: ./so_long map.ber");
+
+    t_map map = load_map_or_exit(av[1]);
     if (!map_is_valid(map))
-        die("Invalid map, something went wrong\n");
+        die("Invalid map, something went wrong");
 
     /*
     const t_dimension window_size = dimension(WIDTH, HEIGHT);

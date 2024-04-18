@@ -42,7 +42,7 @@ all: build
 
 .PHONY: run
 run: $(NAME)
-	./$^
+	./$^ ./assets/maps/simple_map.ber
 
 .PHONY: build
 build: $(NAME)
