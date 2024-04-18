@@ -51,7 +51,7 @@ void cleanup(t_mlx mlx);
 
 int main(void)
 {
-    t_map map = load_map(MAP_PATH);
+    t_map map = load_map_or_exit(MAP_PATH);
     if (!map_is_valid(map))
         die("Invalid map, something went wrong\n");
 

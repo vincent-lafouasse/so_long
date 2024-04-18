@@ -14,6 +14,6 @@ typedef struct
 } t_map;
 
 // returns a map with NULL data if something failed
-t_map load_map(const char* map_path);
+t_map load_map_or_exit(const char* map_path);
 
 bool map_is_valid(t_map map);

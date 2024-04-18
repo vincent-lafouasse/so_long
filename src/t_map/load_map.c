@@ -113,11 +113,12 @@ t_map load_raw_map(const char* path)
     t_list* lines = load_lines_in_lst(path);
     log_str_lst(lines);
     t_map map;
+    map.size = get_map_size(lines);
 
     return map;
 }
 
-t_map load_map(const char* map_path)
+t_map load_map_or_exit(const char* map_path)
 {
     if (!str_ends_with(map_path, ".ber"))
         die("invalid map name");
