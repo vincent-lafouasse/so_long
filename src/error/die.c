@@ -1,9 +1,10 @@
 #include <stdlib.h>
 #include <unistd.h>
-#include "libft/string.h"
+#include "libft/ft_io.h"
 
 void die(const char* error_message)
 {
-    write(STDERR_FILENO, error_message, ft_strlen(error_message));
+    ft_putstr_fd("Error\n", STDERR_FILENO);
+    ft_putendl_fd(error_message, STDERR_FILENO);
     exit(1);
 }
