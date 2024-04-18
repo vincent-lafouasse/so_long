@@ -107,11 +107,13 @@ void parse_map(t_map* map_return, t_list** map_list_ref);
 
 t_map load_map(const char* map_path)
 {
-    t_map map;
     if (!str_ends_with(map_path, ".ber"))
         die("invalid map name");
+
     t_list* lines = load_lines_in_lst(map_path);
     log_str_lst(lines);
+
+    t_map map;
     map.size = get_map_size(lines); // move into parse map ?
     /*       move this check into parse_map
     if (map.size.h < 1 || map.size.w < 1)
