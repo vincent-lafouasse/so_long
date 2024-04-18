@@ -68,11 +68,37 @@ t_map invalid_map(void)
     return invalid;
 }
 
+bool verify_map_rectangularity(const t_list* map_lst, t_dimension* return_size)
+{
+    t_dimension size;
+    if (!map_lst)
+        return false;
+    size.w = ft_strlen(map_lst->content);
+    size.h = 1;
+    map_lst = map_lst->next;
+    while (map_lst)
+    {
+
+    }
+    *return_size = size;
+    return true;
+}
+
+t_dimension get_map_size(const t_list* map_lst)
+{
+    t_dimension size;
+
+    return size;
+}
+
 t_map load_map(const char* map_path)
 {
     t_map map;
     t_list* map_lst = load_map_into_rev_list(map_path);
     log_str_lst(map_lst);
+    map.size = get_map_size(map_lst);
+    if (map.size.h < 1 || map.size.w < 1)
+        return ft_lstclear(&map_lst, &free), invalid_map();
 
     map.data = (char**)1;
 
