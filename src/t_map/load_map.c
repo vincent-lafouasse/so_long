@@ -103,6 +103,7 @@ t_dimension get_map_size(const t_list* map_lst)
 }
 
 char** move_map_to_matrix(t_list** map_lst_ref, t_dimension size);
+void parse_map(t_map* map_return, t_list** map_list_ref);
 
 t_map load_map(const char* map_path)
 {
@@ -111,10 +112,12 @@ t_map load_map(const char* map_path)
         die("invalid map name");
     t_list* map_lst = load_map_into_rev_list(map_path);
     log_str_lst(map_lst);
-    map.size = get_map_size(map_lst);
+    map.size = get_map_size(map_lst); // move into parse map ?
+    /*       move this check into parse_map
     if (map.size.h < 1 || map.size.w < 1)
         ft_lstclear(&map_lst, &free), die("map has invalid shape\n");
-    printf("map has valid size w = %d, h = %d\n", map.size.w, map.size.h);
+    */
+    parse_map(&map, &map_lst);
 
     map.data = (char**)1;
 
