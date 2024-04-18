@@ -103,7 +103,10 @@ t_dimension get_map_size(const t_list* map_lst)
 }
 
 char** move_map_to_matrix(t_list** map_lst_ref, t_dimension size);
-void parse_map(t_map* map_return, t_list** map_list_ref);
+void parse_map(t_map* map_return, t_list** map_list_ref)
+{
+    return;
+}
 
 t_map load_map(const char* map_path)
 {
