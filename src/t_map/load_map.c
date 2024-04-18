@@ -103,6 +103,9 @@ t_dimension get_map_size(const t_list* map_lst)
 }
 
 char** move_map_to_matrix(t_list** map_lst_ref, t_dimension size);
+
+char** move_str_list_to_array(t_list** str_lst_ref);
+
 void parse_map(t_map* map_return, t_list** map_list_ref)
 {
     (void)map_return;
@@ -110,12 +113,16 @@ void parse_map(t_map* map_return, t_list** map_list_ref)
     return;
 }
 
-t_map load_raw_map(const char* path)
+t_map load_raw_map_or_exit(const char* path)
 {
     t_list* lines = load_lines_in_lst(path);
     log_str_lst(lines);
+    if (lines == NULL)
+        die("Failed to read lines from configuration file");
     t_map map;
     map.size = get_map_size(lines);
+    if (map.size.h < 1 || map.size.w < 1)
+        ft_lstclear(&lines, &free), die("map has invalid shape\n");
 
     return map;
 }
@@ -130,10 +137,6 @@ t_map load_map_or_exit(const char* map_path)
 
     t_map map;
     map.size = get_map_size(lines);  // move into parse map ?
-    /*       move this check into parse_map
-    if (map.size.h < 1 || map.size.w < 1)
-        ft_lstclear(&map_lst, &free), die("map has invalid shape\n");
-    */
     parse_map(&map, &lines);
 
     map.data = (char**)1;
