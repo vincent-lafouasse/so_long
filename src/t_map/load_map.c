@@ -97,7 +97,7 @@ t_map load_map(const char* map_path)
     log_str_lst(map_lst);
     map.size = get_map_size(map_lst);
     if (map.size.h < 1 || map.size.w < 1)
-        return ft_lstclear(&map_lst, &free), die("map has invalid shape\n"), invalid_map();
+        ft_lstclear(&map_lst, &free), die("map has invalid shape\n");
     printf("map has valid size w = %d, h = %d\n", map.size.w, map.size.h);
 
     map.data = (char**)1;
