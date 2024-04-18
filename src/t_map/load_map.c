@@ -1,12 +1,12 @@
 #include <fcntl.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
-#include "get_next_line/get_next_line.h"
 #include "error/error.h"
+#include "get_next_line/get_next_line.h"
+#include "libft/string.h"
 #include "log.h"
 #include "t_map.h"
-#include "libft/string.h"
 
 void remove_trailing_newline(char* string);
 t_list* load_lines_in_lst(const char* map_path)
@@ -117,7 +117,7 @@ t_map load_map(const char* map_path)
     log_str_lst(lines);
 
     t_map map;
-    map.size = get_map_size(lines); // move into parse map ?
+    map.size = get_map_size(lines);  // move into parse map ?
     /*       move this check into parse_map
     if (map.size.h < 1 || map.size.w < 1)
         ft_lstclear(&map_lst, &free), die("map has invalid shape\n");

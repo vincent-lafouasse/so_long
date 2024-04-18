@@ -1,7 +1,7 @@
 #pragma once
 
-#include "libft/types.h"
 #include "geometry/geometry.h"
+#include "libft/types.h"
 #include "t_mlx.h"
 
 typedef struct
