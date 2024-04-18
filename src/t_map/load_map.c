@@ -6,7 +6,7 @@
 #include "get_next_line/get_next_line.h"
 #include "libft/string.h"
 #include "log.h"
-#include "t_map.h"
+#include "t_map_internals.h"
 
 void remove_trailing_newline(char* string);
 t_list* load_lines_in_lst(const char* map_path)
