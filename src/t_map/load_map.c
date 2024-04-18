@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "get_next_line/get_next_line.h"
+#include "error/error.h"
 #include "log.h"
 #include "t_map.h"
 #include "libft/string.h"
@@ -96,7 +97,7 @@ t_map load_map(const char* map_path)
     log_str_lst(map_lst);
     map.size = get_map_size(map_lst);
     if (map.size.h < 1 || map.size.w < 1)
-        return printf("map has invalid shape"), ft_lstclear(&map_lst, &free), invalid_map();
+        return ft_lstclear(&map_lst, &free), die("map has invalid shape\n"), invalid_map();
     printf("map has valid size w = %d, h = %d\n", map.size.w, map.size.h);
 
     map.data = (char**)1;
