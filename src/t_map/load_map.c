@@ -8,7 +8,6 @@
 #include "log.h"
 #include "t_map_internals.h"
 
-void remove_trailing_newline(char* string);
 t_list* load_lines_in_lst(const char* map_path)
 {
     int fd = open(map_path, O_RDONLY);
@@ -18,7 +17,7 @@ t_list* load_lines_in_lst(const char* map_path)
 
     while (line)
     {
-        remove_trailing_newline(line);
+        trim_trailing_newline(line);
         current_node = ft_lstnew(line);
         ft_lstadd_front(&lines, current_node);
         line = get_next_line(fd);
@@ -26,29 +25,6 @@ t_list* load_lines_in_lst(const char* map_path)
 
     close(fd);
     return lines;
-}
-
-void remove_trailing_newline(char* string)
-{
-    size_t len = ft_strlen(string);
-
-    if (len == 0)
-        return;
-
-    if (string[len - 1] == '\n')
-        string[len - 1] = '\0';
-}
-
-bool str_ends_with(const char* s, const char* pattern)
-{
-    size_t offset;
-
-    if (!s || !pattern)
-        return false;
-    if (ft_strlen(s) < ft_strlen(pattern))
-        return false;
-    offset = ft_strlen(s) - ft_strlen(pattern);
-    return 0 == ft_strncmp(pattern, s + offset, ft_strlen(pattern));
 }
 
 char** map_list_to_array(const t_list* map_list, t_dimension* return_dim)
