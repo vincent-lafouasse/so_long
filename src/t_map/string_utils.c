@@ -1,7 +1,7 @@
 #include "libft/string.h"
 #include "t_map/t_map_internals.h"
 
-void trim_trailing_newline(char *s)
+void trim_trailing_newline(char* s)
 {
     size_t len = ft_strlen(s);
 
