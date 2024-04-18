@@ -9,7 +9,7 @@
 #include "libft/string.h"
 
 void remove_trailing_newline(char* string);
-t_list* load_map_into_rev_list(const char* map_path)
+t_list* load_lines_in_lst(const char* map_path)
 {
     int fd = open(map_path, O_RDONLY);
     t_list* lines = NULL;
@@ -110,14 +110,14 @@ t_map load_map(const char* map_path)
     t_map map;
     if (!str_ends_with(map_path, ".ber"))
         die("invalid map name");
-    t_list* map_lst = load_map_into_rev_list(map_path);
-    log_str_lst(map_lst);
-    map.size = get_map_size(map_lst); // move into parse map ?
+    t_list* lines = load_lines_in_lst(map_path);
+    log_str_lst(lines);
+    map.size = get_map_size(lines); // move into parse map ?
     /*       move this check into parse_map
     if (map.size.h < 1 || map.size.w < 1)
         ft_lstclear(&map_lst, &free), die("map has invalid shape\n");
     */
-    parse_map(&map, &map_lst);
+    parse_map(&map, &lines);
 
     map.data = (char**)1;
 
