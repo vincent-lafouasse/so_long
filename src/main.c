@@ -23,7 +23,6 @@
 #define WINDOW_NAME ("idk, a name ig")
 
 #define PLAYER_SPRITE_PATH "./assets/player.xpm"
-#define MAP_PATH "./assets/maps/simple_map.ber"
 
 #define IRRELEVANT_RETURN_VALUE 0
 
