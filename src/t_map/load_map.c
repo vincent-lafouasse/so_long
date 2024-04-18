@@ -90,6 +90,8 @@ t_dimension get_map_size(const t_list* map_lst)
     return size;
 }
 
+char** move_map_to_matrix(t_list** map_lst_ref, t_dimension size);
+
 t_map load_map(const char* map_path)
 {
     t_map map;
