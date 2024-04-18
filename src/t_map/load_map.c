@@ -44,15 +44,10 @@ bool str_ends_with(const char* s, const char* pattern)
     size_t offset;
 
     if (!s || !pattern)
-        return die("found nulls"), false;
+        return false;
     if (ft_strlen(s) < ft_strlen(pattern))
-        return die("string too small") ,false;
+        return false;
     offset = ft_strlen(s) - ft_strlen(pattern);
-    printf("name\n%s\n", s);
-    printf("pattern\n%s\n", pattern);
-    printf("offset\n%zu\n", offset);
-    printf("name++\n%s\n", s + offset);
-    printf("strncmp\n%i\n", ft_strncmp(pattern, s + offset, ft_strlen(pattern)));
     return 0 == ft_strncmp(pattern, s + offset, ft_strlen(pattern));
 }
 
