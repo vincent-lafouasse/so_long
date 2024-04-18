@@ -1,5 +1,6 @@
 #include <fcntl.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <unistd.h>
 #include "get_next_line/get_next_line.h"
 #include "log.h"
@@ -68,25 +69,22 @@ t_map invalid_map(void)
     return invalid;
 }
 
-bool verify_map_rectangularity(const t_list* map_lst, t_dimension* return_size)
+t_dimension get_map_size(const t_list* map_lst)
 {
     t_dimension size;
+
     if (!map_lst)
-        return false;
+        return (t_dimension){.w = 0, .h = 0};
     size.w = ft_strlen(map_lst->content);
     size.h = 1;
     map_lst = map_lst->next;
     while (map_lst)
     {
-
+        if (ft_strlen(map_lst->content) != (size_t)size.w)
+            return (t_dimension){.w = 0, .h = 0};
+        size.h++;
+        map_lst = map_lst->next;
     }
-    *return_size = size;
-    return true;
-}
-
-t_dimension get_map_size(const t_list* map_lst)
-{
-    t_dimension size;
 
     return size;
 }
@@ -98,7 +96,8 @@ t_map load_map(const char* map_path)
     log_str_lst(map_lst);
     map.size = get_map_size(map_lst);
     if (map.size.h < 1 || map.size.w < 1)
-        return ft_lstclear(&map_lst, &free), invalid_map();
+        return printf("map has invalid shape"), ft_lstclear(&map_lst, &free), invalid_map();
+    printf("map has valid size w = %d, h = %d\n", map.size.w, map.size.h);
 
     map.data = (char**)1;
 
