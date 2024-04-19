@@ -1,51 +1,27 @@
-#include <fcntl.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include "error/error.h"
-#include "get_next_line/get_next_line.h"
-#include "libft/string.h"
+#include <stdlib.h>
 #include "log.h"
 #include "t_map_internals.h"
 
-t_list* load_lines_in_lst(const char* map_path)
+// `load_map` returns a map with NULL data if something failed
+static t_map invalid_map(void);
+
+void parse_map(t_map* map_return, t_list** map_list_ref); // next submodule
+
+
+t_map load_map_or_exit(const char* map_path)
 {
-    int fd = open(map_path, O_RDONLY);
-    t_list* lines = NULL;
-    t_list* current_node;
-    char* line = get_next_line(fd);
+    if (!str_ends_with(map_path, ".ber"))
+        die("invalid map name");
 
-    while (line)
-    {
-        trim_trailing_newline(line);
-        current_node = ft_lstnew(line);
-        ft_lstadd_front(&lines, current_node);
-        line = get_next_line(fd);
-    }
+    t_map map = load_raw_map_or_exit(map_path);
 
-    close(fd);
-    log_str_lst(lines);
-    return lines;
-}
-
-char** map_list_to_array(const t_list* map_list, t_dimension* return_dim)
-{
-    size_t height = ft_lstsize((t_list*)map_list);
-    return_dim->h = height;
-    return_dim->w = ft_strlen(map_list->content);
-    char** map = malloc(height * sizeof(char*));
-
-    while (map_list)
-    {
-        map[height - 1] = map_list->content;
-        height--;
-        map_list = map_list->next;
-    }
+    map.data = (char**)1;
 
     return map;
 }
 
-// `load_map` returns a map with NULL data if something failed
 bool map_is_valid(t_map map)
 {
     return map.data != NULL;
@@ -59,28 +35,6 @@ t_map invalid_map(void)
     return invalid;
 }
 
-t_dimension get_map_size(const t_list* map_lst)
-{
-    t_dimension size;
-
-    if (!map_lst)
-        return (t_dimension){.w = 0, .h = 0};
-    size.w = ft_strlen(map_lst->content);
-    size.h = 1;
-    map_lst = map_lst->next;
-    while (map_lst)
-    {
-        if (ft_strlen(map_lst->content) != (size_t)size.w)
-            return (t_dimension){.w = 0, .h = 0};
-        size.h++;
-        map_lst = map_lst->next;
-    }
-
-    return size;
-}
-
-char** move_map_to_matrix(t_list** map_lst_ref, t_dimension size);
-
 void parse_map(t_map* map_return, t_list** map_list_ref)
 {
     (void)map_return;
@@ -88,49 +42,3 @@ void parse_map(t_map* map_return, t_list** map_list_ref)
     return;
 }
 
-t_map move_str_list_to_map(t_list** str_lst_ref)
-{
-    t_map map;
-    map.size = get_map_size(*str_lst_ref);
-    if (map.size.h < 1 || map.size.w < 1)
-        ft_lstclear(str_lst_ref, &free), die("map has invalid shape\n");
-
-    map.data = malloc(sizeof(char*) * map.size.h);
-    int row = map.size.h - 1;
-    while (row >= 0 && *str_lst_ref)
-    {
-        map.data[row] = (*str_lst_ref)->content;
-        row--;
-        *str_lst_ref = (*str_lst_ref)->next;
-    }
-
-
-    return map;
-}
-
-
-t_map load_raw_map_or_exit(const char* path)
-{
-    t_list* lines = load_lines_in_lst(path);
-    if (lines == NULL)
-        die("Failed to read lines from configuration file");
-    t_map map = move_str_list_to_map(&lines);
-
-    return map;
-}
-
-t_map load_map_or_exit(const char* map_path)
-{
-    if (!str_ends_with(map_path, ".ber"))
-        die("invalid map name");
-
-    t_list* lines = load_lines_in_lst(map_path);
-
-    t_map map;
-    map.size = get_map_size(lines);  // move into parse map ?
-    parse_map(&map, &lines);
-
-    map.data = (char**)1;
-
-    return map;
-}
