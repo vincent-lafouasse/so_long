@@ -25,26 +25,6 @@ t_map load_raw_map_or_exit(const char* path)
     return map;
 }
 
-t_list* load_lines_in_lst(const char* map_path)
-{
-    int fd = open(map_path, O_RDONLY);
-    t_list* lines = NULL;
-    t_list* current_node;
-    char* line = get_next_line(fd);
-
-    while (line)
-    {
-        trim_trailing_newline(line);
-        current_node = ft_lstnew(line);
-        ft_lstadd_front(&lines, current_node);
-        line = get_next_line(fd);
-    }
-
-    close(fd);
-    log_str_lst(lines);
-    return lines;
-}
-
 t_map move_str_list_to_map(t_list** str_lst_ref)
 {
     t_map map;
@@ -74,6 +54,26 @@ t_map move_str_list_to_map(t_list** str_lst_ref)
     log_char_matrix((const char**)map.data, map.size);
 
     return map;
+}
+
+t_list* load_lines_in_lst(const char* map_path)
+{
+    int fd = open(map_path, O_RDONLY);
+    t_list* lines = NULL;
+    t_list* current_node;
+    char* line = get_next_line(fd);
+
+    while (line)
+    {
+        trim_trailing_newline(line);
+        current_node = ft_lstnew(line);
+        ft_lstadd_front(&lines, current_node);
+        line = get_next_line(fd);
+    }
+
+    close(fd);
+    log_str_lst(lines);
+    return lines;
 }
 
 t_dimension get_map_size(const t_list* map_lst)
