@@ -1,3 +1,4 @@
+#include "libft/t_list.h"
 #include "t_map.h"
 #include "t_map_internals.h"
 #include "get_next_line/get_next_line.h"
@@ -46,19 +47,25 @@ t_list* load_lines_in_lst(const char* map_path)
 t_map move_str_list_to_map(t_list** str_lst_ref)
 {
     t_map map;
-    map.size = get_map_size(*str_lst_ref);
+    t_list** head_ref = str_lst_ref;
+    t_list* current = *head_ref;
+    map.size = get_map_size(*head_ref);
     if (map.size.h < 1 || map.size.w < 1)
-        ft_lstclear(str_lst_ref, &free), die("map has invalid shape\n");
+        ft_lstclear(head_ref, &free), die("map has invalid shape\n");
 
     map.data = malloc(sizeof(char*) * map.size.h);
     int row = map.size.h - 1;
-    while (row >= 0 && *str_lst_ref)
+    while (row >= 0 && current)
     {
-        map.data[row] = (*str_lst_ref)->content;
+        map.data[row] = (current)->content;
         row--;
-        *str_lst_ref = (*str_lst_ref)->next;
+        current = (current)->next;
     }
 
+    if (row >= 0 || current != NULL)
+        die("mismatched lines and rows"); // might need cleaning up
+
+    ft_lstclear(head_ref, NULL);
 
     return map;
 }
