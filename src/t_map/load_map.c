@@ -17,8 +17,6 @@ t_map load_map_or_exit(const char* map_path)
 
     t_map map = load_raw_map_or_exit(map_path);
 
-    map.data = (char**)1;
-
     return map;
 }
 
