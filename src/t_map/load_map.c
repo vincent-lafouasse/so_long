@@ -125,7 +125,6 @@ t_map load_map_or_exit(const char* map_path)
         die("invalid map name");
 
     t_list* lines = load_lines_in_lst(map_path);
-    log_str_lst(lines);
 
     t_map map;
     map.size = get_map_size(lines);  // move into parse map ?
