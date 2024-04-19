@@ -57,6 +57,8 @@ int main(int ac, char** av)
     if (!map_is_valid(map))
         die("Invalid map, something went wrong");
 
+    free_map(map);
+
     /*
     const t_dimension window_size = dimension(WIDTH, HEIGHT);
     t_mlx mlx = init_mlx(window_size, WINDOW_NAME);
