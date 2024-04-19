@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "libft/string.h"
 
 static t_list* load_lines_in_lst(const char* map_path);
@@ -66,6 +67,9 @@ t_map move_str_list_to_map(t_list** str_lst_ref)
         die("mismatched lines and rows"); // might need cleaning up
 
     ft_lstclear(head_ref, NULL);
+
+    printf("lines are now : %p\n", *head_ref);
+    log_char_matrix((const char**)map.data, map.size);
 
     return map;
 }
