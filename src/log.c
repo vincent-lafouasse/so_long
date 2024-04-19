@@ -6,11 +6,12 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 16:42:56 by poss              #+#    #+#             */
-/*   Updated: 2024/04/17 16:11:49 by poss             ###   ########.fr       */
+/*   Updated: 2024/04/19 16:19:21 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "log.h"
+#include "libft/ft_io.h"
 #include <X11/keysym.h>
 #include <stdio.h>
 #include <sys/time.h>
@@ -73,5 +74,23 @@ void log_str_lst(const t_list* strs)
     {
         printf("%s\n", (const char*)strs->content);
         strs = strs->next;
+    }
+}
+
+void log_char_matrix(const char** matrix, t_dimension size)
+{
+    int row = 0;
+    int col = 0;
+
+    while (row < size.h)
+    {
+        col = 0;
+        while (col < size.w)
+        {
+            ft_putchar_fd(matrix[row][col], 1);
+            col++;
+        }
+        ft_putchar_fd('\n', 1);
+        row++;
     }
 }

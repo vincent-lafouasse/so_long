@@ -8,3 +8,4 @@ void log_key_event(t_keycode);
 void log_loop_event(void);
 
 void log_str_lst(const t_list* strs);
+void log_char_matrix(const char** matrix, t_dimension size);
