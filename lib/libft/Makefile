@@ -13,8 +13,8 @@ OBJS := $(C_FILES:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:%.o=%.d)
 
 
-CFLAGS  = -Wall -Wextra
-#CFLAGS += -Werror
+CFLAGS  = -Wall -Wextra -g3
+CFLAGS += -Werror
 CPPFLAGS  = -I$(INC_DIR) -MMD -MP
 
 .PHONY: all
