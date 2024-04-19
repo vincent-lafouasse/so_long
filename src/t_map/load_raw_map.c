@@ -52,6 +52,7 @@ t_map move_str_list_to_map(t_list** str_lst_ref)
     log_str_lst(*head_ref);
     printf("matrix\n");
     log_char_matrix((const char**)map.data, map.size);
+    printf("size w %d\th %d\n", map.size.w, map.size.h);
 
     return map;
 }
