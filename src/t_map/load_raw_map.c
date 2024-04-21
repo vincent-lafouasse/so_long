@@ -48,8 +48,7 @@ t_map move_str_list_to_map(t_list** str_lst_ref)
 
     ft_lstclear(head_ref, NULL);
 
-    printf("lines are now : %p\n", *head_ref);
-    log_str_lst(*head_ref);
+    ft_assert(*head_ref == NULL, "map list was not freed properly.");
     printf("matrix\n");
     log_char_matrix((const char**)map.data, map.size);
     printf("size w %d\th %d\n", map.size.w, map.size.h);
