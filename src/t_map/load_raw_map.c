@@ -18,9 +18,9 @@ static t_dimension get_map_size(const t_list* map_lst);
 t_map load_raw_map_or_exit(const char* path)
 {
     t_list* lines = load_lines_in_lst(path);
-    if (lines == NULL)
-        die("Failed to read lines from configuration file");
+    ft_assert(lines != NULL, "Failed to read lines from configuration file");
     t_map map = move_str_list_to_map(&lines);
+    ft_assert(map.data != NULL, "Failed to create char** map");
 
     return map;
 }
