@@ -1,6 +1,6 @@
 LIB = libft.a
 
-CC = clang
+CC = cc
 
 SRC_DIR   = ./src
 INC_DIR   = ./include
