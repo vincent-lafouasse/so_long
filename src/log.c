@@ -11,11 +11,11 @@
 /* ************************************************************************** */
 
 #include "log.h"
-#include "libft/ft_io.h"
 #include <X11/keysym.h>
 #include <stdio.h>
 #include <sys/time.h>
 #include <time.h>
+#include "libft/ft_io.h"
 
 #define LOG_BUFFER_SIZE 128
 

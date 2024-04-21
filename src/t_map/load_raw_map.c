@@ -1,15 +1,15 @@
-#include "libft/t_list.h"
-#include "t_map.h"
-#include "t_map_internals.h"
-#include "get_next_line/get_next_line.h"
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include "error/error.h"
 #include "geometry/geometry.h"
-#include "log.h"
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "get_next_line/get_next_line.h"
 #include "libft/string.h"
+#include "libft/t_list.h"
+#include "log.h"
+#include "t_map.h"
+#include "t_map_internals.h"
 
 static t_list* load_lines_in_lst(const char* map_path);
 static t_map move_str_list_to_map(t_list** str_lst_ref);
@@ -44,7 +44,7 @@ t_map move_str_list_to_map(t_list** str_lst_ref)
     }
 
     if (row >= 0 || current != NULL)
-        die("mismatched lines and rows"); // might need cleaning up
+        die("mismatched lines and rows");  // might need cleaning up
 
     ft_lstclear(head_ref, NULL);
 

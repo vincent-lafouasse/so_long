@@ -1,14 +1,13 @@
 #include <stdio.h>
-#include "error/error.h"
 #include <stdlib.h>
+#include "error/error.h"
 #include "log.h"
 #include "t_map_internals.h"
 
 // `load_map` returns a map with NULL data if something failed
 static t_map invalid_map(void);
 
-void parse_map(t_map* map_return, t_list** map_list_ref); // next submodule
-
+void parse_map(t_map* map_return, t_list** map_list_ref);  // next submodule
 
 t_map load_map_or_exit(const char* map_path)
 {
@@ -39,4 +38,3 @@ void parse_map(t_map* map_return, t_list** map_list_ref)
     (void)map_list_ref;
     return;
 }
-
