@@ -8,6 +8,7 @@
 #include "error/error.h"
 
 #include "t_map/t_map.h"
+#include "t_map/t_charset.h"
 
 #include "image.h"
 #include "libft/t_list.h"
@@ -52,6 +53,8 @@ int main(int ac, char** av)
 {
     if (ac != 2)
         die("Usage: ./so_long map.ber");
+
+    t_charset charset = default_charset();
 
     t_map map = load_map_or_exit(av[1]);
     if (!map_is_valid(map))
