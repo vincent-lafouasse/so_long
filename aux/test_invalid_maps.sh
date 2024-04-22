@@ -1,12 +1,13 @@
 MAP_DIR='./assets/maps/invalid'
 MAPS=$(ls "${MAP_DIR}")
 
-test_map() {
-	echo Testing "$1"
-	./so_long "$1"
-}
+VALGRIND="valgrind --leak-check=full"
 
 for map in $MAPS; do
-	test_map "$map"
+	echo Testing "$map"
+	./so_long "$map"
+	echo
+	echo Valgrind output
+	$VALGRIND ./so_long "$map" 1> /dev/null
 	echo
 done
