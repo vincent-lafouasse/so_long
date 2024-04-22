@@ -31,7 +31,7 @@ t_map move_str_list_to_map(t_list** str_lst_ref)
     t_list** head_ref = str_lst_ref;
     t_list* current = *head_ref;
     map.size = get_map_size(*head_ref);
-    if (map.size.h < 1 || map.size.w < 1)
+    if (map.size.h < 2 || map.size.w < 2)
         ft_lstclear(head_ref, &free), die("map has invalid shape\n");
 
     map.data = malloc(sizeof(char*) * map.size.h);
