@@ -55,6 +55,14 @@ int main(int ac, char** av)
         die("Usage: ./so_long map.ber");
 
     t_charset charset = default_charset();
+    char c = '0';
+    printf("%c is in charset: %s\n", c, is_in_charset(c, charset) ? "True" : "False");
+    c = 'E';
+    printf("%c is in charset: %s\n", c, is_in_charset(c, charset) ? "True" : "False");
+    c = '9';
+    printf("%c is in charset: %s\n", c, is_in_charset(c, charset) ? "True" : "False");
+    c = 'G';
+    printf("%c is in charset: %s\n", c, is_in_charset(c, charset) ? "True" : "False");
 
     t_map map = load_map_or_exit(av[1]);
     if (!map_is_valid(map))

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdbool.h>
+
 #define DEFAULT_CHARSET "01CEP"
 
     typedef struct s_charset
@@ -12,4 +14,4 @@
 } t_charset;
 
 t_charset default_charset(void);
-t_charset charset(const char* chars);
+bool is_in_charset(char c, t_charset charset);
