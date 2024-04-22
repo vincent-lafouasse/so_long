@@ -3,6 +3,7 @@
 #include "t_map.h"
 
 t_map load_raw_map_or_exit(const char* path);
+void parse_map(t_map* map);
 
 // in string_utils.c
 void trim_trailing_newline(char* s);
