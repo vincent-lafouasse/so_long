@@ -5,10 +5,11 @@
 
 struct Charset
 {
-    char WALL;
     char EMPTY;
-    char PLAYER;
+    char WALL;
     char COLLECTIBLE;
+    char EXIT;
+    char PLAYER;
 };
 
 static bool map_is_enclosed(const t_map* map);
