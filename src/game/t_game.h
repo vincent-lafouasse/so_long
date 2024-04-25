@@ -10,6 +10,7 @@ typedef struct
     char** board;
     t_dimension size;
     t_position player_position;
+    t_position exit;
     t_list* collectibles;
     bool needs_render;
 } t_game;

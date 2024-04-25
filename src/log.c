@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 16:42:56 by poss              #+#    #+#             */
-/*   Updated: 2024/04/19 16:19:21 by poss             ###   ########.fr       */
+/*   Updated: 2024/04/25 14:05:50 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@
 #include "libft/ft_io.h"
 
 #define LOG_BUFFER_SIZE 128
+
+void log_game(t_game game)
+{
+    printf("Game\n");
+    printf("\n");
+    printf("Board\n");
+    log_char_matrix((const char**)game.board, game.size);
+    printf("\n");
+    printf("Player\t %d %d\n", game.player_position.x, game.player_position.y);
+    printf("Exit\t %d %d\n", game.exit.x, game.exit.y);
+    printf("\n");
+}
 
 void log_time(void)
 {
