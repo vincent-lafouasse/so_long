@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "error/error.h"
-#include "t_map_internals.h"
+#include "load_internals.h"
 
 t_map load_map_or_exit(const char* map_path, t_charset charset)
 {
