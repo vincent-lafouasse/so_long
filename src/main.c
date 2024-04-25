@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include "error/error.h"
 
-#include "load/t_charset.h"
+#include "parse/t_charset.h"
 
 #include "log.h"
 #include "mlx.h"

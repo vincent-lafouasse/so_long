@@ -1,12 +1,15 @@
+#include "load/t_raw_map.h"
+#include "parse/parse_map.h"
+#include "libft/string.h"
 #include "t_game.h"
-#include <stddef.h>
 
 t_game init_game(const char *map_path, t_charset charset)
 {
-    (void)map_path;
-    (void)charset;
     t_game game;
-    game.board = NULL;
+    t_raw_map raw_map;
 
+    raw_map = load_raw_map(map_path);
+    ft_memcpy(&game, &raw_map, sizeof(raw_map));
+    parse_map(&game, charset);
     return game;
 }
