@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "error/error.h"
-#include "geometry/geometry.h"
 #include "get_next_line/get_next_line.h"
 #include "libft/string.h"
 #include "libft/t_list.h"
