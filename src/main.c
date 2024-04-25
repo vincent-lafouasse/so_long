@@ -16,7 +16,7 @@
 #include "mlx.h"
 #include "render.h"
 #include "t_color.h"
-#include "t_game.h"
+#include "game/t_game.h"
 #include "t_mlx.h"
 
 #define WIDTH 600

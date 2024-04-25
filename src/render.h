@@ -1,7 +1,7 @@
 #pragma once
 
 #include "image.h"
-#include "t_game.h"
+#include "game/t_game.h"
 #include "t_mlx.h"
 
 typedef struct
