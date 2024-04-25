@@ -60,6 +60,8 @@ int main(int ac, char** av)
 
     free_map(map);
 
+    t_game game = init_game(av[1], default_charset());
+
     /*
     const t_dimension window_size = dimension(WIDTH, HEIGHT);
     t_mlx mlx = init_mlx(window_size, WINDOW_NAME);
