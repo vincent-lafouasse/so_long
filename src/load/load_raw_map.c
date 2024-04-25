@@ -8,26 +8,26 @@
 #include "libft/string.h"
 #include "libft/t_list.h"
 #include "log.h"
-#include "t_map.h"
-#include "t_map_internals.h"
+#include "t_raw_map.h"
+#include "load_internals.h"
 
 static t_list* load_lines_in_lst(const char* map_path);
-static t_map move_str_list_to_map(t_list** str_lst_ref);
+static t_raw_map move_str_list_to_map(t_list** str_lst_ref);
 static t_dimension get_map_size(const t_list* map_lst);
 
-t_map load_raw_map_or_exit(const char* path)
+t_raw_map load_raw_map(const char* path)
 {
     t_list* lines = load_lines_in_lst(path);
     ft_assert(lines != NULL, "Failed to read lines from configuration file");
-    t_map map = move_str_list_to_map(&lines);
+    t_raw_map map = move_str_list_to_map(&lines);
     ft_assert(map.data != NULL, "Failed to create char** map");
 
     return map;
 }
 
-t_map move_str_list_to_map(t_list** str_lst_ref)
+t_raw_map move_str_list_to_map(t_list** str_lst_ref)
 {
-    t_map map;
+    t_raw_map map;
     t_list** head_ref = str_lst_ref;
     t_list* current = *head_ref;
     map.size = get_map_size(*head_ref);

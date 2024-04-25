@@ -18,8 +18,10 @@ int render(t_render_input* params)
     // log_loop_event();
     if (!params->game->needs_render)
         return IRRELEVANT_RETURN_VALUE;
+    /*
     put_rectangle(params->render_surface, params->game->important_rectangle,
                   RED);
+    */
     render_image(params->mlx, params->render_surface, position(0, 0));
     render_image(params->mlx, params->player_sprite,
                  params->game->player_position);
