@@ -7,14 +7,10 @@
 #include <unistd.h>
 #include "error/error.h"
 
-#include "load/t_map.h"
 #include "load/t_charset.h"
 
-#include "image.h"
-#include "libft/t_list.h"
 #include "log.h"
 #include "mlx.h"
-#include "render.h"
 #include "t_color.h"
 #include "game/t_game.h"
 #include "t_mlx.h"
