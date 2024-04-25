@@ -6,9 +6,9 @@
 #include "get_next_line/get_next_line.h"
 #include "libft/string.h"
 #include "libft/t_list.h"
+#include "load_internals.h"
 #include "log.h"
 #include "t_raw_map.h"
-#include "load_internals.h"
 
 static t_list* load_lines_in_lst(const char* map_path);
 static t_raw_map move_str_list_to_map(t_list** str_lst_ref);

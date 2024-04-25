@@ -4,7 +4,7 @@
 
 #define DEFAULT_CHARSET "01CEP"
 
-    typedef struct s_charset
+typedef struct s_charset
 {
     char EMPTY;
     char WALL;

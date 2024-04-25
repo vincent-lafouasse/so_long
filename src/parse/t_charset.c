@@ -10,9 +10,7 @@ t_charset default_charset(void)
 
 bool is_in_charset(char c, t_charset charset)
 {
-    return (charset.WALL == c) ||
-            (charset.EMPTY == c) ||
-            (charset.PLAYER == c) ||
-            (charset.EXIT == c) ||
-            (charset.COLLECTIBLE == c);
+    return (charset.WALL == c) || (charset.EMPTY == c) ||
+           (charset.PLAYER == c) || (charset.EXIT == c) ||
+           (charset.COLLECTIBLE == c);
 }

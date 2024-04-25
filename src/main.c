@@ -9,10 +9,10 @@
 
 #include "parse/t_charset.h"
 
+#include "game/t_game.h"
 #include "log.h"
 #include "mlx.h"
 #include "t_color.h"
-#include "game/t_game.h"
 #include "t_mlx.h"
 
 #define WIDTH 600
