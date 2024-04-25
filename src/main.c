@@ -7,8 +7,8 @@
 #include <unistd.h>
 #include "error/error.h"
 
-#include "t_map/t_map.h"
-#include "t_map/t_charset.h"
+#include "load/t_map.h"
+#include "load/t_charset.h"
 
 #include "image.h"
 #include "libft/t_list.h"

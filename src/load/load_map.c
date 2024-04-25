@@ -9,8 +9,6 @@ t_map load_map_or_exit(const char* map_path, t_charset charset)
         die("invalid map name");
 
     t_map map = load_raw_map_or_exit(map_path);
-    map.collectibles = NULL;
-
     parse_map(&map, charset);
 
     return map;
