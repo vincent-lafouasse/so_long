@@ -16,3 +16,4 @@ typedef struct
 } t_game;
 
 t_game init_game(const char* map_path, t_charset charset);
+void free_game(t_game* game);
