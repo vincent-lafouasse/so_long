@@ -46,11 +46,7 @@ t_raw_map move_str_list_to_map(t_list** str_lst_ref)
         die("mismatched lines and rows");  // might need cleaning up
 
     ft_lstclear(head_ref, NULL);
-
     ft_assert(*head_ref == NULL, "map list was not freed properly.");
-    printf("matrix\n");
-    log_char_matrix((const char**)map.data, map.size);
-    printf("size w %d\th %d\n", map.size.w, map.size.h);
 
     return map;
 }
@@ -71,7 +67,6 @@ t_list* load_lines_in_lst(const char* map_path)
     }
 
     close(fd);
-    log_str_lst(lines);
     return lines;
 }
 
