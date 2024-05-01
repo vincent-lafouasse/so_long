@@ -1,5 +1,5 @@
-#include "t_game.h"
 #include <stdio.h>
+#include "t_game.h"
 
 void free_game(t_game* game)
 {

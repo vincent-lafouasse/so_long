@@ -1,6 +1,6 @@
 #include "parse_map.h"
 
-// must check for 
+// must check for
 // - enclosed in walls
 // - at least one of each
 // - existence of valid path
