@@ -3,6 +3,17 @@
 #include <stdlib.h>
 #include "geometry/geometry.h"
 
+static void poslst_delone(t_position_list** poslst_ref)
+{
+    t_position_list* new_head;
+
+    if (!poslst_ref || !*poslst_ref)
+        return;
+    new_head = (*poslst_ref)->next;
+    free(*poslst_ref);
+    *poslst_ref = new_head;
+}
+
 t_position_list* poslst_new(t_position position)
 {
     t_position_list* out;
@@ -40,15 +51,11 @@ void poslst_remove(t_position_list** poslst_ref, t_position position)
 
 void poslst_clear(t_position_list** poslst_ref)
 {
-    t_position_list* memory;
-
     if (!poslst_ref)
         return;
 
     while (*poslst_ref)
     {
-        memory = (*poslst_ref)->next;
-        free(*poslst_ref);
-        *poslst_ref = memory;
+        poslst_delone(poslst_ref);
     }
 }
