@@ -2,7 +2,7 @@
 
 #include <stdbool.h>
 #include "geometry/geometry.h"
-#include "libft/t_list.h"
+#include "geometry/t_position_list.h"
 #include "parse/t_charset.h"
 
 typedef struct
@@ -11,7 +11,7 @@ typedef struct
     t_dimension size;
     t_position player_position;
     t_position exit;
-    t_list* collectibles;
+    t_position_list* collectibles;
     bool needs_render;
 } t_game;
 
