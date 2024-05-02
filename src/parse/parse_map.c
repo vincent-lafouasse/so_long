@@ -80,7 +80,10 @@ static void map_parse_tokens(t_game* game, t_charset charset)
             if (current == charset.EXIT)
                 game->exit = position(row, col);
             if (current == charset.PLAYER)
+            {
                 game->player_position = position(row, col);
+                game->board[row][col] = charset.EMPTY;
+            }
             if (current == charset.COLLECTIBLE)
             {
                 node = poslst_new(position(row, col));
@@ -90,6 +93,7 @@ static void map_parse_tokens(t_game* game, t_charset charset)
                     return;
                 }
                 poslst_add_front(&(game->collectibles), node);
+                game->board[row][col] = charset.EMPTY;
             }
         }
     }
