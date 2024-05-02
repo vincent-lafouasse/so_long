@@ -1,7 +1,7 @@
 #include "t_position_list.h"
 
 #include <stdlib.h>
-#include "geometry/geometry.h"
+#include "geometry.h"
 
 static void poslst_delone(t_position_list** poslst_ref)
 {
@@ -62,8 +62,10 @@ void poslst_remove(t_position_list** poslst_ref, t_position position)
     {
         if (position_compare(position, current->position) == 0)
         {
-            poslst_delone(&current);
-            previous->next = current;
+            previous->next = current->next;
+            free(current);
+            current = previous->next;
+            continue;
         }
         previous = current;
         current = current->next;
