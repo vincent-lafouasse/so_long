@@ -1,12 +1,25 @@
 #include "parse_map.h"
+#include <stddef.h>
 #include "error/error.h"
 #include "parse/t_charset.h"
-#include <stddef.h>
 
 // must check for
 // - enclosed in walls
 // - at least one of each
 // - existence of valid path
+
+static bool map_is_enclosed_in_walls(const t_game* game, t_charset charset);
+static bool map_has_enough_tokens(const t_game* game, t_charset charset);
+static void map_parse_tokens(t_game* t_charset);
+static bool map_has_valid_path(const t_game* game, t_charset charset);
+
+void parse_map(t_game* game, t_charset charset)
+{
+    if (!map_is_enclosed_in_walls(game, charset))
+        free_game(game), die("Map is not enclosed in walls");
+    if (!map_has_enough_tokens(game, charset))
+        free_game(game), die("Invalid map tokens");
+}
 
 static bool map_is_enclosed_in_walls(const t_game* game, t_charset charset)
 {
@@ -38,7 +51,7 @@ static bool map_has_enough_tokens(const t_game* game, t_charset charset)
     {
         for (int col = 0; col < game->size.w; col++)
         {
-             current = game->board[row][col];
+            current = game->board[row][col];
             if (!is_in_charset(current, charset))
                 return false;
             n_collectibles += (current == charset.COLLECTIBLE);
@@ -47,14 +60,4 @@ static bool map_has_enough_tokens(const t_game* game, t_charset charset)
         }
     }
     return (n_exit == 1) && (n_player == 1) && (n_collectibles >= 1);
-}
-static void map_parse_tokens(t_game* t_charset);
-static bool map_has_valid_path(const t_game* game, t_charset charset);
-
-void parse_map(t_game* game, t_charset charset)
-{
-    if (!map_is_enclosed_in_walls(game, charset))
-        free_game(game), die("Map is not enclosed in walls");
-    if (!map_has_enough_tokens(game, charset))
-        free_game(game), die("Invalid map tokens");
 }
