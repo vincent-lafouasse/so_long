@@ -4,18 +4,33 @@
 #include <stdlib.h>
 
 char** deep_copy_map(const t_game* game);
+bool is_walkable(t_position pos, const t_game* game, t_charset charset);
 
 t_position_list* find_neighbours(t_position pos, const t_game* game, t_charset charset)
 {
-    t_position_list* out = NULL;
+    t_position_list* neighbours = NULL;
+    t_position current;
 
-    t_position candidates[4];
-    ft_memcpy(&candidates, (t_position[]){
-        position(pos.x + 1, pos.y),
-        position(pos.x - 1, pos.y),
-        position(pos.x, pos.y + 1),
-        position(pos.x, pos.y - 1),
-    }, sizeof(candidates));
+    current = position(pos.x + 1, pos.y);
+    if (is_walkable(current, game, charset))
+        poslst_emplace_front(&neighbours, current);
+    current = position(pos.x - 1, pos.y);
+    if (is_walkable(current, game, charset))
+        poslst_emplace_front(&neighbours, current);
+    current = position(pos.x, pos.y + 1);
+    if (is_walkable(current, game, charset))
+        poslst_emplace_front(&neighbours, current);
+    current = position(pos.x, pos.y - 1);
+    if (is_walkable(current, game, charset))
+        poslst_emplace_front(&neighbours, current);
+    return neighbours;
+}
+
+bool is_walkable(t_position pos, const t_game* game, t_charset charset)
+{
+    if (pos.x >= game->size.w || pos.x < 0 || pos.y >= game->size.h || pos.y < 0)
+        return false;
+    return game->board[pos.x][pos.y] != charset.WALL;
 }
 
 void set_as_reached(t_position pos, char** reached, t_dimension size)
