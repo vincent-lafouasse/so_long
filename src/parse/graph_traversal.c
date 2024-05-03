@@ -7,7 +7,7 @@ char** deep_copy_map(const t_game* game);
 bool is_walkable(t_position pos, const t_game* game);
 t_position_list* find_neighbours(t_position pos, const t_game* game);
 void set_as_reached(t_position pos, char** reached, t_dimension size);
-bool is_reached(t_position pos, char** reached, t_dimension size);
+bool has_been_reached(t_position pos, char** reached, t_dimension size);
 
 // a classic bfs
 // marks reached cells with a 'R'
@@ -18,7 +18,7 @@ char** reachable_cells(const t_game* game)
     t_position current;
     t_position_list* neighbours;
 
-    reached[game->player.x][game->player.y] = 'R';
+    set_as_reached(game->player, reached, game->size);
     poslst_emplace_front(&queue, game->player);
 
     while (queue)
@@ -27,9 +27,9 @@ char** reachable_cells(const t_game* game)
         neighbours = find_neighbours(current, game);
         while (neighbours)
         {
-            if (reached[neighbours->position.x][neighbours->position.y] != 'R')
+            if (has_been_reached(neighbours->position, reached, game->size))
             {
-                reached[neighbours->position.x][neighbours->position.y] = 'R';
+                set_as_reached(neighbours->position, reached, game->size);
             }
         }
     }
@@ -83,7 +83,7 @@ void set_as_reached(t_position pos, char** reached, t_dimension size)
     reached[pos.x][pos.y] = 'R';
 }
 
-bool is_reached(t_position pos, char** reached, t_dimension size)
+bool has_been_reached(t_position pos, char** reached, t_dimension size)
 {
     if (pos.x >= size.w || pos.x < 0 || pos.y >= size.h || pos.y < 0)
         return false;
