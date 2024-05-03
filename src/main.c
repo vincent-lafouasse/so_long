@@ -38,7 +38,7 @@ int update_game(t_keycode keycode, t_update_input* input)
         mlx_string_put(input->mlx->mlx, input->mlx->window, 69, 420, RED,
                        "hello");
     if (keycode == XK_s)
-        input->game->player_position.y += 32;
+        input->game->player.y += 32;
     input->game->needs_render = true;
     return IRRELEVANT_RETURN_VALUE;
 }

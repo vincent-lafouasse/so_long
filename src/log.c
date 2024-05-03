@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 16:42:56 by poss              #+#    #+#             */
-/*   Updated: 2024/04/25 14:50:09 by poss             ###   ########.fr       */
+/*   Updated: 2024/05/03 15:29:37 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void log_game(t_game game)
     printf("Game\n");
     printf("Board\t w%d h%d\n", game.size.w, game.size.h);
     log_char_matrix((const char**)game.board, game.size);
-    printf("Player\t x%d y%d\n", game.player_position.x,
-           game.player_position.y);
+    printf("Player\t x%d y%d\n", game.player.x,
+           game.player.y);
     printf("Exit\t x%d y%d\n", game.exit.x, game.exit.y);
     printf("\n");
 }

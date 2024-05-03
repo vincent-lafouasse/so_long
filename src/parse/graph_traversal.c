@@ -18,8 +18,8 @@ char** reachable_cells(const t_game* game)
     t_position current;
     t_position_list* neighbours;
 
-    reached[game->player_position.x][game->player_position.y] = 'R';
-    poslst_emplace_front(&queue, game->player_position);
+    reached[game->player.x][game->player.y] = 'R';
+    poslst_emplace_front(&queue, game->player);
 
     while (queue)
     {

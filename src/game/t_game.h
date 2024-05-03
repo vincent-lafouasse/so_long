@@ -9,7 +9,7 @@ typedef struct
 {
     char** board;
     t_dimension size;
-    t_position player_position;
+    t_position player;
     t_position exit;
     t_position_list* collectibles;
     t_charset charset;
