@@ -24,8 +24,7 @@ void log_game(t_game game)
     printf("Game\n");
     printf("Board\t w%d h%d\n", game.size.w, game.size.h);
     log_char_matrix((const char**)game.board, game.size);
-    printf("Player\t x%d y%d\n", game.player.x,
-           game.player.y);
+    printf("Player\t x%d y%d\n", game.player.x, game.player.y);
     printf("Exit\t x%d y%d\n", game.exit.x, game.exit.y);
     printf("\n");
 }

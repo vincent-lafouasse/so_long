@@ -23,8 +23,7 @@ int render(t_render_input* params)
                   RED);
     */
     render_image(params->mlx, params->render_surface, position(0, 0));
-    render_image(params->mlx, params->player_sprite,
-                 params->game->player);
+    render_image(params->mlx, params->player_sprite, params->game->player);
     params->game->needs_render = false;
     printf("window redrawn\n");
     return IRRELEVANT_RETURN_VALUE;
