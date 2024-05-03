@@ -28,6 +28,33 @@ t_position_list* poslst_new(t_position position)
     return out;
 }
 
+t_position poslst_pop_back(t_position_list** poslst_ref)
+{
+    t_position out;
+
+    if (!poslst_ref || !*poslst_ref)
+        return position(0, 0);
+
+    if (!(*poslst_ref)->next)
+    {
+        out = (*poslst_ref)->position;
+        poslst_delone(poslst_ref);
+        return out;
+    }
+
+    t_position_list* current = *poslst_ref;
+
+    while (current->next)
+    {
+        current = current->next;
+    }
+
+    out = current->next->position;
+    free(current->next);
+    current->next = NULL;
+    return out;
+}
+
 void poslst_add_front(t_position_list** poslst_ref, t_position_list* node)
 {
     t_position_list* memory;
