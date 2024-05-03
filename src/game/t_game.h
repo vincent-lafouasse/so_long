@@ -12,6 +12,7 @@ typedef struct
     t_position player_position;
     t_position exit;
     t_position_list* collectibles;
+    t_charset charset;
     bool needs_render;
 } t_game;
 

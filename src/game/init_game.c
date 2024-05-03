@@ -14,9 +14,10 @@ t_game init_game(const char* map_path, t_charset charset)
     raw_map = load_raw_map(map_path);
     ft_memcpy(&game, &raw_map, sizeof(raw_map));
     printf("game before parse:\n");
+    game.charset = charset;
     log_game(game);
 
-    parse_map(&game, charset);
+    parse_map(&game);
     printf("game after parse:\n");
     log_game(game);
     return game;
