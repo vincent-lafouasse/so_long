@@ -55,6 +55,15 @@ t_position poslst_pop_back(t_position_list** poslst_ref)
     return out;
 }
 
+bool poslst_emplace_front(t_position_list** poslst_ref, t_position pos)
+{
+    t_position_list* node = poslst_new(pos);
+    if (!node)
+        return false;
+    poslst_add_front(poslst_ref, node);
+    return true;
+}
+
 void poslst_add_front(t_position_list** poslst_ref, t_position_list* node)
 {
     t_position_list* memory;
