@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "geometry.h"
 
-static void poslst_delone(t_position_list** poslst_ref)
+void poslst_delone(t_position_list** poslst_ref)
 {
     t_position_list* new_head;
 
