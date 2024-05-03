@@ -1,11 +1,13 @@
+#include <stdlib.h>
 #include "geometry/t_position_list.h"
 #include "libft/string.h"
 #include "parse_map.h"
-#include <stdlib.h>
 
 char** deep_copy_map(const t_game* game);
 bool is_walkable(t_position pos, const t_game* game, t_charset charset);
-t_position_list* find_neighbours(t_position pos, const t_game* game, t_charset charset);
+t_position_list* find_neighbours(t_position pos,
+                                 const t_game* game,
+                                 t_charset charset);
 void set_as_reached(t_position pos, char** reached, t_dimension size);
 bool is_reached(t_position pos, char** reached, t_dimension size);
 
@@ -48,7 +50,9 @@ char** deep_copy_map(const t_game* game)
     return copy;
 }
 
-t_position_list* find_neighbours(t_position pos, const t_game* game, t_charset charset)
+t_position_list* find_neighbours(t_position pos,
+                                 const t_game* game,
+                                 t_charset charset)
 {
     t_position_list* neighbours = NULL;
     t_position current;
@@ -70,7 +74,8 @@ t_position_list* find_neighbours(t_position pos, const t_game* game, t_charset c
 
 bool is_walkable(t_position pos, const t_game* game, t_charset charset)
 {
-    if (pos.x >= game->size.w || pos.x < 0 || pos.y >= game->size.h || pos.y < 0)
+    if (pos.x >= game->size.w || pos.x < 0 || pos.y >= game->size.h ||
+        pos.y < 0)
         return false;
     return game->board[pos.x][pos.y] != charset.WALL;
 }
