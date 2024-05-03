@@ -27,9 +27,10 @@ char** reachable_cells(const t_game* game)
         neighbours = find_neighbours(current, game);
         while (neighbours)
         {
-            if (has_been_reached(neighbours->position, reached, game->size))
+            if (!has_been_reached(neighbours->position, reached, game->size))
             {
                 set_as_reached(neighbours->position, reached, game->size);
+                //poslst_add_front(t_position_list **, t_position_list *node)
             }
         }
     }
