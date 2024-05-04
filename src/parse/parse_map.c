@@ -22,6 +22,7 @@ void parse_map(t_game* game)
     map_parse_tokens(game);
     if (position_compare(game->exit, position(0, 0)) == 0)
         free_game(game), die("Failed to parse map tokens");
+
 }
 
 static bool map_is_enclosed_in_walls(const t_game* game)

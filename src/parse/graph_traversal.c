@@ -2,6 +2,7 @@
 #include "geometry/t_position_list.h"
 #include "libft/string.h"
 #include "parse_map.h"
+#include "load/t_raw_map.h"
 
 char** deep_copy_map(const t_game* game);
 bool is_walkable(t_position pos, const t_game* game);
@@ -42,6 +43,7 @@ bool has_valid_path(const t_game* game)
             return false;
         collectibles = collectibles->next;
     }
+    free_raw_map((t_raw_map){reached, game->size});
     return true;
 }
 
