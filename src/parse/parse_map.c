@@ -2,6 +2,8 @@
 #include <stddef.h>
 #include "error/error.h"
 #include "geometry/t_position_list.h"
+#include "libft/ft_io.h"
+#include "log.h"
 #include "parse/t_charset.h"
 
 // must check for
@@ -15,6 +17,7 @@ static void map_parse_tokens(t_game* game);
 
 void parse_map(t_game* game)
 {
+    ft_putstr_fd("parsing map\n", 1);
     if (!map_is_enclosed_in_walls(game))
         free_game(game), die("Map is not enclosed in walls");
     if (!map_has_enough_tokens(game))
