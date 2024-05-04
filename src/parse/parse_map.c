@@ -12,7 +12,6 @@
 static bool map_is_enclosed_in_walls(const t_game* game);
 static bool map_has_enough_tokens(const t_game* game);
 static void map_parse_tokens(t_game* game);
-static bool map_has_valid_path(const t_game* game);
 
 void parse_map(t_game* game)
 {
