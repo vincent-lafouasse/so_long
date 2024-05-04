@@ -43,7 +43,7 @@ bool has_valid_path(const t_game* game)
             return false;
         collectibles = collectibles->next;
     }
-    free_raw_map((t_raw_map){reached, game->size});
+    free_map((t_raw_map){reached, game->size});
     return true;
 }
 
