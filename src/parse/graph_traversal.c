@@ -1,11 +1,11 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "geometry/t_position_list.h"
+#include "libft/ft_io.h"
 #include "libft/string.h"
-#include "parse_map.h"
 #include "load/t_raw_map.h"
 #include "log.h"
-#include "libft/ft_io.h"
-#include <stdio.h>
+#include "parse_map.h"
 
 char** deep_copy_map(const t_game* game);
 bool is_walkable(t_position pos, const t_game* game);
@@ -20,7 +20,7 @@ bool is_reached(char** reached, t_position position, const t_game* game)
 void flood_fill(char** reached, t_position start, const t_game* game)
 {
     printf("checking position\tx%d\ty%d\n", start.x, start.y);
-    //log_char_matrix(g, t_dimension size)
+    // log_char_matrix(g, t_dimension size)
     if (!is_walkable(start, game))
     {
         printf("pos is not walkable\n\n");
@@ -62,7 +62,6 @@ bool has_valid_path(const t_game* game)
     return true;
 }
 
-
 char** deep_copy_map(const t_game* game)
 {
     char** copy = malloc(sizeof(char*) * game->size.h);
@@ -81,4 +80,3 @@ bool is_walkable(t_position pos, const t_game* game)
         return false;
     return game->board[pos.x][pos.y] != game->charset.WALL;
 }
-
