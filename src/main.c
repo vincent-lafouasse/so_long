@@ -6,8 +6,8 @@
 #include "game/t_game.h"
 #include "parse/t_charset.h"
 
-#include "render/t_color.h"
 #include "render/t_mlx.h"
+#include "render/render.h"
 
 #include "log/log.h"
 #include "error/error.h"
@@ -15,8 +15,6 @@
 #define WIDTH 600
 #define HEIGHT 480
 #define WINDOW_NAME ("idk, a name ig")
-
-#define PLAYER_SPRITE_PATH "./assets/player.xpm"
 
 #define IRRELEVANT_RETURN_VALUE 0
 
@@ -31,9 +29,6 @@ int update_game(t_keycode keycode, t_update_input* input)
     log_key_event(keycode);
     if (keycode == XK_Escape)
         mlx_loop_end(input->mlx->mlx);
-    if (keycode == XK_p)
-        mlx_string_put(input->mlx->mlx, input->mlx->window, 69, 420, RED,
-                       "hello");
     if (keycode == XK_s)
         input->game->player.y += 32;
     input->game->needs_render = true;
@@ -48,30 +43,19 @@ int main(int ac, char** av)
         die("Usage: ./so_long map.ber");
 
     t_game game = init_game(av[1], default_charset());
-    free_game(&game);
 
-    /*
     const t_dimension window_size = dimension(WIDTH, HEIGHT);
     t_mlx mlx = init_mlx(window_size, WINDOW_NAME);
-    t_image player_sprite = load_image_xpm(PLAYER_SPRITE_PATH, &mlx);
-
-    t_image background = init_empty_image(window_size, &mlx);
-    put_rectangle(&background, rectangle(position(0, 0), window_size), BLACK);
-
-    t_rectangle rect = rectangle(position(5, 5), dimension(420, 69));
-
-    t_game game = (t_game){NULL, dimension(0, 0), rect, position(69, 42), true};
 
     t_update_input update_input = (t_update_input){&game, &mlx};
-    t_render_input render_input =
-        (t_render_input){&mlx, &background, &player_sprite, &game};
+    t_render_input render_input = (t_render_input){&mlx, &game};
 
     mlx_key_hook(mlx.window, &update_game, &update_input);
-    // mlx_expose_hook(mlx.window, render, &render_input);
     mlx_loop_hook(mlx.mlx, &render, &render_input);
     mlx_loop(mlx.mlx);
+
     cleanup(mlx);
-    */
+    free_game(&game);
 }
 
 void cleanup(t_mlx mlx)

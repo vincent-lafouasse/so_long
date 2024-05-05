@@ -3,13 +3,7 @@
 #include "error/error.h"
 #include "geometry/t_position_list.h"
 #include "libft/ft_io.h"
-#include "log/log.h"
 #include "parse/t_charset.h"
-
-// must check for
-// - enclosed in walls
-// - at least one of each
-// - existence of valid path
 
 static bool map_is_enclosed_in_walls(const t_game* game);
 static bool map_has_enough_tokens(const t_game* game);

@@ -7,8 +7,6 @@
 typedef struct
 {
     t_mlx* mlx;
-    t_image* render_surface;
-    t_image* player_sprite;
     t_game* game;
 } t_render_input;
 
