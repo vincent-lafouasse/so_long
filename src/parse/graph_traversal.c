@@ -59,6 +59,8 @@ bool has_valid_path(const t_game* game)
             return false;
         collectibles = collectibles->next;
     }
+    printf("reached cells:\n");
+    log_char_matrix((const char**)reached, game->size);
     free_map((t_raw_map){reached, game->size});
     return true;
 }
