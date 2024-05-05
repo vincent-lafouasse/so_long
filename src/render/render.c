@@ -17,9 +17,9 @@ void ascii_render(const t_game* game);
 
 int render(t_render_input* params)
 {
-    printf("redrawing\n");
     if (!params->game->needs_render)
         return IRRELEVANT_RETURN_VALUE;
+    printf("redrawing\n");
     ascii_render(params->game);
     params->game->needs_render = false;
     printf("window redrawn\n");
