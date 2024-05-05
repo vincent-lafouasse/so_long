@@ -82,15 +82,15 @@ static void map_parse_tokens(t_game* game)
         {
             current = game->board[row][col];
             if (current == game->charset.EXIT)
-                game->exit = position(row, col);
+                game->exit = position(col, row);
             if (current == game->charset.PLAYER)
             {
-                game->player = position(row, col);
+                game->player = position(col, row);
                 game->board[row][col] = game->charset.EMPTY;
             }
             if (current == game->charset.COLLECTIBLE)
             {
-                node = poslst_new(position(row, col));
+                node = poslst_new(position(col, row));
                 if (!node)
                 {
                     game->exit = position(0, 0);
