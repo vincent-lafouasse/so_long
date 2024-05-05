@@ -47,6 +47,8 @@ bool has_valid_path(const t_game* game)
     ft_putstr_fd("\n", 1);
     char** reached = deep_copy_map(game);
     flood_fill(reached, game->player, game);
+    printf("reached cells:\n");
+    log_char_matrix((const char**)reached, game->size);
     if (!is_reached(reached, game->player, game))
         return false;
     if (!is_reached(reached, game->exit, game))
@@ -59,8 +61,6 @@ bool has_valid_path(const t_game* game)
             return false;
         collectibles = collectibles->next;
     }
-    printf("reached cells:\n");
-    log_char_matrix((const char**)reached, game->size);
     free_map((t_raw_map){reached, game->size});
     return true;
 }
