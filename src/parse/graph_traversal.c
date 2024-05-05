@@ -20,7 +20,6 @@ bool is_reached(char** reached, t_position position, const t_game* game)
 void flood_fill(char** reached, t_position start, const t_game* game)
 {
     printf("checking position\tx%d\ty%d\n", start.x, start.y);
-    // log_char_matrix(g, t_dimension size)
     if (!is_walkable(start, game))
     {
         printf("pos is not walkable\n\n");
@@ -32,7 +31,9 @@ void flood_fill(char** reached, t_position start, const t_game* game)
         return;
     }
     reached[start.y][start.x] = 'R';
-    printf("visited position\tx%d\ty%d\n\n", start.x, start.y);
+    printf("visited position\tx%d\ty%d\n", start.x, start.y);
+    log_char_matrix((const char**)reached, game->size);
+    printf("\n");
     flood_fill(reached, position(start.x + 1, start.y), game);
     flood_fill(reached, position(start.x - 1, start.y), game);
     flood_fill(reached, position(start.x, start.y + 1), game);
@@ -78,5 +79,5 @@ bool is_walkable(t_position pos, const t_game* game)
     if (pos.x >= game->size.w || pos.x < 0 || pos.y >= game->size.h ||
         pos.y < 0)
         return false;
-    return game->board[pos.x][pos.y] != game->charset.WALL;
+    return game->board[pos.y][pos.x] != game->charset.WALL;
 }
