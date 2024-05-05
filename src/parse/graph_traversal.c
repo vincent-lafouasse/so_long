@@ -43,7 +43,7 @@ void flood_fill(char** reached, t_position start, const t_game* game)
 bool has_valid_path(const t_game* game)
 {
     ft_putstr_fd("checking for valid path\nmap\n", 1);
-    log_char_matrix((const char**)game->board, game->size);
+    log_game(*game);
     ft_putstr_fd("\n", 1);
     char** reached = deep_copy_map(game);
     flood_fill(reached, game->player, game);
