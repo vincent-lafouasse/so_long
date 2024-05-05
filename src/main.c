@@ -60,6 +60,7 @@ int update_game(t_keycode keycode, t_update_input* input)
     log_key_event(keycode);
     if (keycode == XK_Escape)
         mlx_loop_end(input->mlx->mlx);
+    // mlx_hook(mlx_window, DestroyNotify, StructureNotifyMask, exit_hook, (void *)0);
     if (keycode == XK_w)
         try_move(Up, input->game);
     if (keycode == XK_a)
