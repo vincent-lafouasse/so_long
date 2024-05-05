@@ -82,7 +82,10 @@ static void map_parse_tokens(t_game* game)
         {
             current = game->board[row][col];
             if (current == game->charset.EXIT)
+            {
                 game->exit = position(col, row);
+                game->board[row][col] = game->charset.EMPTY;
+            }
             if (current == game->charset.PLAYER)
             {
                 game->player = position(col, row);
