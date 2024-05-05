@@ -1,19 +1,16 @@
 #include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-
+#include <unistd.h>
 #include <X11/keysym.h>
 
-#include <unistd.h>
-#include "error/error.h"
-
+#include "mlx.h"
+#include "game/t_game.h"
 #include "parse/t_charset.h"
 
-#include "game/t_game.h"
-#include "log.h"
-#include "mlx.h"
-#include "t_color.h"
-#include "t_mlx.h"
+#include "render/t_color.h"
+#include "render/t_mlx.h"
+
+#include "log/log.h"
+#include "error/error.h"
 
 #define WIDTH 600
 #define HEIGHT 480

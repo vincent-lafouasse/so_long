@@ -2,7 +2,7 @@
 
 #include "game/t_game.h"
 #include "libft/t_list.h"
-#include "t_mlx.h"
+#include "render/t_mlx.h"
 
 void log_time(void);
 void log_key_event(t_keycode);

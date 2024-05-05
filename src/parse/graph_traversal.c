@@ -4,7 +4,7 @@
 #include "libft/ft_io.h"
 #include "libft/string.h"
 #include "load/t_raw_map.h"
-#include "log.h"
+#include "log/log.h"
 #include "parse_map.h"
 
 char** deep_copy_map(const t_game* game);
