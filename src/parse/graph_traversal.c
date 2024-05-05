@@ -32,6 +32,7 @@ void flood_fill(char** reached, t_position start, const t_game* game)
         return;
     }
     reached[start.y][start.x] = 'R';
+    printf("visited position\tx%d\ty%d\n\n", start.x, start.y);
     flood_fill(reached, position(start.x + 1, start.y), game);
     flood_fill(reached, position(start.x - 1, start.y), game);
     flood_fill(reached, position(start.x, start.y + 1), game);
