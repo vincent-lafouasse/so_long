@@ -51,7 +51,7 @@ int main(int ac, char** av)
         die("Usage: ./so_long map.ber");
 
     t_game game = init_game(av[1], default_charset());
-    (void)game;
+    free_game(&game);
 
     /*
     const t_dimension window_size = dimension(WIDTH, HEIGHT);
