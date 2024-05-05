@@ -7,38 +7,11 @@
 #include "log/log.h"
 #include "parse_map.h"
 
-char** deep_copy_map(const t_game* game);
-bool is_walkable(t_position pos, const t_game* game);
+static void flood_fill(char** reached, t_position start, const t_game* game);
+static bool is_walkable(t_position pos, const t_game* game);
+static bool is_reached(char** reached, t_position position, const t_game* game);
+static char** deep_copy_map(const t_game* game);
 
-bool is_reached(char** reached, t_position position, const t_game* game)
-{
-    if (!is_walkable(position, game))
-        return false;
-    return reached[position.y][position.x] == 'R';
-}
-
-void flood_fill(char** reached, t_position start, const t_game* game)
-{
-    printf("checking position\tx%d\ty%d\n", start.x, start.y);
-    if (!is_walkable(start, game))
-    {
-        printf("pos is not walkable\n\n");
-        return;
-    }
-    if (is_reached(reached, start, game))
-    {
-        printf("pos has already been reached\n\n");
-        return;
-    }
-    reached[start.y][start.x] = 'R';
-    printf("visited position\tx%d\ty%d\n", start.x, start.y);
-    log_char_matrix((const char**)reached, game->size);
-    printf("\n");
-    flood_fill(reached, position(start.x + 1, start.y), game);
-    flood_fill(reached, position(start.x - 1, start.y), game);
-    flood_fill(reached, position(start.x, start.y + 1), game);
-    flood_fill(reached, position(start.x, start.y - 1), game);
-}
 
 bool has_valid_path(const t_game* game)
 {
@@ -65,6 +38,44 @@ bool has_valid_path(const t_game* game)
     return true;
 }
 
+void flood_fill(char** reached, t_position start, const t_game* game)
+{
+    printf("checking position\tx%d\ty%d\n", start.x, start.y);
+    if (!is_walkable(start, game))
+    {
+        printf("pos is not walkable\n\n");
+        return;
+    }
+    if (is_reached(reached, start, game))
+    {
+        printf("pos has already been reached\n\n");
+        return;
+    }
+    reached[start.y][start.x] = 'R';
+    printf("visited position\tx%d\ty%d\n", start.x, start.y);
+    log_char_matrix((const char**)reached, game->size);
+    printf("\n");
+    flood_fill(reached, position(start.x + 1, start.y), game);
+    flood_fill(reached, position(start.x - 1, start.y), game);
+    flood_fill(reached, position(start.x, start.y + 1), game);
+    flood_fill(reached, position(start.x, start.y - 1), game);
+}
+
+bool is_reached(char** reached, t_position position, const t_game* game)
+{
+    if (!is_walkable(position, game))
+        return false;
+    return reached[position.y][position.x] == 'R';
+}
+
+bool is_walkable(t_position pos, const t_game* game)
+{
+    if (pos.x >= game->size.w || pos.x < 0 || pos.y >= game->size.h ||
+        pos.y < 0)
+        return false;
+    return game->board[pos.y][pos.x] != game->charset.WALL;
+}
+
 char** deep_copy_map(const t_game* game)
 {
     char** copy = malloc(sizeof(char*) * game->size.h);
@@ -74,12 +85,4 @@ char** deep_copy_map(const t_game* game)
         copy[row] = ft_strdup(game->board[row]);
     }
     return copy;
-}
-
-bool is_walkable(t_position pos, const t_game* game)
-{
-    if (pos.x >= game->size.w || pos.x < 0 || pos.y >= game->size.h ||
-        pos.y < 0)
-        return false;
-    return game->board[pos.y][pos.x] != game->charset.WALL;
 }
