@@ -20,5 +20,6 @@ t_game init_game(const char* map_path, t_charset charset)
     parse_map(&game);
     printf("game after parse:\n");
     log_game(game);
+    game.needs_render = true;
     return game;
 }
