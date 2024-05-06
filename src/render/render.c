@@ -81,7 +81,7 @@ bool is_collectible(t_position position, const t_game* game)
             return true;
         collectibles = collectibles->next;
     }
-    return true;
+    return false;
 }
 
 bool is_wall(t_position position, const t_game* game)
