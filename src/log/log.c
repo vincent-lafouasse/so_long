@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 16:42:56 by poss              #+#    #+#             */
-/*   Updated: 2024/05/03 15:29:37 by poss             ###   ########.fr       */
+/*   Updated: 2024/05/06 13:21:36 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,9 @@ void log_char_matrix(const char** matrix, t_dimension size)
         ft_putchar_fd('\n', 1);
         row++;
     }
+}
+
+void log_pos(t_position pos)
+{
+    printf("x: %d y: %d", pos.x, pos.y);
 }
