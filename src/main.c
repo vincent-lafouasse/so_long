@@ -66,9 +66,9 @@ int update_game(t_keycode keycode, t_update_input* input)
     if (keycode == XK_a)
         try_move(Left, input->game);
     if (keycode == XK_s)
-        try_move(Right, input->game);
-    if (keycode == XK_d)
         try_move(Down, input->game);
+    if (keycode == XK_d)
+        try_move(Right, input->game);
     input->game->needs_render = true;
     return IRRELEVANT_RETURN_VALUE;
 }
