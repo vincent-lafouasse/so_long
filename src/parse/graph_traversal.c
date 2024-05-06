@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "geometry/t_position_list.h"
-#include "libft/ft_io.h"
 #include "libft/string.h"
 #include "load/t_raw_map.h"
 #include "log/log.h"
@@ -15,13 +14,11 @@ static char** deep_copy_map(const t_game* game);
 
 bool has_valid_path(const t_game* game)
 {
-    ft_putstr_fd("checking for valid path\nmap\n", 1);
-    log_game(*game);
-    ft_putstr_fd("\n", 1);
     char** reached = deep_copy_map(game);
     flood_fill(reached, game->player, game);
     printf("reached cells:\n");
     log_char_matrix((const char**)reached, game->size);
+    printf("\n");
     if (!is_reached(reached, game->player, game))
         return false;
     if (!is_reached(reached, game->exit, game))
@@ -40,21 +37,15 @@ bool has_valid_path(const t_game* game)
 
 void flood_fill(char** reached, t_position start, const t_game* game)
 {
-    printf("checking position\tx%d\ty%d\n", start.x, start.y);
     if (!is_walkable(start, game))
     {
-        printf("pos is not walkable\n\n");
         return;
     }
     if (is_reached(reached, start, game))
     {
-        printf("pos has already been reached\n\n");
         return;
     }
     reached[start.y][start.x] = 'R';
-    printf("visited position\tx%d\ty%d\n", start.x, start.y);
-    log_char_matrix((const char**)reached, game->size);
-    printf("\n");
     flood_fill(reached, position(start.x + 1, start.y), game);
     flood_fill(reached, position(start.x - 1, start.y), game);
     flood_fill(reached, position(start.x, start.y + 1), game);
