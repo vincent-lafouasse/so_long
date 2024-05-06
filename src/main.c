@@ -1,7 +1,9 @@
 #include <stdbool.h>
+#include <stdio.h>
 #include <unistd.h>
 #include <X11/keysym.h>
 
+#include "geometry/t_position_list.h"
 #include "mlx.h"
 #include "game/t_game.h"
 #include "parse/t_charset.h"
@@ -34,6 +36,17 @@ static bool is_wall(t_position pos, const t_game* game)
     return game->board[pos.y][pos.x] == game->charset.WALL;
 }
 
+bool is_collectible(t_position position, const t_game* game);
+bool is_exit(t_position position, const t_game* game);
+
+void process_new_position(t_game* game)
+{
+    if (is_collectible(game->player, game))
+        poslst_remove(&(game->collectibles), game->player);
+    if (!game->collectibles && is_exit(game->player, game))
+        printf("gg\n");
+}
+
 bool try_move(t_direction direction, t_game* game)
 {
     t_position new_position = game->player;
@@ -48,7 +61,6 @@ bool try_move(t_direction direction, t_game* game)
         new_position.x += 1;
     else
         return false;
-
     if (is_wall(new_position, game))
         return false;
     game->player = new_position;
