@@ -9,4 +9,4 @@ typedef struct
     t_mlx* mlx;
 } t_update_input;
 
-int update_game(t_keycode keycode, t_update_input* input);
+void update_game(t_game* game, int keycode);

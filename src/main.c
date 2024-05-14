@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <X11/X.h>
+#include <X11/keysym.h>
 
 #include "geometry/t_position_list.h"
 #include "mlx.h"
@@ -21,6 +22,7 @@
 #define IRRELEVANT_RETURN_VALUE 0
 
 int exit_hook(t_mlx* mlx);
+int key_hook(t_keycode keycode, t_update_input* input);
 void cleanup(t_mlx mlx);
 
 int main(int ac, char** av)
@@ -40,12 +42,20 @@ int main(int ac, char** av)
     t_render_input render_input = (t_render_input){&mlx, &game, &sprites};
 
     mlx_hook(mlx.window, DestroyNotify, StructureNotifyMask, exit_hook, &mlx);
-    mlx_key_hook(mlx.window, &update_game, &update_input);
+    mlx_key_hook(mlx.window, &key_hook, &update_input);
     mlx_loop_hook(mlx.mlx, &render, &render_input);
     mlx_loop(mlx.mlx);
 
     cleanup(mlx);
     free_game(&game);
+}
+
+int key_hook(t_keycode keycode, t_update_input* input)
+{
+    if (keycode == XK_Escape)
+        exit_hook(input->mlx);
+    update_game(input->game, keycode);
+    return IRRELEVANT_RETURN_VALUE;
 }
 
 int exit_hook(t_mlx* mlx)

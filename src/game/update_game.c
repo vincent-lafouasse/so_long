@@ -16,21 +16,17 @@ bool is_exit(t_position position, const t_game* game);
 bool try_move(t_direction direction, t_game* game);
 void process_new_position(t_game* game);
 
-int update_game(t_keycode keycode, t_update_input* input)
+void update_game(t_game* game, int keycode)
 {
     log_key_event(keycode);
-    if (keycode == XK_Escape)
-        mlx_loop_end(input->mlx->mlx);
     if (keycode == XK_w)
-        try_move(Up, input->game);
+        try_move(Up, game);
     if (keycode == XK_a)
-        try_move(Left, input->game);
+        try_move(Left, game);
     if (keycode == XK_s)
-        try_move(Down, input->game);
+        try_move(Down, game);
     if (keycode == XK_d)
-        try_move(Right, input->game);
-    input->game->needs_render = true;
-    return IRRELEVANT_RETURN_VALUE;
+        try_move(Right, game);
 }
 
 bool try_move(t_direction direction, t_game* game)
