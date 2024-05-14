@@ -23,9 +23,4 @@ bool poslst_add_front(t_position_list* lst, t_position position);
 void poslst_delone(t_position_list* lst);
 void poslst_clear(t_position_list* lst);
 void posnode_erase(t_position_node* node);
-
-/*
-void poslst_remove(t_position_list** poslst_ref, t_position position);
-void poslst_clear(t_position_list** poslst_ref);
-size_t poslst_size(const t_position_list* lst);
-*/
+void poslst_remove(t_position_list* lst, t_position position);

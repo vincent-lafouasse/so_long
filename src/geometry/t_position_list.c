@@ -5,6 +5,61 @@
 
 static t_position_node* posnode_new(t_position position);
 
+/*
+void poslst_remove(t_position_list** poslst_ref, t_position position)
+{
+    if (!poslst_ref)
+        return;
+
+    while (*poslst_ref && position_eq(position, (*poslst_ref)->position))
+        poslst_delone(poslst_ref);
+
+    if (!*poslst_ref || (*poslst_ref)->next == NULL)
+        return;
+
+    t_position_list* previous = *poslst_ref;
+    t_position_list* current = previous->next;
+
+    while (current)
+    {
+        if (position_eq(position, (*poslst_ref)->position))
+        {
+            previous->next = current->next;
+            free(current);
+            current = previous->next;
+            continue;
+        }
+        previous = current;
+        current = current->next;
+    }
+}
+*/
+
+void poslst_remove(t_position_list* lst, t_position position)
+{
+    if (!lst)
+        return;
+    while (lst->head && position_eq(position, lst->head->position))
+        poslst_delone(lst);
+    if (lst->head == NULL || lst->head->next == NULL)
+        return;
+
+    t_position_node* current = lst->head;
+    t_position_node* new_next;
+    while (current->next)
+    {
+        if (position_eq(position, current->next->position))
+        {
+            new_next = current->next->next;
+            free(current->next);
+            current->next = new_next;
+            new_next->prev = current;
+        }
+        else
+            current = current->next;
+    }
+}
+
 t_position_list poslst_new(void)
 {
     return (t_position_list){.head = NULL, .tail = NULL};
@@ -125,34 +180,6 @@ void poslst_add_front(t_position_list** poslst_ref, t_position_list* node)
     *poslst_ref = node;
     node->next = memory;
     node->next->prev = node;
-}
-
-void poslst_remove(t_position_list** poslst_ref, t_position position)
-{
-    if (!poslst_ref)
-        return;
-
-    while (*poslst_ref && position_eq(position, (*poslst_ref)->position))
-        poslst_delone(poslst_ref);
-
-    if (!*poslst_ref || (*poslst_ref)->next == NULL)
-        return;
-
-    t_position_list* previous = *poslst_ref;
-    t_position_list* current = previous->next;
-
-    while (current)
-    {
-        if (position_eq(position, (*poslst_ref)->position))
-        {
-            previous->next = current->next;
-            free(current);
-            current = previous->next;
-            continue;
-        }
-        previous = current;
-        current = current->next;
-    }
 }
 
 void poslst_clear(t_position_list** poslst_ref)
