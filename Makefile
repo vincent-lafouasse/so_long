@@ -68,7 +68,7 @@ re: fclean build
 
 .PHONY: check
 check:
-	cppcheck --language=c --enable=all --suppress=missingIncludeSystem --suppress=missingInclude -isrc/log --check-level=exhaustive src
+	cppcheck --language=c --enable=all --suppress=missingIncludeSystem --suppress=missingInclude -isrc/log --cppcheck-build-dir=build --check-level=exhaustive src
 	# norminette src # to be reenabled later
 
 
