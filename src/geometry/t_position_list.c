@@ -88,7 +88,7 @@ void poslst_remove(t_position_list** poslst_ref, t_position position)
     if (!poslst_ref)
         return;
 
-    while (position_compare(position, (*poslst_ref)->position) == 0)
+    while (position_eq(position, (*poslst_ref)->position))
         poslst_delone(poslst_ref);
 
     if (!*poslst_ref || (*poslst_ref)->next == NULL)
@@ -99,7 +99,7 @@ void poslst_remove(t_position_list** poslst_ref, t_position position)
 
     while (current)
     {
-        if (position_compare(position, current->position) == 0)
+        if (position_eq(position, (*poslst_ref)->position))
         {
             previous->next = current->next;
             free(current);

@@ -23,6 +23,11 @@ int position_compare(t_position a, t_position b)
     return 0;
 }
 
+bool position_eq(t_position a, t_position b)
+{
+    return position_compare(a, b) == 0;
+}
+
 int dimension_compare(t_dimension a, t_dimension b)
 {
     if (a.w > b.w)
