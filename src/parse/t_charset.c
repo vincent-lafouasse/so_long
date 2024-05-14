@@ -4,7 +4,11 @@
 t_charset default_charset(void)
 {
     t_charset charset;
-    ft_memcpy(&charset, DEFAULT_CHARSET, 5);
+    charset.EMPTY = '0';
+    charset.WALL = '1';
+    charset.COLLECTIBLE = 'C';
+    charset.EXIT = 'E';
+    charset.PLAYER = 'P';
     return charset;
 }
 
