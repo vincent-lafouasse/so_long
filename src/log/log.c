@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 16:42:56 by poss              #+#    #+#             */
-/*   Updated: 2024/05/06 13:21:36 by poss             ###   ########.fr       */
+/*   Updated: 2024/05/14 21:07:21 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void log_str_lst(const t_list* strs)
 void log_char_matrix(const char** matrix, t_dimension size)
 {
     int row = 0;
-    int col = 0;
+    int col;
 
     while (row < size.h)
     {
