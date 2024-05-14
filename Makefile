@@ -68,7 +68,7 @@ re: fclean build
 
 .PHONY: check
 check:
-	cppcheck --language=c --enable=all --suppress=missingIncludeSystem --suppress=missingInclude -isrc/log --cppcheck-build-dir=build --check-level=exhaustive src
+	cppcheck --language=c --enable=all --suppress=missingIncludeSystem --suppress=missingInclude -isrc/log -i/lib/minilibx-linux --cppcheck-build-dir=build --check-level=exhaustive --project=build/compile_commands.json
 	# norminette src # to be reenabled later
 
 
