@@ -15,8 +15,8 @@
 #include <stdio.h>
 #include <sys/time.h>
 #include <time.h>
-#include "libft/ft_io.h"
 #include "game/query_game.h"
+#include "libft/ft_io.h"
 
 #define LOG_BUFFER_SIZE 128
 
