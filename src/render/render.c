@@ -7,29 +7,34 @@
 
 #define IRRELEVANT_RETURN_VALUE 0
 
-void render_image(t_mlx* mlx, t_image* image, t_position position)
-{
-    mlx_put_image_to_window(mlx->mlx, mlx->window, image->img, position.x,
-                            position.y);
-}
-
-void ascii_render(const t_game* game);
-
-int render(t_render_input* params)
-{
-    if (!params->game->needs_render)
-        return IRRELEVANT_RETURN_VALUE;
-    printf("redrawing\n");
-    ascii_render(params->game);
-    params->game->needs_render = false;
-    printf("window redrawn\n\n");
-    return IRRELEVANT_RETURN_VALUE;
-}
 
 bool is_wall(t_position position, const t_game* game);
 bool is_player(t_position position, const t_game* game);
 bool is_exit(t_position position, const t_game* game);
 bool is_collectible(t_position position, const t_game* game);
+
+void render_background(t_render_input* in)
+{
+    for (int row = 0; row < in->game->size.h; row++)
+    {
+        for (int col = 0; col < in->game->size.w; col++)
+        {
+            if (in->game->board[row][col] == in->game->charset.WALL)
+                render_image(in->mlx, &(in->sprites->wall), (t_position){row * 64, col * 64});
+            else if (in->game->board[row][col] == in->game->charset.WALL)
+                render_image(in->mlx, &(in->sprites->floor), (t_position){row * 64, col * 64});
+        }
+    }
+}
+
+int render(t_render_input* params)
+{
+    if (!params->game->needs_render)
+        return IRRELEVANT_RETURN_VALUE;
+    render_background(params);
+    params->game->needs_render = false;
+    return IRRELEVANT_RETURN_VALUE;
+}
 
 void ascii_render(const t_game* game)
 {
@@ -87,4 +92,10 @@ bool is_collectible(t_position position, const t_game* game)
 bool is_wall(t_position position, const t_game* game)
 {
     return game->board[position.y][position.x] == game->charset.WALL;
+}
+
+void render_image(t_mlx* mlx, t_image* image, t_position position)
+{
+    mlx_put_image_to_window(mlx->mlx, mlx->window, image->img, position.x,
+                            position.y);
 }

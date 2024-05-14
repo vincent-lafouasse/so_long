@@ -10,9 +10,7 @@
 #include "game/update_game.h"
 #include "parse/t_charset.h"
 
-#include "render/t_mlx.h"
 #include "render/render.h"
-#include "render/sprites.h"
 
 #include "log/log.h"
 #include "error/error.h"
@@ -39,7 +37,7 @@ int main(int ac, char** av)
     t_sprites sprites = load_sprites(mlx);
 
     t_update_input update_input = (t_update_input){&game, &mlx};
-    t_render_input render_input = (t_render_input){&mlx, &game};
+    t_render_input render_input = (t_render_input){&mlx, &game, &sprites};
 
     mlx_hook(mlx.window, DestroyNotify, StructureNotifyMask, exit_hook, &mlx);
     mlx_key_hook(mlx.window, &update_game, &update_input);
