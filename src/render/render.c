@@ -20,9 +20,9 @@ void render_background(t_render_input* in)
         for (int col = 0; col < in->game->size.w; col++)
         {
             if (in->game->board[row][col] == in->game->charset.WALL)
-                render_image(in->mlx, &(in->sprites->wall), (t_position){row * 64, col * 64});
+                render_image(in->mlx, &(in->sprites->wall), (t_position){col * 64, row * 64});
             else if (in->game->board[row][col] == in->game->charset.WALL)
-                render_image(in->mlx, &(in->sprites->floor), (t_position){row * 64, col * 64});
+                render_image(in->mlx, &(in->sprites->floor), (t_position){col * 64, row * 64});
         }
     }
 }
