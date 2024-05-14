@@ -7,11 +7,6 @@
 
 #define IRRELEVANT_RETURN_VALUE 0
 
-bool is_wall(t_position position, const t_game* game);
-bool is_player(t_position position, const t_game* game);
-bool is_exit(t_position position, const t_game* game);
-bool is_collectible(t_position position, const t_game* game);
-
 void render_background(t_render_input* in)
 {
     for (int row = 0; row < in->game->size.h; row++)
@@ -35,31 +30,6 @@ int render(t_render_input* params)
     render_background(params);
     params->game->needs_render = false;
     return IRRELEVANT_RETURN_VALUE;
-}
-
-bool is_player(t_position position, const t_game* game)
-{
-    return position_compare(position, game->player) == 0;
-}
-bool is_exit(t_position position, const t_game* game)
-{
-    return position_compare(position, game->exit) == 0;
-}
-bool is_collectible(t_position position, const t_game* game)
-{
-    const t_position_list* collectibles = game->collectibles;
-    while (collectibles)
-    {
-        if (position_compare(position, collectibles->position) == 0)
-            return true;
-        collectibles = collectibles->next;
-    }
-    return false;
-}
-
-bool is_wall(t_position position, const t_game* game)
-{
-    return game->board[position.y][position.x] == game->charset.WALL;
 }
 
 void render_image(t_mlx* mlx, t_image* image, t_position position)

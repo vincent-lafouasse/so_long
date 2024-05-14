@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 16:42:56 by poss              #+#    #+#             */
-/*   Updated: 2024/05/14 21:54:21 by poss             ###   ########.fr       */
+/*   Updated: 2024/05/14 22:13:48 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <sys/time.h>
 #include <time.h>
 #include "libft/ft_io.h"
+#include "game/query_game.h"
 
 #define LOG_BUFFER_SIZE 128
 
