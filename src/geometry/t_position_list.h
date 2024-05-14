@@ -6,6 +6,7 @@ typedef struct s_position_list
 {
     t_position position;
     struct s_position_list* next;
+    struct s_position_list* prev;
 } t_position_list;
 
 t_position_list* poslst_new(t_position position);

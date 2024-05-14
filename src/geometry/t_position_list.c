@@ -24,6 +24,7 @@ t_position_list* poslst_new(t_position position)
 
     out->position = position;
     out->next = NULL;
+    out->prev = NULL;
 
     return out;
 }
@@ -67,6 +68,7 @@ bool poslst_emplace_front(t_position_list** poslst_ref, t_position pos)
 void poslst_add_front(t_position_list** poslst_ref, t_position_list* node)
 {
     t_position_list* memory;
+
     if (!poslst_ref)
         return;
 
@@ -78,6 +80,7 @@ void poslst_add_front(t_position_list** poslst_ref, t_position_list* node)
     memory = *poslst_ref;
     *poslst_ref = node;
     node->next = memory;
+    node->next->prev = node;
 }
 
 void poslst_remove(t_position_list** poslst_ref, t_position position)
