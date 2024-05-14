@@ -62,6 +62,14 @@ void poslst_delone(t_position_list* lst)
     new_head->prev = NULL;
 }
 
+void poslst_clear(t_position_list* lst)
+{
+    if (!lst)
+        return;
+    while (lst->head)
+        poslst_delone(lst);
+}
+
 
 static t_position_node* posnode_new(t_position position)
 {
@@ -76,6 +84,17 @@ static t_position_node* posnode_new(t_position position)
     out->prev = NULL;
 
     return out;
+}
+
+void posnode_erase(t_position_node* node)
+{
+    if (!node)
+        return;
+    t_position_node* next = node->next;
+    t_position_node* prev = node->prev;
+    free(node);
+    next->prev = prev;
+    prev->next = next;
 }
 
 /*
