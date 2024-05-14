@@ -12,12 +12,12 @@ bool is_exit(t_position position, const t_game* game)
 
 bool is_collectible(t_position position, const t_game* game)
 {
-    const t_position_list* collectibles = game->collectibles;
-    while (collectibles)
+    t_position_node* current = game->collectibles.head;
+    while (current)
     {
-        if (position_compare(position, collectibles->position) == 0)
+        if (position_eq(current->position, position))
             return true;
-        collectibles = collectibles->next;
+        current = current->next;
     }
     return false;
 }

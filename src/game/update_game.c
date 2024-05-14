@@ -57,7 +57,7 @@ void process_new_position(t_game* game)
 {
     if (is_collectible(game->player, game))
         poslst_remove(&(game->collectibles), game->player);
-    if (!game->collectibles && is_exit(game->player, game))
+    if (poslst_size(game->collectibles) == 0 && is_exit(game->player, game))
         game->done = true;
 }
 

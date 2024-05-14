@@ -65,9 +65,8 @@ static bool map_has_enough_tokens(const t_game* game)
 static void map_parse_tokens(t_game* game)
 {
     char current;
-    t_position_list* node;
 
-    game->collectibles = NULL;
+    game->collectibles = poslst_new();
     for (int row = 0; row < game->size.h; row++)
     {
         for (int col = 0; col < game->size.w; col++)
@@ -85,13 +84,7 @@ static void map_parse_tokens(t_game* game)
             }
             if (current == game->charset.COLLECTIBLE)
             {
-                node = poslst_new(position(col, row));
-                if (!node)
-                {
-                    game->exit = position(0, 0);
-                    return;
-                }
-                poslst_add_front(&(game->collectibles), node);
+                poslst_add_front(&(game->collectibles), position(col, row));
                 game->board[row][col] = game->charset.EMPTY;
             }
         }

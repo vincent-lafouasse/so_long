@@ -23,7 +23,7 @@ bool has_valid_path(const t_game* game)
     if (!is_reached(reached, game->exit, game))
         return free_map((t_raw_map){reached, game->size}), false;
 
-    t_position_list* collectibles = game->collectibles;
+    t_position_node* collectibles = game->collectibles.head;
     while (collectibles)
     {
         if (!is_reached(reached, collectibles->position, game))
