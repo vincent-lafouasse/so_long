@@ -59,7 +59,6 @@ int		mlx_int_deal_shm(t_xvar *xvar)
 {
 	int		use_pshm;
 	int		bidon;
-	char	*dpy;
 	char	buff[33];
 
 	xvar->use_xshm = XShmQueryVersion(xvar->display,&bidon,&bidon,&(use_pshm));
@@ -68,13 +67,14 @@ int		mlx_int_deal_shm(t_xvar *xvar)
 	else
 		xvar->pshm_format = -1;
 	gethostname(buff,32);
-	dpy = getenv(ENV_DISPLAY);
+	const char* dpy = getenv(ENV_DISPLAY);
 	if (dpy && strlen(dpy) && *dpy!=':' && strncmp(dpy,buff,strlen(buff)) &&
 			strncmp(dpy,LOCALHOST,strlen(LOCALHOST)) )
 	{
 		xvar->pshm_format = -1;
 		xvar->use_xshm = 0;
 	}
+	return 0;
 }
 
 /*
