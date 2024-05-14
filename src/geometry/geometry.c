@@ -28,24 +28,6 @@ bool position_eq(t_position a, t_position b)
     return position_compare(a, b) == 0;
 }
 
-int dimension_compare(t_dimension a, t_dimension b)
-{
-    if (a.w > b.w)
-        return 1;
-    if (a.w < b.w)
-        return -1;
-    if (a.h > b.h)
-        return 1;
-    if (a.h < b.h)
-        return -1;
-    return 0;
-}
-
-t_rectangle rectangle(t_position start, t_dimension size)
-{
-    return (t_rectangle){start, size};
-}
-
 int flatten_2d_position(t_position position,
                         int line_length,
                         int bits_per_pixel)
