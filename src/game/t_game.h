@@ -11,7 +11,7 @@ typedef struct
     t_dimension size;
     t_position player;
     t_position exit;
-    t_position_list* collectibles;
+    t_position_list collectibles;
     t_charset charset;
     bool needs_render;
     bool done;

@@ -1,3 +1,4 @@
+#include "geometry/t_position_list.h"
 #include "libft/string.h"
 #include "load/t_raw_map.h"
 #include "parse/parse_map.h"
@@ -12,7 +13,7 @@ t_game init_game(const char* map_path, t_charset charset)
     game.board = raw_map.data;
     game.size = raw_map.size;
     game.charset = charset;
-    game.collectibles = NULL;
+    game.collectibles = poslst_new();
     parse_map(&game);
     game.needs_render = true;
     game.done = false;
