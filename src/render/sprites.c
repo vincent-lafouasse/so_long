@@ -12,5 +12,9 @@ t_sprites load_sprites(t_mlx mlx)
     t_sprites sprites;
 
     sprites.player = load_image_xpm(PLAYER_XPM, mlx);
+    sprites.collectible = load_image_xpm(COLLECTIBLE_XPM, mlx);
+    sprites.exit = load_image_xpm(EXIT_XPM, mlx);
+    sprites.floor = load_image_xpm(FLOOR_XPM, mlx);
+    sprites.wall = load_image_xpm(WALL_XPM, mlx);
     return sprites;
 }
