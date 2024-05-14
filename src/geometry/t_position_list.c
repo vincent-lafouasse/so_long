@@ -3,20 +3,51 @@
 #include <stdlib.h>
 #include "geometry.h"
 
-void poslst_delone(t_position_list** poslst_ref)
-{
-    t_position_list* new_head;
+static t_position_node* posnode_new(t_position position);
 
-    if (!poslst_ref || !*poslst_ref)
-        return;
-    new_head = (*poslst_ref)->next;
-    free(*poslst_ref);
-    *poslst_ref = new_head;
+t_position_list poslst_new(void)
+{
+    return (t_position_list){.head = NULL, .tail = NULL};
 }
 
-t_position_list* poslst_new(t_position position)
+size_t poslst_size(t_position_list lst)
 {
-    t_position_list* out;
+    t_position_node* current = lst.head;
+    size_t size = 0;
+
+    while (current)
+    {
+        current = current->next;
+        size++;
+    }
+    return size;
+}
+
+bool poslst_add_front(t_position_list* lst, t_position position)
+{
+    t_position_node* new_head;
+
+    if (!lst)
+        return false;
+    new_head = posnode_new(position);
+    if (new_head == NULL)
+        return false;
+    if (lst->head == NULL)
+    {
+        lst->head = new_head;
+        lst->tail = new_head;
+        return true;
+    }
+    new_head->next = lst->head;
+    lst->head->prev = new_head;
+    lst->head = new_head;
+    return true;
+}
+
+
+static t_position_node* posnode_new(t_position position)
+{
+    t_position_node* out;
 
     out = malloc(sizeof(*out));
     if (!out)
@@ -27,6 +58,18 @@ t_position_list* poslst_new(t_position position)
     out->prev = NULL;
 
     return out;
+}
+
+/*
+void poslst_delone(t_position_list** poslst_ref)
+{
+    t_position_list* new_head;
+
+    if (!poslst_ref || !*poslst_ref)
+        return;
+    new_head = (*poslst_ref)->next;
+    free(*poslst_ref);
+    *poslst_ref = new_head;
 }
 
 void poslst_add_front(t_position_list** poslst_ref, t_position_list* node)
@@ -98,3 +141,4 @@ size_t poslst_size(const t_position_list* lst)
 
     return sz;
 }
+*/
