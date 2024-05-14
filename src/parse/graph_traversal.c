@@ -20,15 +20,15 @@ bool has_valid_path(const t_game* game)
     log_char_matrix((const char**)reached, game->size);
     printf("\n");
     if (!is_reached(reached, game->player, game))
-        return false;
+        return free_map((t_raw_map){reached, game->size}), false;
     if (!is_reached(reached, game->exit, game))
-        return false;
+        return free_map((t_raw_map){reached, game->size}), false;
 
     t_position_list* collectibles = game->collectibles;
     while (collectibles)
     {
         if (!is_reached(reached, collectibles->position, game))
-            return false;
+            return free_map((t_raw_map){reached, game->size}), false;
         collectibles = collectibles->next;
     }
     free_map((t_raw_map){reached, game->size});
