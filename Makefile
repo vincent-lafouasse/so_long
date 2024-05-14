@@ -66,9 +66,15 @@ $(MLX):
 .PHONY: re
 re: fclean build
 
+CPPCHECK_FLAGS  = --language=c --enable=all
+CPPCHECK_FLAGS += --check-level=exhaustive
+CPPCHECK_FLAGS += --suppress=missingIncludeSystem
+CPPCHECK_FLAGS += -isrc/log -i/lib/minilibx-linux 
+CPPCHECK_FLAGS += --cppcheck-build-dir=build
+CPPCHECK_FLAGS += --project=build/compile_commands.json
 .PHONY: check
 check:
-	cppcheck --language=c --enable=all --suppress=missingIncludeSystem --suppress=missingInclude -isrc/log -i/lib/minilibx-linux --cppcheck-build-dir=build --check-level=exhaustive --project=build/compile_commands.json
+	cppcheck $(CPPCHECK_FLAGS)
 	# norminette src # to be reenabled later
 
 
