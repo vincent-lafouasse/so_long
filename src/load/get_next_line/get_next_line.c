@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 00:12:19 by poss              #+#    #+#             */
-/*   Updated: 2024/04/15 14:20:17 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/05/14 22:24:49 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ char* move_line_from_queue(t_char_queue** q_ptr)
     char* line;
     const char* line_start;
 
+    if (!q_ptr)
+        return NULL;
     line = malloc(1 + line_length(*q_ptr));
-    if (!line || !q_ptr)
+    if (!line)
     {
         free(line);
         char_queue_clear(q_ptr);
