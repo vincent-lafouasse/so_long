@@ -9,7 +9,8 @@ t_game init_game(const char* map_path, t_charset charset)
     t_raw_map raw_map;
 
     raw_map = load_raw_map(map_path);
-    ft_memcpy(&game, &raw_map, sizeof(raw_map));
+    game.board = raw_map.data;
+    game.size = raw_map.size;
     game.charset = charset;
     parse_map(&game);
     game.needs_render = true;
