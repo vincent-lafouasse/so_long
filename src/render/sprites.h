@@ -2,6 +2,8 @@
 
 #include "image.h"
 
+#define TILE_SIZE 64
+
 typedef struct s_sprites {
     t_image wall;
     t_image floor;
