@@ -121,3 +121,16 @@ void poslst_clear(t_position_list** poslst_ref)
         poslst_delone(poslst_ref);
     }
 }
+
+size_t poslst_size(const t_position_list* lst)
+{
+    size_t sz = 0;
+
+    while (lst)
+    {
+        sz++;
+        lst = lst->next;
+    }
+
+    return sz;
+}
