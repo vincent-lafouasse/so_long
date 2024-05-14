@@ -26,21 +26,21 @@ t_mlx init_mlx(t_dimension window_size, const char* window_name)
     return mlx;
 }
 
-t_image init_empty_image(t_dimension size, t_mlx* mlx)
+t_image init_empty_image(t_dimension size, t_mlx mlx)
 {
     t_image out;
 
-    out.img = mlx_new_image(mlx->mlx, size.w, size.h);
+    out.img = mlx_new_image(mlx.mlx, size.w, size.h);
     out.addr =
         mlx_get_data_addr(out.img, &out.bpp, &out.line_length, &out.endian);
     return out;
 }
 
-t_image load_image_xpm(const char* path, t_mlx* mlx)
+t_image load_image_xpm(const char* path, t_mlx mlx)
 {
     t_image out;
     out.img =
-        mlx_xpm_file_to_image(mlx->mlx, (char*)path, &out.size.w, &out.size.h);
+        mlx_xpm_file_to_image(mlx.mlx, (char*)path, &out.size.w, &out.size.h);
     out.addr =
         mlx_get_data_addr(out.img, &out.bpp, &out.line_length, &out.endian);
     return out;

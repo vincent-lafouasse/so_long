@@ -10,4 +10,4 @@ typedef struct s_sprites {
     t_image exit;
 } t_sprites;
 
-t_sprites load_sprites(void);
+t_sprites load_sprites(t_mlx mlx);

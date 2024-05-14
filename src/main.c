@@ -36,7 +36,7 @@ int main(int ac, char** av)
     const t_dimension window_size = dimension(WIDTH, HEIGHT);
     t_mlx mlx = init_mlx(window_size, WINDOW_NAME);
 
-    t_sprites sprites = load_sprites();
+    t_sprites sprites = load_sprites(mlx);
 
     t_update_input update_input = (t_update_input){&game, &mlx};
     t_render_input render_input = (t_render_input){&mlx, &game};
