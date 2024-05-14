@@ -24,6 +24,7 @@ t_position_list* poslst_new(t_position position)
 
     out->position = position;
     out->next = NULL;
+    out->prev = NULL;
 
     return out;
 }
@@ -67,6 +68,7 @@ bool poslst_emplace_front(t_position_list** poslst_ref, t_position pos)
 void poslst_add_front(t_position_list** poslst_ref, t_position_list* node)
 {
     t_position_list* memory;
+
     if (!poslst_ref)
         return;
 
@@ -78,6 +80,7 @@ void poslst_add_front(t_position_list** poslst_ref, t_position_list* node)
     memory = *poslst_ref;
     *poslst_ref = node;
     node->next = memory;
+    node->next->prev = node;
 }
 
 void poslst_remove(t_position_list** poslst_ref, t_position position)
@@ -85,7 +88,7 @@ void poslst_remove(t_position_list** poslst_ref, t_position position)
     if (!poslst_ref)
         return;
 
-    while (position_compare(position, (*poslst_ref)->position) == 0)
+    while (*poslst_ref && position_eq(position, (*poslst_ref)->position))
         poslst_delone(poslst_ref);
 
     if (!*poslst_ref || (*poslst_ref)->next == NULL)
@@ -96,7 +99,7 @@ void poslst_remove(t_position_list** poslst_ref, t_position position)
 
     while (current)
     {
-        if (position_compare(position, current->position) == 0)
+        if (position_eq(position, (*poslst_ref)->position))
         {
             previous->next = current->next;
             free(current);
@@ -117,4 +120,17 @@ void poslst_clear(t_position_list** poslst_ref)
     {
         poslst_delone(poslst_ref);
     }
+}
+
+size_t poslst_size(const t_position_list* lst)
+{
+    size_t sz = 0;
+
+    while (lst)
+    {
+        sz++;
+        lst = lst->next;
+    }
+
+    return sz;
 }

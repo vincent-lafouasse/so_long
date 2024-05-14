@@ -22,6 +22,7 @@ typedef struct
 
 t_position position(int x, int y);
 int position_compare(t_position a, t_position b);
+bool position_eq(t_position a, t_position b);
 
 t_dimension dimension(int w, int h);
 int dimension_compare(t_dimension a, t_dimension b);

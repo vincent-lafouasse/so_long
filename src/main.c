@@ -66,6 +66,7 @@ bool try_move(t_direction direction, t_game* game)
     if (is_wall(new_position, game))
         return false;
     game->player = new_position;
+    process_new_position(game);
     return true;
 }
 
