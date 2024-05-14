@@ -69,7 +69,7 @@ re: fclean build
 CPPCHECK_FLAGS  = --language=c --enable=all
 CPPCHECK_FLAGS += --check-level=exhaustive
 CPPCHECK_FLAGS += --suppress=missingIncludeSystem
-CPPCHECK_FLAGS += -isrc/log -i/lib/minilibx-linux 
+CPPCHECK_FLAGS += -isrc/log -ilib
 CPPCHECK_FLAGS += --cppcheck-build-dir=build
 CPPCHECK_FLAGS += --project=build/compile_commands.json
 .PHONY: check
