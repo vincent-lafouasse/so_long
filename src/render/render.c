@@ -37,38 +37,6 @@ int render(t_render_input* params)
     return IRRELEVANT_RETURN_VALUE;
 }
 
-void ascii_render(const t_game* game)
-{
-    for (int row = 0; row < game->size.h; row++)
-    {
-        for (int col = 0; col < game->size.w; col++)
-        {
-            t_position current = position(col, row);
-            if (is_wall(current, game))
-                printf("#");
-            else if (game->collectibles)
-            {
-                if (is_player(current, game))
-                    printf("x");
-                else if (is_collectible(current, game))
-                    printf("o");
-                else
-                    printf(" ");
-            }
-            else
-            {
-                if (is_player(current, game))
-                    printf("X");
-                else if (is_exit(current, game))
-                    printf("*");
-                else
-                    printf(" ");
-            }
-        }
-        printf("\n");
-    }
-}
-
 bool is_player(t_position position, const t_game* game)
 {
     return position_compare(position, game->player) == 0;

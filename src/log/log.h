@@ -12,3 +12,5 @@ void log_str_lst(const t_list* strs);
 void log_char_matrix(const char** matrix, t_dimension size);
 void log_game(t_game game);
 void log_pos(t_position pos);
+
+void ascii_render(const t_game* game);

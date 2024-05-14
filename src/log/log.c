@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 16:42:56 by poss              #+#    #+#             */
-/*   Updated: 2024/05/14 21:07:21 by poss             ###   ########.fr       */
+/*   Updated: 2024/05/14 21:54:21 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,36 @@ void log_char_matrix(const char** matrix, t_dimension size)
 void log_pos(t_position pos)
 {
     printf("x: %d y: %d", pos.x, pos.y);
+}
+
+void ascii_render(const t_game* game)
+{
+    for (int row = 0; row < game->size.h; row++)
+    {
+        for (int col = 0; col < game->size.w; col++)
+        {
+            t_position current = position(col, row);
+            if (is_wall(current, game))
+                printf("#");
+            else if (game->collectibles)
+            {
+                if (is_player(current, game))
+                    printf("x");
+                else if (is_collectible(current, game))
+                    printf("o");
+                else
+                    printf(" ");
+            }
+            else
+            {
+                if (is_player(current, game))
+                    printf("X");
+                else if (is_exit(current, game))
+                    printf("*");
+                else
+                    printf(" ");
+            }
+        }
+        printf("\n");
+    }
 }
