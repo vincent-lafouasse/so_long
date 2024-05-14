@@ -21,7 +21,7 @@ void render_background(t_render_input* in)
         {
             if (in->game->board[row][col] == in->game->charset.WALL)
                 render_image(in->mlx, &(in->sprites->wall), (t_position){col * 64, row * 64});
-            else if (in->game->board[row][col] == in->game->charset.WALL)
+            else if (in->game->board[row][col] == in->game->charset.EMPTY)
                 render_image(in->mlx, &(in->sprites->floor), (t_position){col * 64, row * 64});
         }
     }
