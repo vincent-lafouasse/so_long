@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <X11/keysym.h>
+#include <X11/X.h>
 
 #include "geometry/t_position_list.h"
 #include "mlx.h"
@@ -73,7 +74,6 @@ int update_game(t_keycode keycode, t_update_input* input)
     log_key_event(keycode);
     if (keycode == XK_Escape)
         mlx_loop_end(input->mlx->mlx);
-    // mlx_hook(mlx_window, DestroyNotify, StructureNotifyMask, exit_hook, (void *)0);
     if (keycode == XK_w)
         try_move(Up, input->game);
     if (keycode == XK_a)
@@ -83,6 +83,12 @@ int update_game(t_keycode keycode, t_update_input* input)
     if (keycode == XK_d)
         try_move(Right, input->game);
     input->game->needs_render = true;
+    return IRRELEVANT_RETURN_VALUE;
+}
+
+int exit_hook(t_mlx* mlx)
+{
+    mlx_loop_end(mlx->mlx);
     return IRRELEVANT_RETURN_VALUE;
 }
 
@@ -102,6 +108,7 @@ int main(int ac, char** av)
     t_update_input update_input = (t_update_input){&game, &mlx};
     t_render_input render_input = (t_render_input){&mlx, &game};
 
+    mlx_hook(mlx.window, DestroyNotify, StructureNotifyMask, exit_hook, &mlx);
     mlx_key_hook(mlx.window, &update_game, &update_input);
     mlx_loop_hook(mlx.mlx, &render, &render_input);
     mlx_loop(mlx.mlx);
