@@ -46,7 +46,7 @@ void process_new_position(t_game* game)
     if (is_collectible(game->player, game))
         poslst_remove(&(game->collectibles), game->player);
     if (!game->collectibles && is_exit(game->player, game))
-        printf("gg\n");
+        game->done = true;
 }
 
 bool try_move(t_direction direction, t_game* game)

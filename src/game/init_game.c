@@ -15,5 +15,6 @@ t_game init_game(const char* map_path, t_charset charset)
     game.collectibles = NULL;
     parse_map(&game);
     game.needs_render = true;
+    game.done = false;
     return game;
 }
