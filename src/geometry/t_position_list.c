@@ -44,6 +44,24 @@ bool poslst_add_front(t_position_list* lst, t_position position)
     return true;
 }
 
+void poslst_delone(t_position_list* lst)
+{
+    t_position_node* new_head;
+    if (!lst || !lst->head)
+        return;
+    if (lst->head->next == NULL)
+    {
+        free(lst->head);
+        lst->head = NULL;
+        lst->tail = NULL;
+        return;
+    }
+    new_head = lst->head->next;
+    free(lst->head);
+    lst->head = new_head;
+    new_head->prev = NULL;
+}
+
 
 static t_position_node* posnode_new(t_position position)
 {
