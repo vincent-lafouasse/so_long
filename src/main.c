@@ -31,7 +31,7 @@ int main(int ac, char** av)
     t_game game = init_game(av[1], default_charset());
     log_game(game);
 
-    const t_dimension window_size = dimension(WIDTH, HEIGHT);
+    const t_dimension window_size = dimension(game.size.w * TILE_SIZE, game.size.h * TILE_SIZE);
     t_mlx mlx = init_mlx(window_size, WINDOW_NAME);
 
     t_sprites sprites = load_sprites(mlx);
