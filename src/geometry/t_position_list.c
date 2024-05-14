@@ -125,7 +125,6 @@ void poslst_clear(t_position_list* lst)
         poslst_delone(lst);
 }
 
-
 static t_position_node* posnode_new(t_position position)
 {
     t_position_node* out;
