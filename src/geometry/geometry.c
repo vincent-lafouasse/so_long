@@ -27,10 +27,11 @@ bool position_eq(t_position a, t_position b)
 {
     return position_compare(a, b) == 0;
 }
-
+/*
 int flatten_2d_position(t_position position,
                         int line_length,
                         int bits_per_pixel)
 {
     return position.y * line_length + position.x * (bits_per_pixel / 8);
 }
+*/

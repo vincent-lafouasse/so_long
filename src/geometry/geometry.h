@@ -26,6 +26,8 @@ bool position_eq(t_position a, t_position b);
 
 t_dimension dimension(int w, int h);
 
+/*
 int flatten_2d_position(t_position position,
                         int line_length,
                         int bits_per_pixel);
+*/
