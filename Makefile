@@ -66,6 +66,11 @@ $(MLX):
 .PHONY: re
 re: fclean build
 
+.PHONY: check
+check:
+	cppcheck --language=c --enable=all --suppress=missingIncludeSystem --suppress=missingInclude --check-level=exhaustive src
+
+
 .PHONY: clean
 clean:
 	$(RM) -r $(BUILD_DIR)
