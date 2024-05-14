@@ -11,7 +11,6 @@ static bool is_walkable(t_position pos, const t_game* game);
 static bool is_reached(char** reached, t_position position, const t_game* game);
 static char** deep_copy_map(const t_game* game);
 
-
 bool has_valid_path(const t_game* game)
 {
     char** reached = deep_copy_map(game);

@@ -7,7 +7,6 @@
 
 #define IRRELEVANT_RETURN_VALUE 0
 
-
 bool is_wall(t_position position, const t_game* game);
 bool is_player(t_position position, const t_game* game);
 bool is_exit(t_position position, const t_game* game);
@@ -20,9 +19,11 @@ void render_background(t_render_input* in)
         for (int col = 0; col < in->game->size.w; col++)
         {
             if (in->game->board[row][col] == in->game->charset.WALL)
-                render_image(in->mlx, &(in->sprites->wall), position(col * TILE_SIZE, row * TILE_SIZE));
+                render_image(in->mlx, &(in->sprites->wall),
+                             position(col * TILE_SIZE, row * TILE_SIZE));
             else if (in->game->board[row][col] == in->game->charset.EMPTY)
-                render_image(in->mlx, &(in->sprites->floor), position(col * TILE_SIZE, row * TILE_SIZE));
+                render_image(in->mlx, &(in->sprites->floor),
+                             position(col * TILE_SIZE, row * TILE_SIZE));
         }
     }
 }
@@ -51,7 +52,7 @@ void ascii_render(const t_game* game)
                     printf("x");
                 else if (is_collectible(current, game))
                     printf("o");
-                else 
+                else
                     printf(" ");
             }
             else
@@ -60,14 +61,13 @@ void ascii_render(const t_game* game)
                     printf("X");
                 else if (is_exit(current, game))
                     printf("*");
-                else 
+                else
                     printf(" ");
             }
         }
         printf("\n");
     }
 }
-
 
 bool is_player(t_position position, const t_game* game)
 {

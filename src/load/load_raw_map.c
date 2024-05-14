@@ -16,7 +16,8 @@ static t_dimension get_map_size(const t_list* map_lst);
 
 t_raw_map load_raw_map(const char* path)
 {
-    ft_assert(str_ends_with(path, ".ber"), "Invalid map name, map name must end in `.ber`");
+    ft_assert(str_ends_with(path, ".ber"),
+              "Invalid map name, map name must end in `.ber`");
     t_list* lines = load_lines_in_lst(path);
     ft_assert(lines != NULL, "Failed to read lines from configuration file");
     t_raw_map map = move_str_list_to_map(&lines);

@@ -1,12 +1,15 @@
 #include "update_game.h"
-#include "log/log.h"
 #include <X11/keysym.h>
+#include "log/log.h"
 
 #define IRRELEVANT_RETURN_VALUE 0
 
 typedef enum e_direction
 {
-    Up, Down, Left, Right,
+    Up,
+    Down,
+    Left,
+    Right,
 } t_direction;
 
 static bool is_wall(t_position pos, const t_game* game);

@@ -1,20 +1,20 @@
-#include <stdbool.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include <X11/X.h>
 #include <X11/keysym.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-#include "geometry/t_position_list.h"
-#include "mlx.h"
 #include "game/t_game.h"
 #include "game/update_game.h"
+#include "geometry/t_position_list.h"
+#include "mlx.h"
 #include "parse/t_charset.h"
 
 #include "render/render.h"
 
-#include "log/log.h"
 #include "error/error.h"
+#include "log/log.h"
 
 #define WIDTH 600
 #define HEIGHT 480
@@ -33,7 +33,8 @@ int main(int ac, char** av)
     t_game game = init_game(av[1], default_charset());
     log_game(game);
 
-    const t_dimension window_size = dimension(game.size.w * TILE_SIZE, game.size.h * TILE_SIZE);
+    const t_dimension window_size =
+        dimension(game.size.w * TILE_SIZE, game.size.h * TILE_SIZE);
     t_mlx mlx = init_mlx(window_size, WINDOW_NAME);
 
     t_sprites sprites = load_sprites(mlx);
