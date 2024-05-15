@@ -35,21 +35,24 @@ void render_collectibles(t_render_input* in)
 
     while (collectibles)
     {
-        render_image(in->mlx, &(in->sprites->collectible), position_scale(collectibles->position, TILE_SIZE));
+        render_image(in->mlx, &(in->sprites->collectible),
+                     position_scale(collectibles->position, TILE_SIZE));
         collectibles = collectibles->next;
     }
 }
 
 void render_player(t_render_input* in)
 {
-    render_image(in->mlx, &(in->sprites->player), position_scale(in->game->player, TILE_SIZE));
+    render_image(in->mlx, &(in->sprites->player),
+                 position_scale(in->game->player, TILE_SIZE));
 }
 
 void render_exit(t_render_input* in)
 {
     if (poslst_size(in->game->collectibles) > 0)
         return;
-    render_image(in->mlx, &(in->sprites->exit), position_scale(in->game->exit, TILE_SIZE));
+    render_image(in->mlx, &(in->sprites->exit),
+                 position_scale(in->game->exit, TILE_SIZE));
 }
 
 int render(t_render_input* params)
