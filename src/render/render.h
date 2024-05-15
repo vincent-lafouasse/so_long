@@ -8,8 +8,9 @@
 typedef struct
 {
     t_mlx* mlx;
-    t_game* game;
-    t_sprites* sprites;
+    const t_game* game;
+    const t_sprites* sprites;
+    bool needs_refresh;
 } t_render_input;
 
 int render(t_render_input* params);

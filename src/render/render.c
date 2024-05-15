@@ -25,10 +25,10 @@ void render_background(t_render_input* in)
 
 int render(t_render_input* params)
 {
-    if (!params->game->needs_render)
+    if (!params->needs_refresh)
         return IRRELEVANT_RETURN_VALUE;
     render_background(params);
-    params->game->needs_render = false;
+    params->needs_refresh = false;
     return IRRELEVANT_RETURN_VALUE;
 }
 

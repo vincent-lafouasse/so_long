@@ -7,6 +7,7 @@ typedef struct
 {
     t_game* game;
     t_mlx* mlx;
+    bool* needs_refresh;
 } t_update_input;
 
 void update_game(t_game* game, int keycode);
