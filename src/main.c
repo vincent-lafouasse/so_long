@@ -39,8 +39,10 @@ int main(int ac, char** av)
 
     t_sprites sprites = load_sprites(mlx);
 
-    t_render_input render_input = (t_render_input){&mlx, &game, &sprites, .needs_refresh=true};
-    t_update_input update_input = (t_update_input){&game, &mlx, .needs_refresh=&render_input.needs_refresh};
+    t_render_input render_input =
+        (t_render_input){&mlx, &game, &sprites, .needs_refresh = true};
+    t_update_input update_input = (t_update_input){
+        &game, &mlx, .needs_refresh = &render_input.needs_refresh};
 
     mlx_hook(mlx.window, DestroyNotify, StructureNotifyMask, exit_hook, &mlx);
     mlx_key_hook(mlx.window, &key_hook, &update_input);
