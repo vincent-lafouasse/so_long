@@ -42,8 +42,14 @@ void render_collectibles(t_render_input* in)
 
 void render_player(t_render_input* in)
 {
-
     render_image(in->mlx, &(in->sprites->player), position_scale(in->game->player, TILE_SIZE));
+}
+
+void render_exit(t_render_input* in)
+{
+    if (poslst_size(in->game->collectibles) > 0)
+        return;
+    render_image(in->mlx, &(in->sprites->exit), position_scale(in->game->exit, TILE_SIZE));
 }
 
 int render(t_render_input* params)
@@ -52,6 +58,7 @@ int render(t_render_input* params)
         return IRRELEVANT_RETURN_VALUE;
     render_background(params);
     render_collectibles(params);
+    render_exit(params);
     render_player(params);
     params->needs_refresh = false;
     return IRRELEVANT_RETURN_VALUE;
