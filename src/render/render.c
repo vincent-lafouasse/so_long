@@ -3,6 +3,7 @@
 #include "geometry/geometry.h"
 #include "image.h"
 #include "render.h"
+#include "render/sprites.h"
 #include "t_mlx.h"
 
 #define IRRELEVANT_RETURN_VALUE 0
@@ -23,11 +24,21 @@ void render_background(t_render_input* in)
     }
 }
 
+void render_collectibles(t_render_input* in);
+void render_player(t_render_input* in)
+{
+    t_position player = in->game->player;
+    player.x *= TILE_SIZE;
+    player.y *= TILE_SIZE;
+    render_image(in->mlx, &(in->sprites->player), player);
+}
+
 int render(t_render_input* params)
 {
     if (!params->needs_refresh)
         return IRRELEVANT_RETURN_VALUE;
     render_background(params);
+    render_player(params);
     params->needs_refresh = false;
     return IRRELEVANT_RETURN_VALUE;
 }
