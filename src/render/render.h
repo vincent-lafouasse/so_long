@@ -14,4 +14,4 @@ typedef struct
 } t_render_input;
 
 int render(t_render_input* params);
-void render_image(t_mlx* mlx, t_image* image, t_position position);
+void render_image(t_mlx* mlx, const t_image* image, t_position position);
