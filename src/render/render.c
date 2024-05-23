@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include "geometry/geometry.h"
 #include "image.h"
 #include "render.h"
