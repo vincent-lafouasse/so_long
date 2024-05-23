@@ -107,3 +107,5 @@ b: build
 c: clean
 u: update
 r: run
+
+-include $(DEPS)
