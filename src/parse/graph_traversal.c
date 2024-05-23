@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "geometry/t_position_list.h"
 #include "libft/string.h"
 #include "load/t_raw_map.h"
 #include "log/log.h"
@@ -23,12 +22,21 @@ bool has_valid_path(const t_game* game)
     if (!is_reached(reached, game->exit, game))
         return free_map((t_raw_map){reached, game->size}), false;
 
-    t_position_node* collectibles = game->collectibles.head;
-    while (collectibles)
+    int row = 0;
+    int col;
+
+    while (row < game->size.h)
     {
-        if (!is_reached(reached, collectibles->position, game))
-            return free_map((t_raw_map){reached, game->size}), false;
-        collectibles = collectibles->next;
+        col = 0;
+        while (col < game->size.w)
+        {
+            if (game->board[row][col] == game->charset.COLLECTIBLE && !is_reached(reached, position(col, row), game))
+            {
+                return free_map((t_raw_map){reached, game->size}), false;
+            }
+        }
+        row++;
+
     }
     free_map((t_raw_map){reached, game->size});
     return true;

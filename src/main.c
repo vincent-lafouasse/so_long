@@ -1,13 +1,11 @@
 #include <X11/X.h>
 #include <X11/keysym.h>
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
 #include "game/t_game.h"
 #include "game/update_game.h"
-#include "geometry/t_position_list.h"
 #include "mlx.h"
 #include "parse/t_charset.h"
 

@@ -66,7 +66,6 @@ static void map_parse_tokens(t_game* game)
 {
     char current;
 
-    game->collectibles = poslst_new();
     for (int row = 0; row < game->size.h; row++)
     {
         for (int col = 0; col < game->size.w; col++)
@@ -80,11 +79,6 @@ static void map_parse_tokens(t_game* game)
             if (current == game->charset.PLAYER)
             {
                 game->player = position(col, row);
-                game->board[row][col] = game->charset.EMPTY;
-            }
-            if (current == game->charset.COLLECTIBLE)
-            {
-                poslst_add_front(&(game->collectibles), position(col, row));
                 game->board[row][col] = game->charset.EMPTY;
             }
         }
