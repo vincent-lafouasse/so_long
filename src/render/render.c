@@ -20,6 +20,12 @@ void render_background(t_render_input* in)
             else if (in->game->board[row][col] == in->game->charset.EMPTY)
                 render_image(in->mlx, &(in->sprites->floor),
                              position(col * TILE_SIZE, row * TILE_SIZE));
+            else if (in->game->board[row][col] == in->game->charset.COLLECTIBLE) {
+                render_image(in->mlx, &(in->sprites->floor),
+                             position(col * TILE_SIZE, row * TILE_SIZE));
+                render_image(in->mlx, &(in->sprites->collectible),
+                             position(col * TILE_SIZE, row * TILE_SIZE));
+            }
         }
     }
 }
@@ -27,18 +33,6 @@ void render_background(t_render_input* in)
 t_position position_scale(t_position in, int scale)
 {
     return position(in.x * scale, in.y * scale);
-}
-
-void render_collectibles(t_render_input* in)
-{
-    t_position_node* collectibles = in->game->collectibles.head;
-
-    while (collectibles)
-    {
-        render_image(in->mlx, &(in->sprites->collectible),
-                     position_scale(collectibles->position, TILE_SIZE));
-        collectibles = collectibles->next;
-    }
 }
 
 void render_player(t_render_input* in)
@@ -60,7 +54,6 @@ int render(t_render_input* params)
     if (!params->needs_refresh)
         return IRRELEVANT_RETURN_VALUE;
     render_background(params);
-    render_collectibles(params);
     render_exit(params);
     render_player(params);
     params->needs_refresh = false;
