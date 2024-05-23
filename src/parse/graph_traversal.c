@@ -30,13 +30,13 @@ bool has_valid_path(const t_game* game)
         col = 0;
         while (col < game->size.w)
         {
-            if (game->board[row][col] == game->charset.COLLECTIBLE && !is_reached(reached, position(col, row), game))
+            if (game->board[row][col] == game->charset.COLLECTIBLE &&
+                !is_reached(reached, position(col, row), game))
             {
                 return free_map((t_raw_map){reached, game->size}), false;
             }
         }
         row++;
-
     }
     free_map((t_raw_map){reached, game->size});
     return true;

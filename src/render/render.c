@@ -20,7 +20,8 @@ void render_background(t_render_input* in)
             else if (in->game->board[row][col] == in->game->charset.EMPTY)
                 render_image(in->mlx, &(in->sprites->floor),
                              position(col * TILE_SIZE, row * TILE_SIZE));
-            else if (in->game->board[row][col] == in->game->charset.COLLECTIBLE) {
+            else if (in->game->board[row][col] == in->game->charset.COLLECTIBLE)
+            {
                 render_image(in->mlx, &(in->sprites->floor),
                              position(col * TILE_SIZE, row * TILE_SIZE));
                 render_image(in->mlx, &(in->sprites->collectible),
