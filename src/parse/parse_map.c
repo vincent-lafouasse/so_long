@@ -1,7 +1,6 @@
 #include "parse_map.h"
 #include <stddef.h>
 #include "error/error.h"
-#include "geometry/t_position_list.h"
 #include "parse/t_charset.h"
 
 static bool map_is_enclosed_in_walls(const t_game* game);
@@ -66,7 +65,6 @@ static void map_parse_tokens(t_game* game)
 {
     char current;
 
-    game->collectibles = poslst_new();
     for (int row = 0; row < game->size.h; row++)
     {
         for (int col = 0; col < game->size.w; col++)
@@ -84,8 +82,7 @@ static void map_parse_tokens(t_game* game)
             }
             if (current == game->charset.COLLECTIBLE)
             {
-                poslst_add_front(&(game->collectibles), position(col, row));
-                game->board[row][col] = game->charset.EMPTY;
+                game->n_collectibles += 1;
             }
         }
     }

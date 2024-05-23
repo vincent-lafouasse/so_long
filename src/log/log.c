@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 16:42:56 by poss              #+#    #+#             */
-/*   Updated: 2024/05/15 00:28:31 by poss             ###   ########.fr       */
+/*   Updated: 2024/05/23 14:29:16 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void ascii_render(const t_game* game)
             t_position current = position(col, row);
             if (is_wall(current, game))
                 printf("#");
-            else if (poslst_size(game->collectibles) > 0)
+            else if (game->n_collectibles)
             {
                 if (is_player(current, game))
                     printf("x");

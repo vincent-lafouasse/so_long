@@ -12,14 +12,7 @@ bool is_exit(t_position position, const t_game* game)
 
 bool is_collectible(t_position position, const t_game* game)
 {
-    t_position_node* current = game->collectibles.head;
-    while (current)
-    {
-        if (position_eq(current->position, position))
-            return true;
-        current = current->next;
-    }
-    return false;
+    return game->board[position.y][position.x] == game->charset.COLLECTIBLE;
 }
 
 bool is_wall(t_position position, const t_game* game)

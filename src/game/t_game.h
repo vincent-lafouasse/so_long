@@ -2,7 +2,6 @@
 
 #include <stdbool.h>
 #include "geometry/geometry.h"
-#include "geometry/t_position_list.h"
 #include "parse/t_charset.h"
 
 typedef struct
@@ -11,7 +10,7 @@ typedef struct
     t_dimension size;
     t_position player;
     t_position exit;
-    t_position_list collectibles;
+    unsigned int n_collectibles;
     t_charset charset;
     bool done;
 } t_game;

@@ -1,5 +1,6 @@
 #include "update_game.h"
 #include <X11/keysym.h>
+#include "game/query_game.h"
 #include "log/log.h"
 
 #define IRRELEVANT_RETURN_VALUE 0
@@ -11,10 +12,6 @@ typedef enum e_direction
     Left,
     Right,
 } t_direction;
-
-static bool is_wall(t_position pos, const t_game* game);
-bool is_collectible(t_position position, const t_game* game);
-bool is_exit(t_position position, const t_game* game);
 
 bool try_move(t_direction direction, t_game* game);
 void process_new_position(t_game* game);
@@ -56,12 +53,10 @@ bool try_move(t_direction direction, t_game* game)
 void process_new_position(t_game* game)
 {
     if (is_collectible(game->player, game))
-        poslst_remove(&(game->collectibles), game->player);
-    if (poslst_size(game->collectibles) == 0 && is_exit(game->player, game))
+    {
+        game->board[game->player.y][game->player.x] = game->charset.EMPTY;
+        game->n_collectibles -= 1;
+    }
+    if (game->n_collectibles == 0 && is_exit(game->player, game))
         game->done = true;
-}
-
-static bool is_wall(t_position pos, const t_game* game)
-{
-    return game->board[pos.y][pos.x] == game->charset.WALL;
 }
