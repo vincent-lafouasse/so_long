@@ -10,6 +10,7 @@ typedef struct
     t_dimension size;
     t_position player;
     t_position exit;
+    unsigned int n_collectibles;
     t_charset charset;
     bool done;
 } t_game;

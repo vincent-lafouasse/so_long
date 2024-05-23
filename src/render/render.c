@@ -44,7 +44,7 @@ void render_player(t_render_input* in)
 
 void render_exit(t_render_input* in)
 {
-    if (poslst_size(in->game->collectibles) > 0)
+    if (in->game->n_collectibles > 0)
         return;
     render_image(in->mlx, &(in->sprites->exit),
                  position_scale(in->game->exit, TILE_SIZE));
