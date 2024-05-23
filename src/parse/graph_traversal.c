@@ -35,6 +35,7 @@ bool has_valid_path(const t_game* game)
             {
                 return free_map((t_raw_map){reached, game->size}), false;
             }
+            col++;
         }
         row++;
     }
