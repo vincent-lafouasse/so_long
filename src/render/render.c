@@ -1,6 +1,6 @@
+#include "render.h"
 #include "geometry/geometry.h"
 #include "image.h"
-#include "render.h"
 #include "render/sprites.h"
 #include "t_mlx.h"
 
