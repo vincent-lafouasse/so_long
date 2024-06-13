@@ -1,5 +1,5 @@
 #include "libft/string.h"
-#include "load/load_internals.h"
+#include "load_internals.h"
 
 void trim_trailing_newline(char* s)
 {
