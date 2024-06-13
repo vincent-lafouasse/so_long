@@ -28,6 +28,11 @@ bool position_eq(t_position a, t_position b)
     return position_compare(a, b) == 0;
 }
 
+t_position position_scale(t_position pos, size_t scaling_factor)
+{
+    return (t_position){.x = pos.x * scaling_factor, .y = pos.y * scaling_factor};
+}
+
 t_dimension dimension_scale(t_dimension dim, size_t scaling_factor)
 {
     return (t_dimension){.w = dim.w * scaling_factor, .h = dim.h * scaling_factor};

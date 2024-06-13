@@ -32,11 +32,6 @@ void render_background(t_render_input* in)
     render_image(in->mlx, &(in->background), position(0, 0));
 }
 
-t_position position_scale(t_position in, int scale)
-{
-    return position(in.x * scale, in.y * scale);
-}
-
 void render_player(t_render_input* in)
 {
     render_image(in->mlx, &(in->sprites->player),
