@@ -55,7 +55,6 @@ int render(t_render_input* params)
     render_background(params);
     render_exit(params);
     render_player(params);
-    params->needs_refresh = false;
     return IRRELEVANT_RETURN_VALUE;
 }
 
