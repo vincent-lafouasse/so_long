@@ -42,8 +42,6 @@ void render_player(t_render_input* in)
 
 void render_exit(t_render_input* in)
 {
-    if (in->game->n_collectibles > 0)
-        return;
     render_image(in->mlx, &(in->sprites->exit),
                  position_scale(in->game->exit, TILE_SIZE));
 }
@@ -53,7 +51,8 @@ int render(t_render_input* params)
     if (!params->needs_refresh)
         return IRRELEVANT_RETURN_VALUE;
     render_background(params);
-    render_exit(params);
+    if (params->game->n_collectibles == 0)
+        render_exit(params);
     render_player(params);
     return IRRELEVANT_RETURN_VALUE;
 }
