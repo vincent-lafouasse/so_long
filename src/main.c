@@ -54,7 +54,7 @@ int main(int ac, char** av)
 
     mlx_hook(mlx.window, DestroyNotify, StructureNotifyMask, exit_hook, &mlx);
     mlx_key_hook(mlx.window, &key_hook, &update_input);
-    mlx_loop_hook(mlx.mlx, &render, &render_input);
+    mlx_loop_hook(mlx.mlx, &loop_hook, &render_input);
     mlx_loop(mlx.mlx);
 
     cleanup(mlx);
@@ -73,7 +73,6 @@ int key_hook(t_keycode keycode, t_update_input* input)
 
 int loop_hook(t_render_input* params)
 {
-    printf("in loop hook");
     if (params->game->done)
     {
         printf("gg my guy\n");
