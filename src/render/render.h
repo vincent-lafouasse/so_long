@@ -10,6 +10,7 @@ typedef struct
     t_mlx* mlx;
     const t_game* game;
     const t_sprites* sprites;
+    t_image background;
     bool needs_refresh;
 } t_render_input;
 

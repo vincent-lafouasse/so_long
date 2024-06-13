@@ -11,12 +11,25 @@
 #include "mlx.h"
 #include "parse/t_charset.h"
 
+#include "render/background.h"
 #include "render/render.h"
 
 #include "error/error.h"
 #include "log/log.h"
 
 #define IRRELEVANT_RETURN_VALUE 0
+
+t_render_input build_render_input(t_mlx* mlx, const t_game* game, const t_sprites* sprites, size_t tile_size)
+{
+    t_render_input render_input;
+    render_input.mlx = mlx;
+    render_input.game = game;
+    render_input.sprites = sprites;
+    render_input.needs_refresh = true;
+    render_input.background = make_background(game, sprites, mlx, tile_size);
+
+    return render_input;
+}
 
 int exit_hook(t_mlx* mlx);
 int key_hook(t_keycode keycode, t_update_input* input);
@@ -35,8 +48,7 @@ int main(int ac, char** av)
 
     t_sprites sprites = load_sprites(mlx);
 
-    t_render_input render_input =
-        (t_render_input){&mlx, &game, &sprites, .needs_refresh = true};
+    t_render_input render_input = build_render_input(&mlx, &game, &sprites, TILE_SIZE);
     t_update_input update_input = (t_update_input){
         &game, &mlx, .needs_refresh = &render_input.needs_refresh};
 
