@@ -1,6 +1,7 @@
 #include <X11/X.h>
 #include <X11/keysym.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -22,6 +23,7 @@
 
 int exit_hook(t_mlx* mlx);
 int key_hook(t_keycode keycode, t_update_input* input);
+int loop_hook(t_render_input* params);
 void cleanup(t_mlx mlx);
 
 int main(int ac, char** av)
@@ -56,6 +58,18 @@ int key_hook(t_keycode keycode, t_update_input* input)
         exit_hook(input->mlx);
     update_game(input->game, keycode);
     *(input->needs_refresh) = true;
+    return IRRELEVANT_RETURN_VALUE;
+}
+
+int loop_hook(t_render_input* params)
+{
+    if (params->game->done)
+    {
+        printf("gg my guy\n");
+        exit_hook(params->mlx);
+    }
+    render(params);
+    params->needs_refresh = false;
     return IRRELEVANT_RETURN_VALUE;
 }
 
