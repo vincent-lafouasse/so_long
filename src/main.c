@@ -91,15 +91,13 @@ int exit_hook(t_mlx* mlx)
 
 void cleanup(t_mlx mlx, t_sprites sprites, t_image background)
 {
-    // will cleanup sprites too, later tho
-    // free_sprites(sprites) or something
-    mlx_destroy_window(mlx.mlx, mlx.window);
-    mlx_destroy_display(mlx.mlx);
     mlx_destroy_image(mlx.mlx, background.img);
     mlx_destroy_image(mlx.mlx, sprites.exit.img);
     mlx_destroy_image(mlx.mlx, sprites.wall.img);
     mlx_destroy_image(mlx.mlx, sprites.player.img);
     mlx_destroy_image(mlx.mlx, sprites.collectible.img);
     mlx_destroy_image(mlx.mlx, sprites.floor.img);
+    mlx_destroy_window(mlx.mlx, mlx.window);
+    mlx_destroy_display(mlx.mlx);
     free(mlx.mlx);
 }
