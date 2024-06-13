@@ -3,7 +3,7 @@
 #include "mlx_int.h"
 #include "render/render.h"
 
-static void render_image_on_image(t_image source, t_image dest, t_mlx* mlx,  t_position render_position)
+static void render_image_on_image(t_image source, t_image dest,  t_position render_position)
 {
     void* source_pixel;
     void* dst_pixel;
