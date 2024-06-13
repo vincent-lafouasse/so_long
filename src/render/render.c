@@ -8,27 +8,6 @@
 
 void render_background(t_render_input* in)
 {
-    /*
-    for (int row = 0; row < in->game->size.h; row++)
-    {
-        for (int col = 0; col < in->game->size.w; col++)
-        {
-            if (in->game->board[row][col] == in->game->charset.WALL)
-                render_image(in->mlx, &(in->sprites->wall),
-                             position(col * TILE_SIZE, row * TILE_SIZE));
-            else if (in->game->board[row][col] == in->game->charset.EMPTY)
-                render_image(in->mlx, &(in->sprites->floor),
-                             position(col * TILE_SIZE, row * TILE_SIZE));
-            else if (in->game->board[row][col] == in->game->charset.COLLECTIBLE)
-            {
-                render_image(in->mlx, &(in->sprites->floor),
-                             position(col * TILE_SIZE, row * TILE_SIZE));
-                render_image(in->mlx, &(in->sprites->collectible),
-                             position(col * TILE_SIZE, row * TILE_SIZE));
-            }
-        }
-    }
-    */
     render_image(in->mlx, &(in->background), position(0, 0));
 }
 
