@@ -12,12 +12,13 @@
 
 #include "geometry.h"
 
-t_dimension dimension(int w, int h)
+t_dimension	dimension(int w, int h)
 {
-    return (t_dimension){w, h};
+	return ((t_dimension){w, h});
 }
 
-t_dimension dimension_scale(t_dimension dim, size_t scaling_factor)
+t_dimension	dimension_scale(t_dimension dim, size_t scaling_factor)
 {
-    return (t_dimension){.w = dim.w * scaling_factor, .h = dim.h * scaling_factor};
+	return ((t_dimension){.w = dim.w * scaling_factor, .h = dim.h
+		* scaling_factor});
 }
