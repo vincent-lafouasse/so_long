@@ -16,9 +16,6 @@
 #include "error/error.h"
 #include "log/log.h"
 
-#define WIDTH 600
-#define HEIGHT 480
-#define WINDOW_NAME ("idk, a name ig")
 #define IRRELEVANT_RETURN_VALUE 0
 
 int exit_hook(t_mlx* mlx);
@@ -34,7 +31,7 @@ int main(int ac, char** av)
     t_game game = init_game(av[1], default_charset());
     log_game(game);
 
-    t_mlx mlx = init_mlx(dimension_scale(game.size, TILE_SIZE), WINDOW_NAME);
+    t_mlx mlx = init_mlx(dimension_scale(game.size, TILE_SIZE), "a cool game");
 
     t_sprites sprites = load_sprites(mlx);
 
