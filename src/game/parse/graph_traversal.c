@@ -1,8 +1,6 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "libft/string.h"
 #include "game/load/t_raw_map.h"
-#include "log/log.h"
 #include "parse_map.h"
 
 static void flood_fill(char** reached, t_position start, const t_game* game);

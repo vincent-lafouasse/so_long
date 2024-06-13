@@ -1,15 +1,11 @@
 #include "error/error.h"
 #include "game/t_game.h"
 #include "geometry/geometry.h"
-#include "log/log.h"
 #include "mlx.h"
 #include "game/parse/t_charset.h"
-#include "render/background.h"
-#include "render/render.h"
 #include "hooks/hooks.h"
 #include <X11/X.h>
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 

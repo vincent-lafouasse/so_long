@@ -1,7 +1,5 @@
 #include "background.h"
 #include "geometry/geometry.h"
-#include "mlx_int.h"
-#include "render/render.h"
 
 static void fill_background(t_image background, const t_game* game, const t_sprites* sprites, size_t tile_size);
 static void render_image_on_image(t_image source, t_image dest,  t_position render_position);

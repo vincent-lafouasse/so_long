@@ -2,7 +2,6 @@
 #include <X11/keysym.h>
 #include <stdio.h>
 #include "game/query_game.h"
-#include "log/log.h"
 
 #define IRRELEVANT_RETURN_VALUE 0
 

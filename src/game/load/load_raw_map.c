@@ -7,7 +7,6 @@
 #include "libft/string.h"
 #include "libft/t_list.h"
 #include "load_internals.h"
-#include "log/log.h"
 #include "t_raw_map.h"
 
 static t_list* load_lines_in_lst(const char* map_path);
