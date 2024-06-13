@@ -1,8 +1,19 @@
-#include "hooks.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/13 17:36:16 by vlafouas          #+#    #+#             */
+/*   Updated: 2024/06/13 17:36:17 by vlafouas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "game/update_game.h"
-#include "render/render.h"
+#include "hooks.h"
 #include "render/background.h"
+#include "render/render.h"
 #include <X11/keysym.h>
 #include <stdio.h>
 
