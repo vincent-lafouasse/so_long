@@ -1,6 +1,21 @@
-#pragma once
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/13 17:30:02 by vlafouas          #+#    #+#             */
+/*   Updated: 2024/06/13 17:30:19 by vlafouas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdbool.h>
+#ifndef ERROR_H
+# define ERROR_H
 
-void die(const char* error_message);
-void ft_assert(bool assertion, const char* message);
+# include <stdbool.h>
+
+void	die(const char *error_message);
+void	ft_assert(bool assertion, const char *message);
+
+#endif
