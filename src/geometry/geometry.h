@@ -3,23 +3,17 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-typedef struct
+typedef struct s_position
 {
     int x;
     int y;
 } t_position;
 
-typedef struct
+typedef struct s_dimension
 {
     int w;
     int h;
 } t_dimension;
-
-typedef struct
-{
-    t_position start;
-    t_dimension size;
-} t_rectangle;
 
 t_position position(int x, int y);
 int position_compare(t_position a, t_position b);
