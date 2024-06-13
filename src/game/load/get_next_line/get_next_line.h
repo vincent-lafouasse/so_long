@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
-#define GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-#include "get_next_line_internals.h"
+# include "get_next_line_internals.h"
 
 /** @fn char *get_next_line(int fd)
  *  @brief Read and return the next line from a fd.
@@ -21,6 +21,6 @@
  *  @return a heap-allocated string containing the line read from the file, or
  * 		`NULL` if there is nothing else to read or an error occurred
  */
-char* get_next_line(int fd);
+char	*get_next_line(int fd);
 
 #endif

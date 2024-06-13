@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_INTERNALS_H
-#define GET_NEXT_LINE_INTERNALS_H
+# define GET_NEXT_LINE_INTERNALS_H
 
-#include <stdbool.h>
-#include <sys/types.h>
+# include <stdbool.h>
+# include <sys/types.h>
 
 /** @struct t_char_queue
  *  @brief A Simple Queue of characters
@@ -30,14 +30,14 @@
  */
 typedef struct s_char_queue
 {
-    char c;
-    struct s_char_queue* next;
-} t_char_queue;
-t_char_queue* char_queue_new(char c);
-bool char_queue_push_back(t_char_queue** q_ptr, char c);
-char char_queue_pop_front(t_char_queue** q_ptr);
-bool char_queue_contains(const t_char_queue* q, char c);
-void char_queue_clear(t_char_queue** q);
+	char				c;
+	struct s_char_queue	*next;
+}						t_char_queue;
+t_char_queue			*char_queue_new(char c);
+bool					char_queue_push_back(t_char_queue **q_ptr, char c);
+char					char_queue_pop_front(t_char_queue **q_ptr);
+bool					char_queue_contains(const t_char_queue *q, char c);
+void					char_queue_clear(t_char_queue **q);
 
 /** @fn char *move_line_from_queue(t_char_queue **q)
  *  @brief Move the next line from the queue to a heap-allocated string
@@ -59,8 +59,9 @@ void char_queue_clear(t_char_queue** q);
  *  A wrapper for `read` that loads the bytes into a queue rather than an array
  *  @return the return value of `read`
  */
-char* move_line_from_queue(t_char_queue** q_ptr);
-size_t line_length(const t_char_queue* q);
-ssize_t load_queue(t_char_queue** q_ptr, int fd, size_t buffer_size);
+char					*move_line_from_queue(t_char_queue **q_ptr);
+size_t					line_length(const t_char_queue *q);
+ssize_t					load_queue(t_char_queue **q_ptr, int fd,
+							size_t buffer_size);
 
 #endif
