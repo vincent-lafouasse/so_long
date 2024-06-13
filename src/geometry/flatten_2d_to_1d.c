@@ -12,9 +12,8 @@
 
 #include "geometry.h"
 
-int flatten_2d_position(t_position position,
-                        int line_length,
-                        int bits_per_pixel)
+int	flatten_2d_position(t_position position, int line_length,
+		int bits_per_pixel)
 {
-    return position.y * line_length + position.x * (bits_per_pixel / 8);
+	return (position.y * line_length + position.x * (bits_per_pixel / 8));
 }
