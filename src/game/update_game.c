@@ -1,5 +1,6 @@
 #include "update_game.h"
 #include <X11/keysym.h>
+#include <stdio.h>
 #include "game/query_game.h"
 #include "log/log.h"
 
@@ -58,5 +59,8 @@ void process_new_position(t_game* game)
         game->n_collectibles -= 1;
     }
     if (game->n_collectibles == 0 && is_exit(game->player, game))
+    {
+        printf("you have reached the exit\n");
         game->done = true;
+    }
 }
