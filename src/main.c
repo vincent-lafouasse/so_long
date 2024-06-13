@@ -34,7 +34,7 @@ t_render_input build_render_input(t_mlx* mlx, const t_game* game, const t_sprite
 int exit_hook(t_mlx* mlx);
 int key_hook(t_keycode keycode, t_update_input* input);
 int loop_hook(t_render_input* params);
-void cleanup(t_mlx mlx);
+void cleanup(t_mlx mlx, t_sprites sprites, t_image background);
 
 int main(int ac, char** av)
 {
@@ -56,7 +56,7 @@ int main(int ac, char** av)
     mlx_loop_hook(mlx.mlx, &loop_hook, &render_input);
     mlx_loop(mlx.mlx);
 
-    cleanup(mlx);
+    cleanup(mlx, sprites, render_input.background);
     free_game(&game);
 }
 
@@ -89,11 +89,17 @@ int exit_hook(t_mlx* mlx)
     return IRRELEVANT_RETURN_VALUE;
 }
 
-void cleanup(t_mlx mlx)
+void cleanup(t_mlx mlx, t_sprites sprites, t_image background)
 {
     // will cleanup sprites too, later tho
     // free_sprites(sprites) or something
     mlx_destroy_window(mlx.mlx, mlx.window);
     mlx_destroy_display(mlx.mlx);
+    mlx_destroy_image(mlx.mlx, background.img);
+    mlx_destroy_image(mlx.mlx, sprites.exit.img);
+    mlx_destroy_image(mlx.mlx, sprites.wall.img);
+    mlx_destroy_image(mlx.mlx, sprites.player.img);
+    mlx_destroy_image(mlx.mlx, sprites.collectible.img);
+    mlx_destroy_image(mlx.mlx, sprites.floor.img);
     free(mlx.mlx);
 }
