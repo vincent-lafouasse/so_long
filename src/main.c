@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/13 20:01:01 by poss              #+#    #+#             */
+/*   Updated: 2024/06/13 20:01:01 by poss             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "error/error.h"
+#include "game/parse/t_charset.h"
 #include "game/t_game.h"
 #include "geometry/geometry.h"
-#include "mlx.h"
-#include "game/parse/t_charset.h"
 #include "hooks/hooks.h"
+#include "mlx.h"
 #include <X11/X.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-void			cleanup(t_mlx mlx, t_sprites sprites, t_image background);
+void	cleanup(t_mlx mlx, t_sprites sprites, t_image background);
 
 int	main(int ac, char **av)
 {
