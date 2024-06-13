@@ -6,11 +6,11 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 17:36:16 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/06/13 17:36:17 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/06/13 20:02:17 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game/update_game.h"
+#include "game/update/update_game.h"
 #include "hooks.h"
 #include "render/background.h"
 #include "render/render.h"
