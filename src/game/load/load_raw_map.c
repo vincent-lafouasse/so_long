@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:10:23 by poss              #+#    #+#             */
-/*   Updated: 2024/06/13 20:23:52 by poss             ###   ########.fr       */
+/*   Updated: 2024/06/13 21:14:29 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "load_internals.h"
 #include "t_raw_map.h"
 #include <fcntl.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 

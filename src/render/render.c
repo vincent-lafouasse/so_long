@@ -3,7 +3,6 @@
 #include "image.h"
 #include "render/sprites.h"
 #include "t_mlx.h"
-#include <stdio.h>
 
 #define IRRELEVANT_RETURN_VALUE 0
 

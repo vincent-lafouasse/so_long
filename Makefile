@@ -27,6 +27,16 @@ CPPFLAGS += -I$(LIBFT_PATH)/include
 LDFLAGS += -L$(LIBFT_LIB_PATH)
 LDLIBS += -lft
 
+FTPRINTF_PATH = ./lib/ft_printf
+FTPRINTF = $(FTPRINTF_PATH)/libftprintf.a
+FTPRINTF_MAKE_PATH = $(FTPRINTF_PATH)
+FTPRINTF_INCLUDE_PATH = $(FTPRINTF_PATH)
+FTPRINTF_LIB_PATH = $(FTPRINTF_PATH)
+
+CPPFLAGS += -I$(FTPRINTF_INCLUDE_PATH)/include
+LDFLAGS += -L$(FTPRINTF_LIB_PATH)
+LDLIBS += -lftprintf
+
 MLX_PATH = ./lib/minilibx-linux
 MLX = $(MLX_PATH)/libmlx.a
 MLX_MAKE_PATH = $(MLX_PATH)
@@ -58,6 +68,9 @@ $(BUILD_DIR)/%.c.o: %.c
 
 $(LIBFT):
 	make -C $(LIBFT_MAKE_PATH)
+
+$(FTPRINTF):
+	make -C $(FTPRINTF_MAKE_PATH)
 
 $(MLX):
 	-./$(MLX_PATH)/configure

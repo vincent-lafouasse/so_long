@@ -1,7 +1,7 @@
 #include "update_game.h"
 #include <X11/keysym.h>
-#include <stdio.h>
 #include "game/query_game.h"
+#include "ft_printf.h"
 
 #define IRRELEVANT_RETURN_VALUE 0
 
@@ -58,9 +58,9 @@ void process_new_position(t_game* game)
     }
     if (game->n_collectibles == 0 && is_exit(game->player, game))
     {
-        printf("you have reached the exit\n");
+        ft_printf("you have reached the exit\n");
         game->done = true;
     }
     game->move_count++;
-    printf("%zu\n", game->move_count);
+    ft_printf("%zu\n", game->move_count);
 }

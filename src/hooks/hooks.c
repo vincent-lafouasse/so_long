@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 17:36:16 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/06/13 20:02:17 by poss             ###   ########.fr       */
+/*   Updated: 2024/06/13 21:15:15 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include "hooks.h"
 #include "render/background.h"
 #include "render/render.h"
+#include "ft_printf.h"
 #include <X11/keysym.h>
-#include <stdio.h>
 
 #define IRRELEVANT_RETURN_VALUE 0
 
@@ -32,7 +32,7 @@ int	loop_hook(t_render_input *params)
 {
 	if (params->game->done)
 	{
-		printf("gg my guy\n");
+		ft_printf("gg my guy\n");
 		exit_hook(params->mlx);
 	}
 	if (params->needs_refresh == false)
