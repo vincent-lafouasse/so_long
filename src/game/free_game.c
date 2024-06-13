@@ -1,9 +1,24 @@
-#include <stdlib.h>
-#include "t_game.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_game.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/13 20:06:00 by poss              #+#    #+#             */
+/*   Updated: 2024/06/13 20:06:36 by poss             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void free_game(t_game* game)
+#include "t_game.h"
+#include <stdlib.h>
+
+void	free_game(t_game *game)
 {
-    for (int row = 0; row < game->size.h; row++)
-        free(game->board[row]);
-    free(game->board);
+	int	row;
+
+	row = 0;
+	while (row < game->size.h)
+		free(game->board[row++]);
+	free(game->board);
 }
