@@ -39,8 +39,6 @@ void render_exit(t_render_input* in)
 
 int render(t_render_input* params)
 {
-    if (!params->needs_refresh)
-        return IRRELEVANT_RETURN_VALUE;
     printf("redrawing\n");
     render_background(params);
         render_collectibles(params);

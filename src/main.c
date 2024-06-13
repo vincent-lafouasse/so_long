@@ -66,17 +66,21 @@ int key_hook(t_keycode keycode, t_update_input* input)
     if (keycode == XK_Escape)
         exit_hook(input->mlx);
     update_game(input->game, keycode);
+    printf("detecting change, redraw necessary\n");
     *(input->needs_refresh) = true;
     return IRRELEVANT_RETURN_VALUE;
 }
 
 int loop_hook(t_render_input* params)
 {
+    printf("in loop hook");
     if (params->game->done)
     {
         printf("gg my guy\n");
         exit_hook(params->mlx);
     }
+    if (params->needs_refresh == false)
+        return IRRELEVANT_RETURN_VALUE;
     render(params);
     params->needs_refresh = false;
     return IRRELEVANT_RETURN_VALUE;
