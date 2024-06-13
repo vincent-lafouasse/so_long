@@ -3,6 +3,7 @@
 #include "mlx_int.h"
 #include "render/render.h"
 
+static void fill_background(t_image background, const t_game* game, const t_sprites* sprites, size_t tile_size);
 static void render_image_on_image(t_image source, t_image dest,  t_position render_position);
 
 t_image make_background(const t_game* game, const t_sprites* sprites, t_mlx* mlx,  size_t tile_size)
@@ -13,12 +14,27 @@ t_image make_background(const t_game* game, const t_sprites* sprites, t_mlx* mlx
     background.img = mlx_new_image(mlx->mlx, background.size.w, background.size.h);
     background.addr = mlx_get_data_addr(background.img, &background.bpp, &background.line_length, &background.endianness);
 
-    render_image_on_image(sprites->wall, background, position(4, 20));
+    fill_background(background, game, sprites, tile_size);
 
     return background;
 }
 
-static void fill_background(t_image background, const t_game* game, const t_sprites* sprites, size_t tile_size);
+static void fill_background(t_image background, const t_game* game, const t_sprites* sprites, size_t tile_size)
+{
+    for (int row = 0; row < game->size.h; row++)
+    {
+        for (int col = 0; col < game->size.w; col++)
+        {
+            if (game->board[row][col] == game->charset.WALL)
+                render_image_on_image(sprites->wall, background,
+                             position(col * tile_size, row * tile_size));
+            else if ((game->board[row][col] == game->charset.EMPTY)
+                    ||(game->board[row][col] == game->charset.COLLECTIBLE))
+                render_image_on_image(sprites->floor, background,
+                             position(col * tile_size, row * tile_size));
+        }
+    }
+}
 
 static void render_image_on_image(t_image source, t_image dest,  t_position render_position)
 {
