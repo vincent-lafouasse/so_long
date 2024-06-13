@@ -12,6 +12,7 @@ t_game init_game(const char* map_path, t_charset charset)
     game.size = raw_map.size;
     game.charset = charset;
     game.n_collectibles = 0;
+    game.move_count = 0;
     parse_map(&game);
     game.done = false;
     return game;

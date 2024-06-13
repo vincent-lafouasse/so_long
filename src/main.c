@@ -42,7 +42,6 @@ int main(int ac, char** av)
         die("Usage: ./so_long map.ber");
 
     t_game game = init_game(av[1], default_charset());
-    log_game(game);
 
     t_mlx mlx = init_mlx(dimension_scale(game.size, TILE_SIZE), "a cool game");
 
@@ -66,7 +65,6 @@ int key_hook(t_keycode keycode, t_update_input* input)
     if (keycode == XK_Escape)
         exit_hook(input->mlx);
     update_game(input->game, keycode);
-    printf("detecting change, redraw necessary\n");
     *(input->needs_refresh) = true;
     return IRRELEVANT_RETURN_VALUE;
 }

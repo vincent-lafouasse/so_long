@@ -11,6 +11,7 @@ typedef struct
     t_position player;
     t_position exit;
     unsigned int n_collectibles;
+    size_t move_count;
     t_charset charset;
     bool done;
 } t_game;

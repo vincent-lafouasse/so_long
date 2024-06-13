@@ -39,7 +39,6 @@ void render_exit(t_render_input* in)
 
 int render(t_render_input* params)
 {
-    printf("redrawing\n");
     render_background(params);
         render_collectibles(params);
     if (params->game->n_collectibles == 0)

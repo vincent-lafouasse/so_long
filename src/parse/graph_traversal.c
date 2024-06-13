@@ -14,9 +14,6 @@ bool has_valid_path(const t_game* game)
 {
     char** reached = deep_copy_map(game);
     flood_fill(reached, game->player, game);
-    printf("reached cells:\n");
-    log_char_matrix((const char**)reached, game->size);
-    printf("\n");
     if (!is_reached(reached, game->player, game))
         return free_map((t_raw_map){reached, game->size}), false;
     if (!is_reached(reached, game->exit, game))

@@ -19,7 +19,6 @@ void process_new_position(t_game* game);
 
 void update_game(t_game* game, int keycode)
 {
-    log_key_event(keycode);
     if (keycode == XK_w)
         try_move(Up, game);
     if (keycode == XK_a)
@@ -63,4 +62,6 @@ void process_new_position(t_game* game)
         printf("you have reached the exit\n");
         game->done = true;
     }
+    game->move_count++;
+    printf("%zu\n", game->move_count);
 }
