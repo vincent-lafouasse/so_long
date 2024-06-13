@@ -37,10 +37,3 @@ t_dimension dimension_scale(t_dimension dim, size_t scaling_factor)
 {
     return (t_dimension){.w = dim.w * scaling_factor, .h = dim.h * scaling_factor};
 }
-
-int flatten_2d_position(t_position position,
-                        int line_length,
-                        int bits_per_pixel)
-{
-    return position.y * line_length + position.x * (bits_per_pixel / 8);
-}
