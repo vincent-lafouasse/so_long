@@ -9,7 +9,7 @@ typedef struct
     char* addr;
     int bpp;
     int line_length;
-    int endian;
+    int endianness;
     t_dimension size;
 } t_image;
 

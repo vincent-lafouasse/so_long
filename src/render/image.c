@@ -15,6 +15,6 @@ t_image load_image_xpm(const char* path, t_mlx mlx)
     out.img =
         mlx_xpm_file_to_image(mlx.mlx, (char*)path, &out.size.w, &out.size.h);
     out.addr =
-        mlx_get_data_addr(out.img, &out.bpp, &out.line_length, &out.endian);
+        mlx_get_data_addr(out.img, &out.bpp, &out.line_length, &out.endianness);
     return out;
 }
