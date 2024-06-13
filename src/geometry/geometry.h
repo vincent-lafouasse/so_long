@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdbool.h>
+#include <stddef.h>
 
 typedef struct
 {
@@ -25,6 +26,7 @@ int position_compare(t_position a, t_position b);
 bool position_eq(t_position a, t_position b);
 
 t_dimension dimension(int w, int h);
+t_dimension dimension_scale(t_dimension dim, size_t scaling_factor);
 
 /*
 int flatten_2d_position(t_position position,

@@ -27,6 +27,12 @@ bool position_eq(t_position a, t_position b)
 {
     return position_compare(a, b) == 0;
 }
+
+t_dimension dimension_scale(t_dimension dim, size_t scaling_factor)
+{
+    return (t_dimension){.w = dim.w * scaling_factor, .h = dim.h * scaling_factor};
+}
+
 /*
 int flatten_2d_position(t_position position,
                         int line_length,

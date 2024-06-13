@@ -6,6 +6,7 @@
 
 #include "game/t_game.h"
 #include "game/update_game.h"
+#include "geometry/geometry.h"
 #include "mlx.h"
 #include "parse/t_charset.h"
 
@@ -31,9 +32,7 @@ int main(int ac, char** av)
     t_game game = init_game(av[1], default_charset());
     log_game(game);
 
-    const t_dimension window_size =
-        dimension(game.size.w * TILE_SIZE, game.size.h * TILE_SIZE);
-    t_mlx mlx = init_mlx(window_size, WINDOW_NAME);
+    t_mlx mlx = init_mlx(dimension_scale(game.size, TILE_SIZE), WINDOW_NAME);
 
     t_sprites sprites = load_sprites(mlx);
 
