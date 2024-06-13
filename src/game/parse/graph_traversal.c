@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "libft/string.h"
-#include "load/t_raw_map.h"
+#include "game/load/t_raw_map.h"
 #include "log/log.h"
 #include "parse_map.h"
 

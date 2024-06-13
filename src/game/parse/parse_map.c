@@ -1,7 +1,7 @@
 #include "parse_map.h"
 #include <stddef.h>
 #include "error/error.h"
-#include "parse/t_charset.h"
+#include "t_charset.h"
 
 static bool map_is_enclosed_in_walls(const t_game* game);
 static bool map_has_enough_tokens(const t_game* game);

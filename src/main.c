@@ -3,7 +3,7 @@
 #include "geometry/geometry.h"
 #include "log/log.h"
 #include "mlx.h"
-#include "parse/t_charset.h"
+#include "game/parse/t_charset.h"
 #include "render/background.h"
 #include "render/render.h"
 #include "hooks/hooks.h"
