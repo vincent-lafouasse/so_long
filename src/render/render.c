@@ -8,6 +8,7 @@
 
 void render_background(t_render_input* in)
 {
+    /*
     for (int row = 0; row < in->game->size.h; row++)
     {
         for (int col = 0; col < in->game->size.w; col++)
@@ -27,6 +28,8 @@ void render_background(t_render_input* in)
             }
         }
     }
+    */
+    render_image(in->mlx, &(in->background), position(0, 0));
 }
 
 t_position position_scale(t_position in, int scale)
