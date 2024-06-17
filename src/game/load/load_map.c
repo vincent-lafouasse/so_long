@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:10:23 by poss              #+#    #+#             */
-/*   Updated: 2024/06/17 10:40:15 by poss             ###   ########.fr       */
+/*   Updated: 2024/06/17 10:44:30 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ t_list	*load_lines_in_lst(const char *map_path)
 	{
 		trim_trailing_newline(line);
 		current_node = ft_lstnew(line);
+		if (current_node == NULL)
+		{
+			ft_lstclear(&lines, &free);
+			return NULL;
+		}
 		ft_lstadd_front(&lines, current_node);
 		line = get_next_line(fd);
 	}
