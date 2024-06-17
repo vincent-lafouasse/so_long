@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:10:23 by poss              #+#    #+#             */
-/*   Updated: 2024/06/17 10:46:26 by poss             ###   ########.fr       */
+/*   Updated: 2024/06/17 10:53:04 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <unistd.h>
 
 static t_list		*load_lines_in_lst(const char *map_path);
-static t_map		move_str_list_to_map(t_list **str_lst_ref);
+static t_map		move_str_list_to_map(t_list **lst_p);
 static t_dimension	get_map_size(const t_list *map_lst);
 
 t_map	load_map(const char *path)
@@ -29,8 +29,8 @@ t_map	load_map(const char *path)
 	t_list	*lines;
 	t_map	map;
 
-	ft_assert(str_ends_with(path, ".ber"), "Invalid map name,
-		map name must end in `.ber`");
+	ft_assert(str_ends_with(path, ".ber"),
+		"Invalid map name, map name must end in `.ber`");
 	lines = load_lines_in_lst(path);
 	ft_assert(lines != NULL, "Failed to read lines from configuration file");
 	map = move_str_list_to_map(&lines);
@@ -68,17 +68,19 @@ static t_list	*load_lines_in_lst(const char *map_path)
 	return (lines);
 }
 
-static t_map	move_str_list_to_map(t_list **str_lst_ref)
+static t_map	move_str_list_to_map(t_list **lst_p)
 {
 	t_map	map;
 	t_list	*current;
 	int		row;
 
-	current = *str_lst_ref;
-	map.size = get_map_size(*str_lst_ref);
+	if (!lst_p)
+		return (t_map){.data = NULL};
+	current = *lst_p;
+	map.size = get_map_size(*lst_p);
 	if (map.size.h < 2 || map.size.w < 2)
 	{
-		ft_lstclear(str_lst_ref, &free);
+		ft_lstclear(lst_p, &free);
 		die("map has invalid shape\n");
 	}
 	map.data = malloc(sizeof(char *) * map.size.h);
@@ -91,8 +93,8 @@ static t_map	move_str_list_to_map(t_list **str_lst_ref)
 	}
 	if (row >= 0 || current != NULL)
 		die("mismatched lines and rows");
-	ft_lstclear(str_lst_ref, NULL);
-	ft_assert(*str_lst_ref == NULL, "map list was not freed properly.");
+	ft_lstclear(lst_p, NULL);
+	ft_assert(*lst_p == NULL, "map list was not freed properly.");
 	return (map);
 }
 
