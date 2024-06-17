@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "libft/string.h"
-#include "game/load/t_raw_map.h"
+#include "game/load/t_map.h"
 #include "parse_map.h"
 
 static void flood_fill(char** reached, t_position start, const t_game* game);
@@ -13,9 +13,9 @@ bool has_valid_path(const t_game* game)
     char** reached = deep_copy_map(game);
     flood_fill(reached, game->player, game);
     if (!is_reached(reached, game->player, game))
-        return free_map((t_raw_map){reached, game->size}), false;
+        return free_map((t_map){reached, game->size}), false;
     if (!is_reached(reached, game->exit, game))
-        return free_map((t_raw_map){reached, game->size}), false;
+        return free_map((t_map){reached, game->size}), false;
 
     int row = 0;
     int col;
@@ -28,13 +28,13 @@ bool has_valid_path(const t_game* game)
             if (game->board[row][col] == game->charset.COLLECTIBLE &&
                 !is_reached(reached, position(col, row), game))
             {
-                return free_map((t_raw_map){reached, game->size}), false;
+                return free_map((t_map){reached, game->size}), false;
             }
             col++;
         }
         row++;
     }
-    free_map((t_raw_map){reached, game->size});
+    free_map((t_map){reached, game->size});
     return true;
 }
 
