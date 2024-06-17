@@ -65,6 +65,7 @@ static void map_parse_tokens(t_game* game)
 {
     char current;
 
+	game->n_collectibles = 0;
     for (int row = 0; row < game->size.h; row++)
     {
         for (int col = 0; col < game->size.w; col++)

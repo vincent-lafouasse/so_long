@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:07:23 by poss              #+#    #+#             */
-/*   Updated: 2024/06/17 18:42:17 by poss             ###   ########.fr       */
+/*   Updated: 2024/06/17 18:43:59 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ t_game	init_game(const char *map_path, t_charset charset)
 	game.board = map.data;
 	game.size = map.size;
 	game.charset = charset;
-	game.n_collectibles = 0;
-	game.move_count = 0;
 	parse_map(&game);
+	if (map.data == NULL)
+		die("Failed to parse map\n");
 	game.done = false;
+	game.move_count = 0;
 	return (game);
 }
