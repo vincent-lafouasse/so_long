@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:10:23 by poss              #+#    #+#             */
-/*   Updated: 2024/06/17 10:38:02 by poss             ###   ########.fr       */
+/*   Updated: 2024/06/17 10:40:15 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_list		*load_lines_in_lst(const char *map_path);
 static t_map	move_str_list_to_map(t_list **str_lst_ref);
 static t_dimension	get_map_size(const t_list *map_lst);
 
-t_map	load_raw_map(const char *path)
+t_map	load_map(const char *path)
 {
 	t_list		*lines;
 	t_map	map;
