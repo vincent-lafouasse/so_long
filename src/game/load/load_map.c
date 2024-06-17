@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:10:23 by poss              #+#    #+#             */
-/*   Updated: 2024/06/17 10:44:30 by poss             ###   ########.fr       */
+/*   Updated: 2024/06/17 10:46:26 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@
 #include <unistd.h>
 
 static t_list		*load_lines_in_lst(const char *map_path);
-static t_map	move_str_list_to_map(t_list **str_lst_ref);
+static t_map		move_str_list_to_map(t_list **str_lst_ref);
 static t_dimension	get_map_size(const t_list *map_lst);
 
 t_map	load_map(const char *path)
 {
-	t_list		*lines;
+	t_list	*lines;
 	t_map	map;
 
-	ft_assert(str_ends_with(path, ".ber"),
-		"Invalid map name, map name must end in `.ber`");
+	ft_assert(str_ends_with(path, ".ber"), "Invalid map name,
+		map name must end in `.ber`");
 	lines = load_lines_in_lst(path);
 	ft_assert(lines != NULL, "Failed to read lines from configuration file");
 	map = move_str_list_to_map(&lines);
@@ -42,11 +42,37 @@ t_map	load_map(const char *path)
 	return (map);
 }
 
-t_map	move_str_list_to_map(t_list **str_lst_ref)
+static t_list	*load_lines_in_lst(const char *map_path)
+{
+	int		fd;
+	t_list	*lines;
+	t_list	*current_node;
+	char	*line;
+
+	fd = open(map_path, O_RDONLY);
+	lines = NULL;
+	line = get_next_line(fd);
+	while (line)
+	{
+		trim_trailing_newline(line);
+		current_node = ft_lstnew(line);
+		if (current_node == NULL)
+		{
+			ft_lstclear(&lines, &free);
+			return (NULL);
+		}
+		ft_lstadd_front(&lines, current_node);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (lines);
+}
+
+static t_map	move_str_list_to_map(t_list **str_lst_ref)
 {
 	t_map	map;
-	t_list		*current;
-	int			row;
+	t_list	*current;
+	int		row;
 
 	current = *str_lst_ref;
 	map.size = get_map_size(*str_lst_ref);
@@ -70,33 +96,7 @@ t_map	move_str_list_to_map(t_list **str_lst_ref)
 	return (map);
 }
 
-t_list	*load_lines_in_lst(const char *map_path)
-{
-	int		fd;
-	t_list	*lines;
-	t_list	*current_node;
-	char	*line;
-
-	fd = open(map_path, O_RDONLY);
-	lines = NULL;
-	line = get_next_line(fd);
-	while (line)
-	{
-		trim_trailing_newline(line);
-		current_node = ft_lstnew(line);
-		if (current_node == NULL)
-		{
-			ft_lstclear(&lines, &free);
-			return NULL;
-		}
-		ft_lstadd_front(&lines, current_node);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (lines);
-}
-
-t_dimension	get_map_size(const t_list *map_lst)
+static t_dimension	get_map_size(const t_list *map_lst)
 {
 	t_dimension	size;
 
