@@ -58,7 +58,7 @@ run: $(NAME)
 build: $(NAME)
 
 # Linking
-$(NAME): $(OBJS) $(MLX) $(LIBFT)
+$(NAME): $(OBJS) $(MLX) $(LIBFT) $(FTPRINTF)
 	$(CC) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@
 
 # Compilation
