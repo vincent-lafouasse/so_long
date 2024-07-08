@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 13:14:51 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/08 15:13:28 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:15:16 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ static bool	map_has_enough_tokens(const t_game *game)
 		{
 			if (!is_in_charset(game->board[row][col], game->charset))
 				return (false);
-			n_collectibles += game->board[row][col] == game->charset.collectible;
+			n_collectibles
+				+= game->board[row][col] == game->charset.collectible;
 			n_exit += game->board[row][col] == game->charset.exit;
 			n_player += game->board[row][col] == game->charset.player;
 			col++;
@@ -121,12 +122,12 @@ static void	map_parse_tokens(t_game *game)
 
 static void	map_parse_position(t_game *game, t_position pos)
 {
-	if (is_exit(pos, game))
+	if (game->board[pos.y][pos.x] == game->charset.exit)
 	{
 		game->exit = pos;
 		game->board[pos.y][pos.x] = game->charset.empty;
 	}
-	if (is_player(pos, game))
+	if (game->board[pos.y][pos.x] == game->charset.player)
 	{
 		game->player = pos;
 		game->board[pos.y][pos.x] = game->charset.empty;
