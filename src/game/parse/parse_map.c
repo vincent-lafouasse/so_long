@@ -1,6 +1,7 @@
 #include "parse_map.h"
 #include <stddef.h>
 #include "error/error.h"
+#include "game/query_game.h"
 #include "t_charset.h"
 
 static bool map_is_enclosed_in_walls(const t_game* game);
@@ -22,19 +23,24 @@ void parse_map(t_game* game)
 
 static bool map_is_enclosed_in_walls(const t_game* game)
 {
-    for (int col = 0; col < game->size.w; col++)
+    int col = 0;
+    int row = 0;
+
+    while (col < game->size.w)
     {
-        if (game->board[0][col] != game->charset.WALL)
+        if (!is_wall(position(col, 0), game))
             return false;
-        if (game->board[game->size.h - 1][col] != game->charset.WALL)
+        if (!is_wall(position(col, game->size.h - 1), game))
             return false;
+        col++;
     }
-    for (int row = 0; row < game->size.h; row++)
+    while (row < game->size.h)
     {
-        if (game->board[row][0] != game->charset.WALL)
+        if (!is_wall(position(0, row), game))
             return false;
-        if (game->board[row][game->size.w - 1] != game->charset.WALL)
+        if (!is_wall(position(game->size.w - 1, row), game))
             return false;
+        row++;
     }
     return true;
 }
@@ -44,19 +50,22 @@ static bool map_has_enough_tokens(const t_game* game)
     size_t n_collectibles = 0;
     size_t n_exit = 0;
     size_t n_player = 0;
-    char current;
+    int row = 0;
+    int col;
 
-    for (int row = 0; row < game->size.h; row++)
+    while (row < game->size.h)
     {
-        for (int col = 0; col < game->size.w; col++)
+        col = 0;
+        while (col < game->size.w)
         {
-            current = game->board[row][col];
-            if (!is_in_charset(current, game->charset))
+            if (!is_in_charset(game->board[row][col], game->charset))
                 return false;
-            n_collectibles += (current == game->charset.COLLECTIBLE);
-            n_exit += (current == game->charset.EXIT);
-            n_player += (current == game->charset.PLAYER);
+            n_collectibles += is_collectible(position(col, row), game);
+            n_exit += is_exit(position(col, row), game);
+            n_player += is_player(position(col, row), game);
+            col++;
         }
+        row++;
     }
     return (n_exit == 1) && (n_player == 1) && (n_collectibles >= 1);
 }
