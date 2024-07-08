@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:10:23 by poss              #+#    #+#             */
-/*   Updated: 2024/07/08 14:43:14 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:27:13 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ t_map	load_map(const char *path)
 		die("Failed to create char** map");
 	}
 	ft_assert(lines == NULL, "Failed to free list buffer");
+	if (map.size.w > 50 || map.size.h > 30)
+	{
+		free_map(map);
+		die("Invalid map size: toog");
+	}
 	return (map);
 }
 
