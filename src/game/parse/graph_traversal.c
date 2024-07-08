@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 13:23:39 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/08 13:31:46 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 14:27:27 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ bool	has_valid_path(const t_game *game)
 	char	**reached;
 
 	reached = deep_copy_map(game);
+	if (!reached)
+		return (false);
 	flood_fill(reached, game->player, game);
 	if (!is_reached((const char **)reached, game->player, game))
 	{

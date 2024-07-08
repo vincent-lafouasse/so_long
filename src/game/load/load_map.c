@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:10:23 by poss              #+#    #+#             */
-/*   Updated: 2024/07/08 12:40:51 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 14:25:56 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ static t_map	move_str_list_to_map(t_list **lst_p)
 		die("map has invalid shape\n");
 	}
 	map.data = malloc(sizeof(char *) * map.size.h);
+	if (!map.data)
+		return (map);
 	row = map.size.h - 1;
 	while (row >= 0 && current)
 	{
