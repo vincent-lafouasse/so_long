@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:16:59 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/08 12:23:07 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 13:08:21 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "image.h"
 #include "render.h"
 #include "render/sprites.h"
+#include "game/query_game.h"
 #include "t_mlx.h"
 
 #define IRRELEVANT_RETURN_VALUE 0
@@ -37,6 +38,7 @@ static void	render_collectibles(t_render_input *in)
 {
 	int	row;
 	int	col;
+	t_position current;
 
 	row = 0;
 	while (row < in->game->size.h)
@@ -44,7 +46,8 @@ static void	render_collectibles(t_render_input *in)
 		col = 0;
 		while (col < in->game->size.w)
 		{
-			if (in->game->board[row][col] == in->game->charset.COLLECTIBLE)
+			current = position(col, row);
+			if(is_collectible(current, in->game))
 				render_image(in->mlx, in->sprites->collectible,
 					position_scale(position(col, row), TILE_SIZE));
 			col++;
