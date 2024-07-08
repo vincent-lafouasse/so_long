@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:16:59 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/08 12:18:13 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:22:03 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,4 @@ int	render(t_render_input *params)
 		render_exit(params);
 	render_player(params);
 	return (IRRELEVANT_RETURN_VALUE);
-}
-
-void	render_image(t_mlx *mlx, t_image image, t_position position)
-{
-	mlx_put_image_to_window(mlx->mlx, mlx->window, image.img, position.x,
-		position.y);
 }

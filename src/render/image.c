@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:16:02 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/08 12:16:06 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:21:59 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,10 @@ t_image	load_image_xpm(const char *path, t_mlx mlx)
 	out.addr = mlx_get_data_addr(out.img, &out.bpp, &out.line_length,
 			&out.endianness);
 	return (out);
+}
+
+void	render_image(t_mlx *mlx, t_image image, t_position position)
+{
+	mlx_put_image_to_window(mlx->mlx, mlx->window, image.img, position.x,
+		position.y);
 }

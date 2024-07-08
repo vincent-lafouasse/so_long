@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:15:02 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/08 12:15:55 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:21:44 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ typedef struct s_image
 }				t_image;
 
 t_image			load_image_xpm(const char *path, t_mlx mlx);
+void			render_image(t_mlx *mlx, t_image image, t_position position);
 
 #endif
