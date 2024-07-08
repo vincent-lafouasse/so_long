@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "background.h"
-#include "geometry/geometry.h"
 #include "game/query_game.h"
+#include "geometry/geometry.h"
 
 static void	fill_background(t_image background, const t_game *game,
 				const t_sprites *sprites, size_t tile_size);
@@ -36,9 +36,9 @@ t_image	make_background(const t_game *game, const t_sprites *sprites,
 static void	fill_background(t_image background, const t_game *game,
 		const t_sprites *sprites, size_t tile_size)
 {
-	int	row;
-	int	col;
-	t_position current;
+	int			row;
+	int			col;
+	t_position	current;
 
 	row = 0;
 	while (row < game->size.h)
@@ -50,8 +50,7 @@ static void	fill_background(t_image background, const t_game *game,
 			if (is_wall(current, game))
 				render_image_on_image(sprites->wall, background, position(col
 						* tile_size, row * tile_size));
-			else if (is_empty(current, game)
-				|| is_collectible(current, game))
+			else if (is_empty(current, game) || is_collectible(current, game))
 				render_image_on_image(sprites->floor, background, position(col
 						* tile_size, row * tile_size));
 			col++;

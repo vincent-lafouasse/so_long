@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "game/query_game.h"
 #include "geometry/geometry.h"
 #include "image.h"
 #include "render.h"
 #include "render/sprites.h"
-#include "game/query_game.h"
 #include "t_mlx.h"
 
 #define IRRELEVANT_RETURN_VALUE 0
@@ -36,9 +36,9 @@ int	render(t_render_input *params)
 
 static void	render_collectibles(t_render_input *in)
 {
-	int	row;
-	int	col;
-	t_position current;
+	int			row;
+	int			col;
+	t_position	current;
 
 	row = 0;
 	while (row < in->game->size.h)
@@ -47,7 +47,7 @@ static void	render_collectibles(t_render_input *in)
 		while (col < in->game->size.w)
 		{
 			current = position(col, row);
-			if(is_collectible(current, in->game))
+			if (is_collectible(current, in->game))
 				render_image(in->mlx, in->sprites->collectible,
 					position_scale(position(col, row), TILE_SIZE));
 			col++;
