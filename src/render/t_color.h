@@ -1,5 +1,20 @@
-#pragma once
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_color.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/08 12:24:32 by vlafouas          #+#    #+#             */
+/*   Updated: 2024/07/08 12:25:07 by vlafouas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#define BLACK (0x00000000)
-#define RED (0x00FF0000)
-#define CORNFLOWER_BLUE (0x006495ED)
+#ifndef T_COLOR_H
+# define T_COLOR_H
+
+# define BLACK (0x00000000)
+# define RED (0x00FF0000)
+# define CORNFLOWER_BLUE (0x006495ED)
+
+#endif
