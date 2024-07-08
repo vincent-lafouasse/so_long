@@ -5,7 +5,29 @@ SRC_DIR              = ./src
 INCLUDE_DIR          = ./include
 INTERNAL_INCLUDE_DIR = ./src
 
-SRCS = $(shell find $(SRC_DIR) -name *.c)
+SRCS  = src/main.c
+SRCS += src/error/error.c
+SRCS += src/game/load/get_next_line/get_next_line.c
+SRCS += src/game/load/get_next_line/get_next_line_utils.c
+SRCS += src/game/load/free_map.c
+SRCS += src/game/load/string_utils.c
+SRCS += src/game/load/load_map.c
+SRCS += src/game/parse/graph_traversal_utils.c
+SRCS += src/game/parse/graph_traversal.c
+SRCS += src/game/parse/parse_map.c
+SRCS += src/game/parse/t_charset.c
+SRCS += src/game/free_game.c
+SRCS += src/game/init_game.c
+SRCS += src/game/update/update_game.c
+SRCS += src/game/query_game.c
+SRCS += src/geometry/flatten_2d_to_1d.c
+SRCS += src/geometry/t_position.c
+SRCS += src/geometry/t_dimension.c
+SRCS += src/render/image.c
+SRCS += src/render/sprites.c
+SRCS += src/render/background.c
+SRCS += src/render/render.c
+SRCS += src/hooks/hooks.c
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
