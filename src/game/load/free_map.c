@@ -1,9 +1,27 @@
-#include <stdlib.h>
-#include "t_map.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/08 12:42:44 by vlafouas          #+#    #+#             */
+/*   Updated: 2024/07/08 12:43:17 by vlafouas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void free_map(t_map map)
+#include "t_map.h"
+#include <stdlib.h>
+
+void	free_map(t_map map)
 {
-    for (int row = 0; row < map.size.h; row++)
-        free(map.data[row]);
-    free(map.data);
+	int	row;
+
+	row = 0;
+	while (row < map.size.h)
+	{
+		free(map.data[row]);
+		row++;
+	}
+	free(map.data);
 }
