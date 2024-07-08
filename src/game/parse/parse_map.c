@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 13:14:51 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/08 15:15:16 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:17:42 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stddef.h>
 
 static bool	map_is_enclosed_in_walls(const t_game *game);
-static bool	map_has_enough_tokens(const t_game *game);
+static bool	map_has_enough_tokens(const t_game *game, size_t n_collectibles);
 static void	map_parse_tokens(t_game *game);
 static void	map_parse_position(t_game *game, t_position pos);
 
@@ -28,7 +28,7 @@ void	parse_map(t_game *game)
 		free_game(game);
 		die("Map is not enclosed in walls");
 	}
-	if (!map_has_enough_tokens(game))
+	if (!map_has_enough_tokens(game, 0))
 	{
 		free_game(game);
 		die("Invalid map tokens");
@@ -73,15 +73,13 @@ static bool	map_is_enclosed_in_walls(const t_game *game)
 	return (true);
 }
 
-static bool	map_has_enough_tokens(const t_game *game)
+static bool	map_has_enough_tokens(const t_game *game, size_t n_collectibles)
 {
-	size_t	n_collectibles;
 	size_t	n_exit;
 	size_t	n_player;
 	int		row;
 	int		col;
 
-	n_collectibles = 0;
 	n_exit = 0;
 	n_player = 0;
 	row = 0;

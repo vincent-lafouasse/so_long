@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:28:11 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/08 12:28:41 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:17:07 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_game
 	t_dimension		size;
 	t_position		player;
 	t_position		exit;
-	unsigned int	n_collectibles;
+	size_t			n_collectibles;
 	size_t			move_count;
 	t_charset		charset;
 	bool			done;
