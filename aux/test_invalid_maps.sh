@@ -10,6 +10,6 @@ for map in $MAPS; do
 	./so_long "$map"
 	echo
 	echo Valgrind output
-	$VALGRIND ./so_long "$map" 1> /dev/null
+	$VALGRIND ./so_long "$map"
 	echo
 done
