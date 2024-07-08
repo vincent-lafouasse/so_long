@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:46:05 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/08 12:46:20 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:47:49 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 
 typedef struct s_charset
 {
-	char	EMPTY;
-	char	WALL;
-	char	COLLECTIBLE;
-	char	EXIT;
-	char	PLAYER;
+	char	empty;
+	char	wall;
+	char	collectible;
+	char	exit;
+	char	player;
 }			t_charset;
 
 t_charset	default_charset(void);

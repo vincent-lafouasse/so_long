@@ -25,7 +25,7 @@ bool has_valid_path(const t_game* game)
         col = 0;
         while (col < game->size.w)
         {
-            if (game->board[row][col] == game->charset.COLLECTIBLE &&
+            if (game->board[row][col] == game->charset.collectible &&
                 !is_reached(reached, position(col, row), game))
             {
                 return free_map((t_map){reached, game->size}), false;
@@ -67,7 +67,7 @@ bool is_walkable(t_position pos, const t_game* game)
     if (pos.x >= game->size.w || pos.x < 0 || pos.y >= game->size.h ||
         pos.y < 0)
         return false;
-    return game->board[pos.y][pos.x] != game->charset.WALL;
+    return game->board[pos.y][pos.x] != game->charset.wall;
 }
 
 char** deep_copy_map(const t_game* game)
