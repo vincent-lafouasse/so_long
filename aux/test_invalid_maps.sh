@@ -1,7 +1,8 @@
 MAP_DIR='./assets/maps/invalid'
 MAPS=$(find "${MAP_DIR}" -type f)
 
-VALGRIND="valgrind --leak-check=full"
+VALGRIND_FLAGS="--leak-check=full --track-origins=yes"
+VALGRIND="valgrind $VALGRIND_FLAGS"
 
 for map in $MAPS; do
 	echo ---------------------------------------------------------------------------------------------------
