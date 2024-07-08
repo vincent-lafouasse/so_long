@@ -6,12 +6,13 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:11:23 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/08 12:13:43 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 13:06:41 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "background.h"
 #include "geometry/geometry.h"
+#include "game/query_game.h"
 
 static void	fill_background(t_image background, const t_game *game,
 				const t_sprites *sprites, size_t tile_size);
@@ -37,6 +38,7 @@ static void	fill_background(t_image background, const t_game *game,
 {
 	int	row;
 	int	col;
+	t_position current;
 
 	row = 0;
 	while (row < game->size.h)
@@ -44,11 +46,12 @@ static void	fill_background(t_image background, const t_game *game,
 		col = 0;
 		while (col < game->size.w)
 		{
-			if (game->board[row][col] == game->charset.WALL)
+			current = position(col, row);
+			if (is_wall(current, game))
 				render_image_on_image(sprites->wall, background, position(col
 						* tile_size, row * tile_size));
-			else if ((game->board[row][col] == game->charset.EMPTY)
-				|| (game->board[row][col] == game->charset.COLLECTIBLE))
+			else if (is_empty(current, game)
+				|| is_collectible(current, game))
 				render_image_on_image(sprites->floor, background, position(col
 						* tile_size, row * tile_size));
 			col++;

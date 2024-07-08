@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:32:00 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/08 12:51:09 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 13:06:08 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,9 @@ bool	is_collectible(t_position position, const t_game *game)
 bool	is_wall(t_position position, const t_game *game)
 {
 	return (game->board[position.y][position.x] == game->charset.wall);
+}
+
+bool	is_empty(t_position position, const t_game *game)
+{
+	return (game->board[position.y][position.x] == game->charset.empty);
 }

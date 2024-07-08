@@ -53,7 +53,7 @@ void process_new_position(t_game* game)
 {
     if (is_collectible(game->player, game))
     {
-        game->board[game->player.y][game->player.x] = game->charset.EMPTY;
+        game->board[game->player.y][game->player.x] = game->charset.empty;
         game->n_collectibles -= 1;
     }
     if (game->n_collectibles == 0 && is_exit(game->player, game))
