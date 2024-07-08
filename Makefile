@@ -38,6 +38,7 @@ CPPFLAGS  = -I$(INCLUDE_DIR) -I$(INTERNAL_INCLUDE_DIR)
 CPPFLAGS += -MMD -MP
 LDLIBS = 
 LDFLAGS =
+LIBS =
 
 LIBFT_PATH = ./lib/libft
 LIBFT = $(LIBFT_PATH)/libft.a
@@ -48,6 +49,7 @@ LIBFT_LIB_PATH = $(LIBFT_PATH)
 CPPFLAGS += -I$(LIBFT_PATH)/include
 LDFLAGS += -L$(LIBFT_LIB_PATH)
 LDLIBS += -lft
+LIBS += $(LIBFT)
 
 FTPRINTF_PATH = ./lib/ft_printf
 FTPRINTF = $(FTPRINTF_PATH)/libftprintf.a
@@ -58,6 +60,7 @@ FTPRINTF_LIB_PATH = $(FTPRINTF_PATH)
 CPPFLAGS += -I$(FTPRINTF_INCLUDE_PATH)/include
 LDFLAGS += -L$(FTPRINTF_LIB_PATH)
 LDLIBS += -lftprintf
+LIBS += $(FTPRINTF)
 
 MLX_PATH = ./lib/minilibx-linux
 MLX = $(MLX_PATH)/libmlx.a
@@ -68,6 +71,7 @@ MLX_LIB_PATH = $(MLX_PATH)
 CPPFLAGS += -I$(MLX_INCLUDE_PATH)
 LDFLAGS += -L$(MLX_LIB_PATH)
 LDLIBS += -lmlx -lXext -lX11
+LIBS += $(MLX)
 
 .PHONY: all
 all: build
@@ -80,7 +84,7 @@ run: $(NAME)
 build: $(NAME)
 
 # Linking
-$(NAME): $(OBJS) $(MLX) $(LIBFT) $(FTPRINTF)
+$(NAME): $(OBJS) $(LIBS)
 	$(CC) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@
 
 # Compilation
