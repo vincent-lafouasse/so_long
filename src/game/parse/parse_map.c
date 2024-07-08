@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 13:14:51 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/08 13:22:30 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:13:28 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ static bool	map_has_enough_tokens(const t_game *game)
 		{
 			if (!is_in_charset(game->board[row][col], game->charset))
 				return (false);
-			n_collectibles += is_collectible(position(col, row), game);
-			n_exit += is_exit(position(col, row), game);
-			n_player += is_player(position(col, row), game);
+			n_collectibles += game->board[row][col] == game->charset.collectible;
+			n_exit += game->board[row][col] == game->charset.exit;
+			n_player += game->board[row][col] == game->charset.player;
 			col++;
 		}
 		row++;
