@@ -1,38 +1,40 @@
-#include <stdlib.h>
-#include "libft/string.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   graph_traversal.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/08 13:23:39 by vlafouas          #+#    #+#             */
+/*   Updated: 2024/07/08 13:31:46 by vlafouas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "game/load/t_map.h"
 #include "parse_map.h"
+#include "parse_internals.h"
 
 static void flood_fill(char** reached, t_position start, const t_game* game);
-static bool is_walkable(t_position pos, const t_game* game);
-static bool is_reached(char** reached, t_position position, const t_game* game);
-static char** deep_copy_map(const t_game* game);
+static bool collectibles_are_reached(const char** reached, const t_game* game);
 
 bool has_valid_path(const t_game* game)
 {
     char** reached = deep_copy_map(game);
     flood_fill(reached, game->player, game);
-    if (!is_reached(reached, game->player, game))
-        return free_map((t_map){reached, game->size}), false;
-    if (!is_reached(reached, game->exit, game))
-        return free_map((t_map){reached, game->size}), false;
-
-    int row = 0;
-    int col;
-
-    while (row < game->size.h)
+    if (!is_reached((const char**)reached, game->player, game))
     {
-        col = 0;
-        while (col < game->size.w)
-        {
-            if (game->board[row][col] == game->charset.collectible &&
-                !is_reached(reached, position(col, row), game))
-            {
-                return free_map((t_map){reached, game->size}), false;
-            }
-            col++;
-        }
-        row++;
+        free_map((t_map){reached, game->size});
+        return false;
+    }
+    if (!is_reached((const char**)reached, game->exit, game))
+    {
+        free_map((t_map){reached, game->size});
+        return false;
+    }
+    if (!collectibles_are_reached((const char**)reached, game))
+    {
+        free_map((t_map){reached, game->size});
+        return false;
     }
     free_map((t_map){reached, game->size});
     return true;
@@ -44,7 +46,7 @@ void flood_fill(char** reached, t_position start, const t_game* game)
     {
         return;
     }
-    if (is_reached(reached, start, game))
+    if (is_reached((const char**)reached, start, game))
     {
         return;
     }
@@ -55,28 +57,24 @@ void flood_fill(char** reached, t_position start, const t_game* game)
     flood_fill(reached, position(start.x, start.y - 1), game);
 }
 
-bool is_reached(char** reached, t_position position, const t_game* game)
+static bool collectibles_are_reached(const char** reached, const t_game* game)
 {
-    if (!is_walkable(position, game))
-        return false;
-    return reached[position.y][position.x] == 'R';
-}
+    int row = 0;
+    int col;
 
-bool is_walkable(t_position pos, const t_game* game)
-{
-    if (pos.x >= game->size.w || pos.x < 0 || pos.y >= game->size.h ||
-        pos.y < 0)
-        return false;
-    return game->board[pos.y][pos.x] != game->charset.wall;
-}
-
-char** deep_copy_map(const t_game* game)
-{
-    char** copy = malloc(sizeof(char*) * game->size.h);
-
-    for (int row = 0; row < game->size.h; row++)
+    while (row < game->size.h)
     {
-        copy[row] = ft_strdup(game->board[row]);
+        col = 0;
+        while (col < game->size.w)
+        {
+            if (game->board[row][col] == game->charset.collectible &&
+                !is_reached(reached, position(col, row), game))
+            {
+                return (false);
+            }
+            col++;
+        }
+        row++;
     }
-    return copy;
+    return true;
 }
