@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:32:00 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/08 13:06:08 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:05:09 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 bool	is_player(t_position position, const t_game *game)
 {
-	return (position_compare(position, game->player) == 0);
+	return (position_eq(position, game->player));
 }
 
 bool	is_exit(t_position position, const t_game *game)
 {
-	return (position_compare(position, game->exit) == 0);
+	return (position_eq(position, game->exit));
 }
 
 bool	is_collectible(t_position position, const t_game *game)
