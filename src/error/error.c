@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 17:30:46 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/06/13 17:30:53 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:29:41 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	die(const char *error_message)
 {
-	ft_putstr_fd("Error\n", STDERR_FILENO);
+	ft_putendl_fd("Error", STDERR_FILENO);
 	ft_putendl_fd(error_message, STDERR_FILENO);
 	exit(1);
 }
