@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:10:23 by poss              #+#    #+#             */
-/*   Updated: 2024/06/17 10:53:04 by poss             ###   ########.fr       */
+/*   Updated: 2024/07/08 12:40:51 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static t_map	move_str_list_to_map(t_list **lst_p)
 	int		row;
 
 	if (!lst_p)
-		return (t_map){.data = NULL};
+		return ((t_map){.data = NULL});
 	current = *lst_p;
 	map.size = get_map_size(*lst_p);
 	if (map.size.h < 2 || map.size.w < 2)
@@ -91,10 +91,6 @@ static t_map	move_str_list_to_map(t_list **lst_p)
 		row--;
 		current = (current)->next;
 	}
-	if (row >= 0 || current != NULL)
-		die("mismatched lines and rows");
-	ft_lstclear(lst_p, NULL);
-	ft_assert(*lst_p == NULL, "map list was not freed properly.");
 	return (map);
 }
 
