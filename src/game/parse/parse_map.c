@@ -72,28 +72,33 @@ static bool map_has_enough_tokens(const t_game* game)
 
 static void map_parse_tokens(t_game* game)
 {
-    char current;
+    int row = 0;
+    int col;
+    t_position current;
 
 	game->n_collectibles = 0;
-    for (int row = 0; row < game->size.h; row++)
+    while (row < game->size.h)
     {
-        for (int col = 0; col < game->size.w; col++)
+        col = 0;
+        while (col < game->size.w)
         {
-            current = game->board[row][col];
-            if (current == game->charset.EXIT)
+            current = position(col, row);
+            if (is_exit(current, game))
             {
-                game->exit = position(col, row);
-                game->board[row][col] = game->charset.EMPTY;
+                game->exit = current;
+                game->board[row][col] = game->charset.empty;
             }
-            if (current == game->charset.PLAYER)
+            if (is_player(current, game))
             {
-                game->player = position(col, row);
-                game->board[row][col] = game->charset.EMPTY;
+                game->player = current;
+                game->board[row][col] = game->charset.empty;
             }
-            if (current == game->charset.COLLECTIBLE)
+            if (is_collectible(current, game))
             {
                 game->n_collectibles += 1;
             }
+            col++;
         }
+        row++;
     }
 }
