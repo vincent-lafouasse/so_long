@@ -76,9 +76,10 @@ LIBS += $(MLX)
 .PHONY: all
 all: build
 
+TEST_MAP = ./assets/maps/valid/simple_map.ber
 .PHONY: run
 run: $(NAME)
-	./$^ ./assets/maps/valid/tiny.ber
+	./$^ $(TEST_MAP)
 
 .PHONY: build
 build: $(NAME)
