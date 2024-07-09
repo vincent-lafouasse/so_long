@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "game/update/update_game.h"
 #include "hooks.h"
 #include "render/background.h"
 #include "render/render.h"
-#include "ft_printf.h"
 #include <X11/keysym.h>
 
 #define IRRELEVANT_RETURN_VALUE 0

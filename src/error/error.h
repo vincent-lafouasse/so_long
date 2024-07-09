@@ -15,7 +15,7 @@
 
 # include <stdbool.h>
 
-int	die(const char *error_message);
+int		die(const char *error_message);
 void	ft_assert(bool assertion, const char *message);
 
 #endif

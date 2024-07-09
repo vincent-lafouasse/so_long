@@ -20,7 +20,7 @@ int	die(const char *error_message)
 	ft_putendl_fd("Error", STDERR_FILENO);
 	ft_putendl_fd(error_message, STDERR_FILENO);
 	exit(1);
-	return 1;
+	return (1);
 }
 
 void	ft_assert(bool assertion, const char *message)

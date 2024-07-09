@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "error/error.h"
 #include "load/t_map.h"
 #include "parse/parse_map.h"
-#include "error/error.h"
 #include "t_game.h"
 
 t_game	init_game(const char *map_path, t_charset charset)

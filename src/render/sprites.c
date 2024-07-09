@@ -19,8 +19,8 @@
 #define FLOOR_XPM "./assets/sprites/floor.xpm"
 #define WALL_XPM "./assets/sprites/wall.xpm"
 
-static t_sprites invalid_sprites(void);
-static bool		sprites_are_valid(t_sprites sprites);
+static t_sprites	invalid_sprites(void);
+static bool			sprites_are_valid(t_sprites sprites);
 
 t_sprites	load_sprites(t_mlx mlx)
 {
@@ -39,22 +39,22 @@ t_sprites	load_sprites(t_mlx mlx)
 	return (sprites);
 }
 
-static bool		sprites_are_valid(t_sprites sprites)
+static bool	sprites_are_valid(t_sprites sprites)
 {
 	if (!sprites.player.img)
-		return false;
+		return (false);
 	if (!sprites.wall.img)
-		return false;
+		return (false);
 	if (!sprites.floor.img)
-		return false;
+		return (false);
 	if (!sprites.exit.img)
-		return false;
+		return (false);
 	if (!sprites.collectible.img)
-		return false;
-	return true;
+		return (false);
+	return (true);
 }
 
-void		clear_sprites_checked(t_sprites sprites, t_mlx mlx)
+void	clear_sprites_checked(t_sprites sprites, t_mlx mlx)
 {
 	if (sprites.exit.img)
 		mlx_destroy_image(mlx.mlx, sprites.exit.img);
@@ -68,15 +68,15 @@ void		clear_sprites_checked(t_sprites sprites, t_mlx mlx)
 		mlx_destroy_image(mlx.mlx, sprites.collectible.img);
 }
 
-static t_sprites invalid_sprites(void)
+static t_sprites	invalid_sprites(void)
 {
-	t_sprites out;
+	t_sprites	out;
 
 	out.player.img = NULL;
-	return out;
+	return (out);
 }
 
-bool		sprites_are_invalid(t_sprites sprites)
+bool	sprites_are_invalid(t_sprites sprites)
 {
 	return (sprites.player.img == NULL);
 }

@@ -19,17 +19,17 @@
 
 typedef struct s_game
 {
-	char			**board;
-	t_dimension		size;
-	t_position		player;
-	t_position		exit;
-	size_t			n_collectibles;
-	size_t			move_count;
-	t_charset		charset;
-	bool			done;
-}					t_game;
+	char		**board;
+	t_dimension	size;
+	t_position	player;
+	t_position	exit;
+	size_t		n_collectibles;
+	size_t		move_count;
+	t_charset	charset;
+	bool		done;
+}				t_game;
 
-t_game				init_game(const char *map_path, t_charset charset);
-void				free_game(t_game *game);
+t_game			init_game(const char *map_path, t_charset charset);
+void			free_game(t_game *game);
 
 #endif

@@ -22,7 +22,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void	cleanup(t_mlx* mlx, t_sprites* sprites, t_image* background, t_game* game);
+void	cleanup(t_mlx *mlx, t_sprites *sprites, t_image *background,
+			t_game *game);
 
 int	main(int ac, char **av)
 {
@@ -38,7 +39,8 @@ int	main(int ac, char **av)
 	mlx = init_mlx(dimension_scale(game.size, TILE_SIZE), "a cool game");
 	sprites = load_sprites(mlx);
 	if (sprites_are_invalid(sprites))
-		return cleanup(&mlx, &sprites, NULL, &game), die("Error loading sprites");
+		return (cleanup(&mlx, &sprites, NULL, &game),
+			die("Error loading sprites"));
 	render_input = build_render_input(&mlx, &game, &sprites, TILE_SIZE);
 	update_input = (t_update_input){&game, &mlx,
 		.needs_refresh = &render_input.needs_refresh};
@@ -49,7 +51,8 @@ int	main(int ac, char **av)
 	cleanup(&mlx, &sprites, &render_input.background, &game);
 }
 
-void	cleanup(t_mlx* mlx, t_sprites* sprites, t_image* background, t_game* game)
+void	cleanup(t_mlx *mlx, t_sprites *sprites, t_image *background,
+		t_game *game)
 {
 	if (!mlx)
 		return ;
