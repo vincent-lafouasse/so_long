@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:01:01 by poss              #+#    #+#             */
-/*   Updated: 2024/07/09 19:30:06 by poss             ###   ########.fr       */
+/*   Updated: 2024/07/09 19:43:04 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	main(int ac, char **av)
 		die("Usage: ./so_long map.ber");
 	game = init_game(av[1], default_charset());
 	mlx = init_mlx(dimension_scale(game.size, TILE_SIZE), "a cool game");
+	if (!mlx.mlx || !mlx.window)
+		return (cleanup(&mlx, NULL, NULL, &game), die("Error building window"));
 	sprites = load_sprites(mlx);
 	if (sprites_are_invalid(sprites))
 		return (cleanup(&mlx, &sprites, NULL, &game),

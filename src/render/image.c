@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:16:02 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/09 19:38:12 by poss             ###   ########.fr       */
+/*   Updated: 2024/07/09 19:41:43 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,17 @@ t_mlx	init_mlx(t_dimension window_size, const char *window_name)
 	t_mlx	mlx;
 
 	mlx.mlx = mlx_init();
+	if (!mlx.mlx)
+	{
+		return ((t_mlx){.mlx = NULL, .window = NULL});
+	}
 	mlx.window = mlx_new_window(mlx.mlx, window_size.w, window_size.h,
 			(char *)window_name);
+	if (!mlx.window)
+	{
+		mlx_destroy_display(mlx.mlx);
+		mlx.mlx = NULL;
+	}
 	return (mlx);
 }
 
