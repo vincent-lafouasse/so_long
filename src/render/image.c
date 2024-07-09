@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:16:02 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/08 12:21:59 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/09 19:34:37 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_image	load_image_xpm(const char *path, t_mlx mlx)
 
 	out.img = mlx_xpm_file_to_image(mlx.mlx, (char *)path, &out.size.w,
 			&out.size.h);
+	if (!out.img)
+		return (out);
 	out.addr = mlx_get_data_addr(out.img, &out.bpp, &out.line_length,
 			&out.endianness);
 	return (out);

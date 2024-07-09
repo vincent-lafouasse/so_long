@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 17:30:02 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/06/13 17:30:19 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/09 19:31:08 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdbool.h>
 
-void	die(const char *error_message);
+int	die(const char *error_message);
 void	ft_assert(bool assertion, const char *message);
 
 #endif
