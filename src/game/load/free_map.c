@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 12:42:44 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/08 12:43:17 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:31:29 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ void	free_map(t_map map)
 {
 	int	row;
 
+	if (!map.data)
+		return;
 	row = 0;
 	while (row < map.size.h)
 	{
-		free(map.data[row]);
+		if (map.data[row])
+			free(map.data[row]);
 		row++;
 	}
 	free(map.data);
