@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 13:23:39 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/07/11 15:32:05 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:35:10 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,9 @@ bool	has_valid_path(const t_game *game)
 		return (false);
 	}
 	flood_fill(reached, game->player, game);
-	if (!is_reached((const char **)reached, game->player, game))
-	{
-		free_map((t_map){reached, game->size});
-		return (false);
-	}
-	if (!is_reached((const char **)reached, game->exit, game))
-	{
-		free_map((t_map){reached, game->size});
-		return (false);
-	}
-	if (!collectibles_are_reached((const char **)reached, game))
+	if (!is_reached((const char **)reached, game->player, game)
+		|| !is_reached((const char **)reached, game->exit, game)
+		|| !collectibles_are_reached((const char **)reached, game))
 	{
 		free_map((t_map){reached, game->size});
 		return (false);
