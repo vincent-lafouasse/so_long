@@ -22,8 +22,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-static void	cleanup_and_exit(t_mlx *mlx, t_sprites *sprites, t_image *background,
-			t_game *game, const char* msg);
+static void	cleanup_and_exit(t_mlx *mlx, t_sprites *sprites,
+				t_image *background, t_game *game, const char *msg);
 
 int	main(int ac, char **av)
 {
@@ -41,8 +41,7 @@ int	main(int ac, char **av)
 		cleanup_and_exit(&mlx, NULL, NULL, &game, "Error building window");
 	sprites = load_sprites(mlx);
 	if (sprites_are_invalid(sprites))
-		cleanup_and_exit(&mlx, &sprites, NULL, &game,
-				   "Error loading sprites");
+		cleanup_and_exit(&mlx, &sprites, NULL, &game, "Error loading sprites");
 	render_input = build_render_input(&mlx, &game, &sprites, TILE_SIZE);
 	update_input = (t_update_input){&game, &mlx,
 		.needs_refresh = &render_input.needs_refresh};
@@ -54,8 +53,8 @@ int	main(int ac, char **av)
 }
 
 // rewrite as cleanup_and_exit
-static void	cleanup_and_exit(t_mlx *mlx, t_sprites *sprites, t_image *background,
-			t_game *game, const char* msg)
+static void	cleanup_and_exit(t_mlx *mlx, t_sprites *sprites,
+		t_image *background, t_game *game, const char *msg)
 {
 	if (!mlx)
 		return ;
