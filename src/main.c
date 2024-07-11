@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:01:01 by poss              #+#    #+#             */
-/*   Updated: 2024/07/09 19:43:04 by poss             ###   ########.fr       */
+/*   Updated: 2024/07/11 02:55:55 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	main(int ac, char **av)
 	cleanup(&mlx, &sprites, &render_input.background, &game);
 }
 
+// rewrite as cleanup_and_exit
 void	cleanup(t_mlx *mlx, t_sprites *sprites, t_image *background,
 		t_game *game)
 {
