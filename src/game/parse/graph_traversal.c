@@ -16,14 +16,14 @@
 
 static void	flood_fill(char **reached, t_position start, const t_game *game);
 static bool	collectibles_are_reached(const char **reached, const t_game *game);
-static bool matrix_is_valid(const char** matrix, t_dimension sz);
+static bool	matrix_is_valid(const char **matrix, t_dimension sz);
 
 bool	has_valid_path(const t_game *game)
 {
 	char	**reached;
 
 	reached = deep_copy_map(game);
-	if (!matrix_is_valid((const char**)reached, game->size))
+	if (!matrix_is_valid((const char **)reached, game->size))
 	{
 		free_map((t_map){reached, game->size});
 		return (false);
@@ -88,18 +88,18 @@ static bool	collectibles_are_reached(const char **reached, const t_game *game)
 	return (true);
 }
 
-static bool matrix_is_valid(const char** matrix, t_dimension sz)
+static bool	matrix_is_valid(const char **matrix, t_dimension sz)
 {
-	int row;
+	int	row;
 
 	if (!matrix)
-		return false;
+		return (false);
 	row = 0;
 	while (row < sz.h)
 	{
 		if (!matrix[row])
-			return false;
+			return (false);
 		row++;
 	}
-	return true;
+	return (true);
 }

@@ -18,7 +18,7 @@ void	free_map(t_map map)
 	int	row;
 
 	if (!map.data)
-		return;
+		return ;
 	row = 0;
 	while (row < map.size.h)
 	{
