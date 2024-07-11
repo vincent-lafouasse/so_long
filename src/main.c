@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:01:01 by poss              #+#    #+#             */
-/*   Updated: 2024/07/11 15:24:44 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:41:20 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,18 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+typedef struct s_data t_data;
+struct s_data {
+	t_mlx *mlx;
+	t_sprites *sprites;
+	t_image *background;
+	t_game *game;
+};
+
 static void	cleanup_and_exit(t_mlx *mlx, t_sprites *sprites,
 				t_image *background, t_game *game, const char *msg);
+
+static void cleanup_bis(t_data data, const char* msg);
 
 int	main(int ac, char **av)
 {
@@ -71,6 +81,28 @@ static void	cleanup_and_exit(t_mlx *mlx, t_sprites *sprites,
 	}
 	if (game)
 		free_game(game);
+	if (msg)
+		die(msg);
+	exit(0);
+}
+
+static void cleanup_bis(t_data data, const char* msg)
+{
+	if (!data.mlx)
+		return ;
+	if (data.background)
+		mlx_destroy_image(data.mlx->mlx, data.background->img);
+	if (data.sprites)
+		clear_sprites_checked(*(data.sprites), *(data.mlx));
+	if (data.mlx->window)
+		mlx_destroy_window(data.mlx->mlx, data.mlx->window);
+	if (data.mlx->mlx)
+	{
+		mlx_destroy_display(data.mlx->mlx);
+		free(data.mlx->mlx);
+	}
+	if (data.game)
+		free_game(data.game);
 	if (msg)
 		die(msg);
 	exit(0);
