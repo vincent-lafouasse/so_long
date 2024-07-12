@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 17:21:12 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/06/13 17:35:52 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/12 21:44:47 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_render_input
 
 t_render_input		build_render_input(t_mlx *mlx, const t_game *game,
 						const t_sprites *sprites, size_t tile_size);
+t_update_input		build_update_input(t_mlx* mlx, t_game* game, t_render_input* render_input);
 
 int					exit_hook(t_mlx *mlx);
 int					key_hook(t_keycode keycode, t_update_input *input);

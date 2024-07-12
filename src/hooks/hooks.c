@@ -6,7 +6,7 @@
 /*   By: vlafouas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 17:36:16 by vlafouas          #+#    #+#             */
-/*   Updated: 2024/06/13 21:15:15 by poss             ###   ########.fr       */
+/*   Updated: 2024/07/12 21:46:32 by poss             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,14 @@ t_render_input	build_render_input(t_mlx *mlx, const t_game *game,
 	render_input.needs_refresh = true;
 	render_input.background = make_background(game, sprites, mlx, tile_size);
 	return (render_input);
+}
+
+t_update_input		build_update_input(t_mlx* mlx, t_game* game, t_render_input* render_input)
+{
+	t_update_input	update_input;
+
+	update_input.game = game;
+	update_input.mlx = mlx;
+	update_input.needs_refresh = &render_input->needs_refresh;
+	return (update_input);
 }
