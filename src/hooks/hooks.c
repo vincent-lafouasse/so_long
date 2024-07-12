@@ -61,7 +61,8 @@ t_render_input	build_render_input(t_mlx *mlx, const t_game *game,
 	return (render_input);
 }
 
-t_update_input		build_update_input(t_mlx* mlx, t_game* game, t_render_input* render_input)
+t_update_input	build_update_input(t_mlx *mlx, t_game *game,
+		t_render_input *render_input)
 {
 	t_update_input	update_input;
 
