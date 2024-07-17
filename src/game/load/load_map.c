@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:10:23 by poss              #+#    #+#             */
-/*   Updated: 2024/07/09 19:43:32 by poss             ###   ########.fr       */
+/*   Updated: 2024/07/17 15:08:57 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
+
+#define MAX_WIDTH 30
+#define MAX_HEIGHT 15
 
 static t_list		*load_lines_in_lst(const char *map_path);
 static t_map		move_str_list_to_map(t_list **lst_p);
@@ -40,7 +43,7 @@ t_map	load_map(const char *path)
 		die("Failed to create char** map");
 	}
 	ft_assert(lines == NULL, "Failed to free list buffer");
-	if (map.size.w > 50 || map.size.h > 30)
+	if (map.size.w > MAX_WIDTH || map.size.h > MAX_HEIGHT)
 	{
 		free_map(map);
 		die("Invalid map size: too beeg");
