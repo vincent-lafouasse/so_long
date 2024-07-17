@@ -6,7 +6,7 @@
 /*   By: poss <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 20:10:23 by poss              #+#    #+#             */
-/*   Updated: 2024/07/17 15:08:57 by vlafouas         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:23:01 by vlafouas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define MAX_WIDTH 30
-#define MAX_HEIGHT 15
+#define MAX_WIDTH 50
+#define MAX_HEIGHT 30
 
 static t_list		*load_lines_in_lst(const char *map_path);
 static t_map		move_str_list_to_map(t_list **lst_p);
